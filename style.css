@@ -1,0 +1,3497 @@
+/* ============================================================
+   Confiserie Roelli — style.css
+   Mobile-first responsive. Breakpoints: 768px (tablet), 1024px (desktop).
+   ============================================================ */
+
+/* ── Custom properties ────────────────────────────────────── */
+:root {
+  --color-primary:       #C2185B;
+  --color-primary-light: #FCE4EC;
+  --color-primary-dark:  #880E4F;
+  --color-accent-gold:   #D4AC0D;   /* décor seul : filets, pastilles, fonds */
+  /* Le doré de marque ne donne que 2:1 sur nos fonds clairs : illisible en
+     texte. Cette déclinaison assombrie tient 5:1 minimum sur #FFF8F0,
+     #F5F5F0 et blanc, et sert partout où l'or devient un mot. */
+  --color-accent-gold-text: #806507;
+  --color-bg:            #FFF8F0;
+  --color-surface:       #F5F5F0;
+  --color-text:          #5D4037;
+  --color-text-muted:    #7a5c62;
+  --font-serif:          'Playfair Display', Georgia, serif;
+  --font-sans:           'Lato', Arial, sans-serif;
+
+  --top-bar-h:  36px;
+  --nav-h:      72px;
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --shadow-sm:  0 2px 8px rgba(93, 64, 55, 0.10);
+  --shadow-md:  0 8px 24px rgba(93, 64, 55, 0.15);
+  --transition: 0.25s ease;
+}
+
+/* ── Reset / base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prevent page scroll when mobile menu is open */
+body.nav-open { overflow: hidden; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* <picture> ne sert qu'à proposer le WebP : on le retire du flux pour que
+   l'<img> reste l'élément de grille/flex, comme avant l'ajout des sources.
+   Le display:none sur <source> est indispensable : sans lui, display:contents
+   expose les <source> qui deviennent à leur tour des éléments de grille. */
+picture { display: contents; }
+picture > source { display: none; }
+a   { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+button { cursor: pointer; font-family: inherit; background: none; border: none; }
+
+/* ── Utilities ────────────────────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.text-center { text-align: center; }
+
+/* Titre lu par les lecteurs d'écran, invisible à l'œil */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Focus visible global ─────────────────────────────────
+   Ce bloc doit RESTER EN HAUT de la feuille. Deux raisons, toutes deux
+   affaire d'ordre et non de spécificité :
+   1. « :focus-visible » pose border-radius: 4px ; les composants ronds
+      (.social-link, .magasin__arrow, .magasin__dot : border-radius 50%)
+      ne gardent leur cercle que parce qu'ils sont déclarés plus bas.
+      Déplacer ce bloc à la fin les transformerait en carrés arrondis.
+   2. « .skip-link:focus-visible » a la même spécificité que le
+      « .skip-link:focus » qui suit : c'est l'ordre qui laisse au lien
+      d'évitement son anneau à lui. */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Enlever le contour du navigateur seulement quand le focus n'est pas
+   « visible » (clic souris) : au clavier, l'anneau reste. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Sur fond sombre, le prune de marque disparaîtrait (1,6:1 sur le brun du
+   hero) : on passe au rose clair de la palette. Toute nouvelle surface
+   sombre portant un élément cliquable doit être ajoutée ici.
+   .magasin-detail--dark est prévu pour plus tard : aucune page ne le porte
+   aujourd'hui. */
+.top-bar :focus-visible,
+.footer :focus-visible,
+.hero :focus-visible,
+.tr-hero :focus-visible,
+.nav__mobile-overlay :focus-visible,
+.magasin-detail--dark :focus-visible {
+  outline-color: var(--color-primary-light);
+}
+
+/* Le lien d'évitement a déjà son propre anneau : on ne le surcharge pas. */
+.skip-link:focus-visible {
+  outline: none;
+}
+
+/* ── Lien d'évitement ─────────────────────────────────────
+   Premier élément focalisable de la page : il descend sous la
+   barre du haut dès qu'il reçoit le focus, puis disparaît. */
+.skip-link {
+  /* fixed, et non absolute : le lien reste atteignable même si la page
+     a déjà été défilée quand le focus lui revient. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  transform: translateY(-120%);
+  padding: 0.75rem 1.25rem;
+  /* Blanc sur prune : la barre du haut est déjà prune, un lien de la
+     même couleur s'y fondrait au lieu de s'en détacher. */
+  background: white;
+  color: var(--color-primary-dark);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-bottom-right-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+}
+
+/* La cible du lien d'évitement reçoit le focus par programme :
+   on l'accepte sans dessiner de cadre autour de toute la page. */
+[tabindex="-1"]:focus { outline: none; }
+
+/* Lien de texte isolé dans un paragraphe à lui : il lui faut sa
+   propre zone tactile, contrairement à un lien pris dans une phrase. */
+.inline-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  color: var(--color-primary);
+}
+.inline-link:hover { color: var(--color-primary-dark); }
+
+/* Gold divider line above section titles */
+.section__gold-line {
+  width: 40px;
+  height: 2px;
+  background: var(--color-accent-gold);
+  margin-bottom: 1rem;
+}
+
+.section__gold-line--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section title */
+.section__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+/* Image placeholders */
+.img-placeholder {
+  background-color: #c9a96e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  /* TODO: replace placeholder */
+}
+
+.img-placeholder__label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition);
+  border: 2px solid transparent;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn--outline:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn--outline-white {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
+.btn--outline-white:hover {
+  background: white;
+  color: var(--color-primary);
+}
+
+.btn--full {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ── Top bar ──────────────────────────────────────────────── */
+.top-bar {
+  background: var(--color-primary-dark);
+  height: var(--top-bar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  z-index: 10;
+}
+
+.top-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Hide contact text on small mobile, show icons only */
+.top-bar__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color var(--transition);
+  /* Zone tactile : sur mobile, seule l'icône de 13 px est visible. */
+  min-width: 32px;
+  min-height: 32px;
+  justify-content: center;
+}
+.top-bar__contact:hover { color: white; }
+
+.top-bar__contact svg {
+  flex-shrink: 0;
+}
+
+.top-bar__contact-text {
+  display: none; /* shown at tablet+ */
+}
+
+.top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.lang-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition);
+  /* Zone tactile, bornée par les 36 px de la barre. */
+  min-width: 32px;
+  min-height: 26px;
+}
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.lang-btn.active {
+  background: white;
+  color: var(--color-primary-dark);
+  border-color: white;
+}
+
+/* ── Navigation ───────────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid rgba(93, 64, 55, 0.10);
+  transition: box-shadow var(--transition);
+}
+
+.site-header.scrolled {
+  box-shadow: 0 2px 16px rgba(93, 64, 55, 0.12);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+  padding: 0 1.5rem;
+}
+
+/* Left & right menu lists — hidden on mobile */
+.nav__list {
+  display: none;
+  align-items: center;
+  gap: 0;
+}
+
+/* Logo */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.nav__logo-img {
+  height: 44px;
+  width: 44px;
+  flex-shrink: 0;
+}
+
+.nav__logo-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(93, 64, 55, 0.25);
+  flex-shrink: 0;
+}
+
+.nav__logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav__logo-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.nav__logo-sub {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Nav links */
+.nav__item {
+  position: relative;
+}
+
+.nav__link {
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  transition: color var(--transition);
+  white-space: nowrap;
+  /* Zone tactile de 44 px, absorbée par les 72 px de la barre. */
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+.nav__link:hover { color: var(--color-primary); }
+
+/* Dropdown menus (CSS-only, no JS) */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background: white;
+  border: 1px solid rgba(93, 64, 55, 0.10);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--transition), visibility var(--transition),
+              transform var(--transition);
+  padding: 0.5rem 0;
+}
+
+.has-dropdown:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Chevron indicator */
+/* .nav__link est un conteneur flex : l'espace de tête serait avalé,
+   l'écart vient donc d'une marge. */
+.has-dropdown > .nav__link::after {
+  content: '▾';
+  margin-left: 0.35em;
+  font-size: 0.65rem;
+  opacity: 0.6;
+}
+
+.dropdown__link {
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--color-text);
+  transition: background var(--transition), color var(--transition);
+  /* Zone tactile. */
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+.dropdown__link:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Hamburger button */
+.nav__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  /* Zone tactile de 44 px ; les barres restent à 24 px. */
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ── Mobile overlay ───────────────────────────────────────── */
+.nav__mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-primary-dark);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transform: translateX(100%);
+  /* visibility retire l'overlay fermé de l'ordre de tabulation et de
+     l'arbre d'accessibilité ; sans elle, ses 7 liens restent
+     atteignables au clavier alors qu'ils sont hors écran. */
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 0.35s;
+  padding: 2rem;
+}
+
+.nav__mobile-overlay.active {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s;
+}
+
+.nav__overlay-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  color: white;
+  font-size: 2rem;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity var(--transition);
+  /* Zone tactile : la croix ne fait que 24 px. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+.nav__overlay-close:hover { opacity: 1; }
+
+.nav__mobile-list {
+  text-align: center;
+  width: 100%;
+}
+
+.nav__mobile-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 0.6rem 0;
+  transition: color var(--transition);
+}
+.nav__mobile-link:hover { color: white; }
+
+.nav__mobile-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0.75rem auto;
+  width: 40px;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  height: 78vh;
+  min-height: 520px;
+  background-color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.42) 45%,
+    rgba(0, 0, 0, 0.50) 100%
+  );
+  z-index: 1;
+}
+
+/* Category pill strip — anchored to top of hero */
+.hero__pills-wrap {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  padding: 0 0.5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: normal;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeInDown 0.6s ease forwards;
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 8px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition);
+  backdrop-filter: blur(4px);
+}
+.pill:hover, .pill.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.pill-dot {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+}
+
+/* Sur écran large les pastilles sont plus grandes et plus espacées ;
+   en dessous elles restent compactes pour tenir sur une ligne. */
+@media (min-width: 768px) {
+  .hero__pills-wrap {
+    gap: 1.35rem;
+  }
+
+  .pill {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.9rem;
+  }
+
+  .pill-dot {
+    font-size: 1.2rem;
+  }
+}
+
+/* Petits mobiles : texte resserré pour que les trois pastilles tiennent
+   sur une ligne ; l'espacement (gap, padding) est celui de la règle de base. */
+@media (max-width: 480px) {
+  .pill {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* Les points de séparation se retrouveraient orphelins en bout de ligne
+     si la rangée se replie : le gap suffit à séparer les pastilles. */
+  .pill-dot {
+    display: none;
+  }
+}
+
+/* Hero main content */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1.5rem;
+  max-width: 720px;
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+
+.hero__subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: white;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  margin-bottom: 2.5rem;
+}
+
+.hero__ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Notre histoire ───────────────────────────────────────── */
+.histoire { background: var(--color-bg); }
+
+.histoire__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.histoire__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.histoire__body {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.histoire__body:last-child { margin-bottom: 0; }
+
+/* TODO: replace placeholder */
+.img-placeholder--histoire {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  width: 100%;
+}
+
+/* Photos des blocs « histoire » (propriétaires, laboratoire) */
+.histoire__figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.histoire__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: block;
+}
+
+.histoire__caption {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* En desktop la cellule est étirée par la grille : l'image prend
+   toute la hauteur restante au lieu d'un ratio fixe. */
+@media (min-width: 768px) {
+  .histoire__img {
+    aspect-ratio: auto;
+    flex: 1;
+    min-height: 380px;
+  }
+}
+
+/* ── Nos spécialités ──────────────────────────────────────── */
+.specialites { background: var(--color-surface); }
+
+.specialites__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.spec-card {
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.spec-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* TODO: replace placeholder */
+.img-placeholder--spec {
+  aspect-ratio: 3 / 2;
+  width: 100%;
+}
+
+/* Même cadre que le placeholder : les trois cartes gardent la même
+   hauteur tant que les deux autres photos manquent. */
+.spec-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.spec-card__body {
+  padding: 1.5rem;
+}
+
+.spec-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.spec-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ── Catalogue ────────────────────────────────────────────── */
+.catalogue { background: var(--color-bg); }
+
+/* Short intro line under a catalogue section title */
+.catalogue__intro {
+  max-width: 46ch;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.catalogue__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+.product-card {
+  position: relative;
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* TODO: replace placeholder */
+.img-placeholder--product {
+  height: 340px;
+  width: 100%;
+}
+
+.product-card__body {
+  padding: 1.1rem 1.25rem 1.4rem;
+}
+
+.product-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.35rem;
+}
+
+.product-card__desc {
+  font-size: 0.83rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.product-card__img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  border-radius: 12px 12px 0 0;
+  transform: scale(1);
+  transition: transform 0.7s var(--actu-ease);
+}
+
+/* Zoom lent au survol, calqué sur les cartes d'actualités : la carte se
+   soulève déjà (translateY + ombre), l'image respire derrière le masque
+   overflow:hidden de .product-card. Rien de plus : la photo reste le sujet. */
+.product-card:hover .product-card__img,
+.product-card:focus-within .product-card__img {
+  transform: scale(1.045);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card__img,
+  .product-card:hover .product-card__img,
+  .product-card:focus-within .product-card__img {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Photos verticales (pains) : le sujet est bas dans le cadre,
+   on ancre le recadrage plus bas pour ne pas couper la base du pain. */
+.product-card__img--low {
+  object-position: center 75%;
+}
+
+/* Photo dont le sujet dépasse déjà le bas du cadre d'origine :
+   on ancre vers le haut pour montrer la pointe du pain. */
+.product-card__img--top {
+  object-position: center 20%;
+}
+
+/* Seasonal badge */
+.badge-saison {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--color-accent-gold);
+  color: var(--color-primary-dark);
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+/* ── Commander (order form) ───────────────────────────────── */
+
+/* Form */
+.order-form {}
+
+.form-row {
+  margin-bottom: 1.25rem;
+}
+
+.form-row--2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.45rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid rgba(93, 64, 55, 0.2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: white;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  appearance: none;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(194, 24, 91, 0.10);
+}
+.form-control::placeholder { color: rgba(93, 64, 55, 0.35); }
+
+textarea.form-control { resize: vertical; min-height: 100px; }
+
+/* ── Nos magasins ─────────────────────────────────────────── */
+.magasin {
+  background: var(--color-primary-dark);
+  color: white;
+  padding: 5rem 0;
+}
+
+.magasin .section__title {
+  margin-bottom: 3rem;
+}
+
+.magasin__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.magasin__card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.magasin__card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.magasin__card-label {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-primary-dark);
+  background: var(--color-primary-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.magasin__card-town {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.15rem;
+}
+
+.magasin__card-name {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-primary-light);
+  margin-bottom: 1rem;
+}
+
+.magasin__card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  padding-top: 1rem;
+}
+
+.magasin__card-details p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+.magasin__card-details a {
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--transition);
+}
+.magasin__card-details a:hover { color: white; }
+
+/* Dropdown width override for Magasins (longer labels) */
+
+/* ── Footer ───────────────────────────────────────────────── */
+.footer {
+  background: #1a1a1a;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 4rem 0 0;
+}
+
+.footer__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+/* Invert the logo to white for dark background */
+.footer__logo-img {
+  height: 64px;
+  width: 64px;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+/* 3-column links */
+.footer__cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.footer__col h3 {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.footer__col ul {
+  display: flex;
+  flex-direction: column;
+  /* L'écart est repris par la hauteur tactile des liens ci-dessous. */
+  gap: 0;
+}
+
+.footer__col a {
+  /* Zone tactile : un lien de liste isolé n'est pas « dans une phrase »,
+     il lui faut ses 24 px de haut. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color var(--transition);
+}
+.footer__col a:hover { color: white; }
+
+/* Bottom bar */
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.footer__copyright {
+  font-size: 0.78rem;
+  /* 0.35 d'opacité ne donnait que 3,2:1 sur le #1a1a1a du pied de page :
+     sous le seuil AA de 4,5:1 pour un texte de 12,5 px. */
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.04em;
+}
+
+/* Payment badges */
+.footer__payments {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.payment-badge {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 7px;
+  border-radius: 3px;
+}
+
+/* Social icons */
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Zone tactile de 44 px. */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.55);
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition);
+}
+.social-link:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive: small tablet 560px+ ──────────────────────── */
+@media (min-width: 560px) {
+  .magasin__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Responsive: tablet 768px+ ────────────────────────────── */
+@media (min-width: 768px) {
+  /* Top bar: show contact text */
+  .top-bar { padding: 0 2rem; }
+  .top-bar__contact-text { display: inline; }
+
+  /* Nav */
+  .nav { padding: 0 2rem; }
+
+  /* Histoire 2 columns */
+  .histoire__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  /* Colonnes étirées, mais le texte reste centré verticalement
+     quand il est plus court que la photo. */
+  .histoire__text {
+    justify-content: center;
+  }
+
+  /* Image à gauche, texte à droite */
+  .histoire__grid--reverse > *:first-child { order: 2; }
+  .histoire__grid--reverse > *:last-child  { order: 1; }
+
+  /* Spécialités 3 columns */
+  .specialites__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Catalogue 2 columns */
+  .catalogue__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Form 2-col rows */
+  .form-row--2col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Magasin cards — 3 columns on md+ */
+  .magasin__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Footer cols */
+  .footer__cols {
+    grid-template-columns: repeat(3, 1fr);
+    text-align: left;
+  }
+
+  .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* ── Responsive: desktop 1024px+ ─────────────────────────── */
+@media (min-width: 1024px) {
+  /* Full horizontal nav */
+  .nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 0 2rem;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__list--left {
+    justify-content: flex-end;
+    gap: 0.25rem;
+  }
+
+  .nav__list--right {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  /* Space logo from menus */
+  .nav__logo { padding: 0 2rem; }
+
+  /* Hide hamburger */
+  .nav__hamburger { display: none; }
+
+  /* Catalogue 3 columns */
+  .catalogue__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Entre 1024 et 1199 px la barre manque de place. La grille est
+   « 1fr auto 1fr » : quand l'espace se resserre, les deux pistes 1fr
+   retombent sur leur min-content — 383 px à gauche contre 348 px à droite —
+   et le logo se décale de 17 px.
+   Attention en retouchant ces valeurs : la piste du logo est en « auto »,
+   donc tout ce qu'on retire aux listes, le logo le reprend aussitôt. Il
+   faut resserrer les deux à la fois. Les valeurs ci-dessous laissent 10 px
+   de marge entre le min-content de la liste gauche (338 px) et la piste
+   obtenue (348 px) : de quoi encaisser les variations de rendu des polices.
+   Au-delà de 1200 px la place ne manque plus, les pistes sont déjà égales
+   et cette requête ne s'applique pas. */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .nav__link {
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
+  }
+
+  .nav__logo {
+    padding: 0 0.75rem;
+  }
+
+  .nav__list--left,
+  .nav__list--right {
+    gap: 0.2rem;
+  }
+}
+
+/* ============================================================
+   MULTI-PAGE ADDITIONS
+   ============================================================ */
+
+/* Les cibles d'ancre ne doivent pas passer sous l'en-tête collant */
+.specialites {
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+
+/* ── Nav active state ─────────────────────────────────────── */
+.nav__item--active > .nav__link {
+  color: var(--color-primary);
+}
+
+.dropdown__link--active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* La page courante porte aussi aria-current="page". La couleur seule ne
+   suffit pas (WCAG 1.4.1) : le lien exact reçoit un filet sous le texte.
+   Le parent d'un menu déroulant garde la couleur pour seul repère — il
+   ne désigne pas la page, seulement la rubrique. */
+.nav__link[aria-current="page"] {
+  box-shadow: inset 0 -2px 0 0 var(--color-primary);
+}
+
+.dropdown__link[aria-current="page"],
+.nav__mobile-link[aria-current="page"] {
+  font-weight: 700;
+}
+
+.dropdown__link[aria-current="page"] {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.nav__mobile-link[aria-current="page"] {
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+/* ── Page hero (inner pages) ──────────────────────────────── */
+.page-hero {
+  background: var(--color-surface);
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid rgba(93, 64, 55, 0.08);
+}
+
+.page-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.page-hero__sub {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-weight: 300;
+}
+
+/* ── Hero slideshow ───────────────────────────────────────── */
+.hero__slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.hero__slide.active {
+  opacity: 1;
+}
+
+/* Couleur de fond le temps que la photo se charge */
+.hero--gallery {
+  background-color: var(--color-text);
+}
+
+/* Slide dots */
+
+/* ── Bar à Croissants section ─────────────────────────────── */
+/* Le bas de la section fond vers le rose de « Nos magasins »
+   pour éviter la cassure nette entre les deux blocs. */
+.bar-croissants {
+  background: var(--color-surface);
+  padding: 5rem 0 3rem;
+}
+
+.bar-croissants__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.bar-croissants__img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: block;
+}
+
+.bar-croissants__text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar-croissants__badge {
+  align-self: flex-start;
+  background: var(--color-accent-gold);
+  color: var(--color-primary-dark);
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 1.1rem;
+}
+
+.bar-croissants__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  color: var(--color-primary-dark);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.bar-croissants__lead {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin: 0 0 2rem;
+}
+
+/* Les trois étapes */
+.bar-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.bar-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.bar-step__num {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bar-step__name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 0.15rem;
+}
+
+.bar-step__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .bar-croissants__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: stretch;
+  }
+}
+
+.bar-croissants__gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.bar-croissants__gallery img,
+.bar-croissants__gallery video,
+.bar-croissants__gallery .bar-video__wrap {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  display: block;
+  background: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+}
+
+/* La vidéo est désormais emballée : c'est l'enveloppe qui est la tuile.
+   Son overflow:hidden rognerait l'ombre de la vidéo qu'elle contient,
+   la tuile paraîtrait plate à côté des deux photos — on la retire donc
+   de l'enfant, l'enveloppe la porte déjà. */
+.bar-croissants__gallery .bar-video {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* En dessous de 768px les trois vignettes s'empilent : en 3 colonnes
+   elles tomberaient à ~100px de large pour 360px de haut. */
+@media (max-width: 767px) {
+  .bar-croissants__gallery {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .bar-croissants__gallery img,
+  .bar-croissants__gallery video,
+  .bar-croissants__gallery .bar-video__wrap {
+    height: 220px;
+  }
+}
+
+/* ── Lecteur vidéo maison (Bar à Croissants) ──────────────────
+   Les commandes natives du navigateur jurent avec le reste ; celles-ci
+   reprennent le prune de la maison et ne se montrent qu'au survol. */
+.bar-video__wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bar-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bar-video__controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bar-video__wrap:hover .bar-video__controls,
+.bar-video__wrap:focus-within .bar-video__controls {
+  opacity: 1;
+}
+
+/* Un clic à la souris sur le bouton y laisse le focus : sans cette règle
+   les commandes resteraient affichées après le départ du pointeur, alors
+   qu'on veut retrouver la vidéo nue. On ne garde donc l'affichage par le
+   focus que lorsqu'il est visible au sens du navigateur, c'est-à-dire au
+   clavier. Là où :has() manque, la règle est simplement ignorée et l'on
+   retombe sur :focus-within — l'accès au clavier reste acquis. */
+@supports selector(:has(:focus-visible)) {
+  .bar-video__wrap:focus-within:not(:has(:focus-visible)):not(:hover) .bar-video__controls {
+    opacity: 0;
+  }
+}
+
+/* Tant que la vidéo n'a jamais été lancée, les commandes restent
+   affichées : sans elles, rien ne dirait au visiteur que cette tuile est
+   une vidéo et non une photo. Le premier « play » retire la classe et
+   l'on repasse au comportement normal, au survol. */
+.bar-video__wrap--ready .bar-video__controls {
+  opacity: 1;
+}
+
+/* Sur écran tactile il n'y a pas de survol, et un appui sur la vidéo ne
+   déclenche pas :hover non plus — vérifié : les commandes restent à
+   opacity 0 après un tap. Sans cette règle, la vidéo tournerait en
+   boucle sans aucun moyen de l'arrêter (WCAG 2.2.2). On les laisse donc
+   affichées sur tactile ; rien ne change sur ordinateur, où le survol
+   fait son travail. */
+@media (hover: none) {
+  .bar-video__controls { opacity: 1; }
+}
+
+.bar-video__btn {
+  background: rgba(194, 24, 91, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.bar-video__btn:hover {
+  background: var(--color-primary);
+}
+
+.bar-video__progress {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.bar-video__bar {
+  height: 100%;
+  width: 0%;
+  background: var(--color-primary-light);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.bar-video__time {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-sans);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ── Spec card as link ────────────────────────────────────── */
+.spec-card--link {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.spec-card--link:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.spec-card--link .spec-card__name {
+  color: var(--color-primary);
+}
+
+/* ── Actualités ───────────────────────────────────────────────
+   Mise en page éditoriale (magazine) : grille asymétrique,
+   hiérarchie typographique serif, respiration généreuse.
+   Jetons de composant → jetons sémantiques du :root, jamais de
+   valeur brute dans les règles ci-dessous.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  /* Surfaces & traits */
+  --actu-surface:      #ffffff;
+  --actu-hairline:     rgba(93, 64, 55, 0.13);
+  --actu-hairline-soft:rgba(93, 64, 55, 0.08);
+
+  /* Rôles typographiques */
+  --actu-eyebrow:      var(--color-primary);
+  --actu-title:        var(--color-text);
+  --actu-title-accent: var(--color-primary-dark);
+  --actu-body:         var(--color-text-muted);
+  --actu-ornament:     var(--color-accent-gold);
+
+  /* Forme */
+  --actu-radius:       14px;
+  --actu-radius-lg:    18px;
+
+  /* Élévation — deux couches : contact serré + ombre portée diffuse */
+  --actu-elev-rest:  0 1px 2px rgba(93, 64, 55, 0.05),
+                     0 10px 24px -14px rgba(93, 64, 55, 0.20);
+  --actu-elev-hover: 0 2px 4px rgba(93, 64, 55, 0.07),
+                     0 26px 46px -20px rgba(136, 14, 79, 0.30);
+
+  /* Mouvement — une seule courbe pour toute la section */
+  --actu-ease:  cubic-bezier(0.22, 0.61, 0.36, 1);
+  --actu-dur:   0.42s;
+  --actu-dur-q: 0.24s;
+
+  /* Échelle d'espacement « aérée » propre à la section */
+  --actu-sp-2xs: 0.4rem;
+  --actu-sp-xs:  0.75rem;
+  --actu-sp-sm:  1.15rem;
+  --actu-sp-md:  1.9rem;
+  --actu-sp-lg:  3rem;
+  --actu-sp-xl:  4.5rem;
+  --actu-sp-2xl: 6.5rem;
+}
+
+/* ── Flèche animée (partagée par tous les liens de la section) ── */
+.actu-arrow {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  transform: translateX(0);
+  transition: transform var(--actu-dur-q) var(--actu-ease);
+}
+
+/* ── Rubrique / date : la ligne de métadonnées ────────────────
+   L'or ne sert qu'à l'ornement : son contraste sur fond clair
+   est insuffisant pour du texte (< 4.5:1).                      */
+.actu-card__cat,
+.actu__cat {
+  font-weight: 700;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--actu-eyebrow);
+}
+
+.actu-card__sep,
+.actu__sep {
+  width: 4px;
+  height: 4px;
+  flex: none;
+  transform: rotate(45deg);
+  background: var(--actu-ornament);
+}
+
+.actu-card__date,
+.actu__date {
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--actu-body);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ══ Accueil : bloc « Actualités » ═════════════════════════════ */
+/* Intercalée entre « Nos spécialités » et « Bar à Croissants », toutes deux
+   gris-vert : l'aplat crème rompt le bloc et détache les cartes blanches. */
+.actus {
+  background: var(--color-bg);
+}
+
+.actus__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--actu-sp-sm);
+  margin-bottom: var(--actu-sp-lg);
+}
+
+.actus__title { margin-bottom: 0.35rem; }
+
+.actus__sub {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--actu-body);
+  max-width: 46ch;
+}
+
+.actus__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  padding-bottom: 0.3rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--color-primary);
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: color var(--actu-dur-q) var(--actu-ease),
+              border-color var(--actu-dur-q) var(--actu-ease);
+}
+
+.actus__all:hover,
+.actus__all:focus-visible {
+  color: var(--color-primary-dark);
+  border-bottom-color: var(--actu-ornament);
+}
+
+.actus__all:hover .actu-arrow,
+.actus__all:focus-visible .actu-arrow { transform: translateX(4px); }
+
+/* Grille : une colonne en mobile, trois en desktop, avec un
+   décalage vertical progressif qui donne son rythme à la rangée. */
+.actus__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  gap: var(--actu-sp-md);
+}
+
+.actu-card {
+  background: var(--actu-surface);
+  border-radius: var(--actu-radius);
+  border: 1px solid var(--actu-hairline-soft);
+  box-shadow: var(--actu-elev-rest);
+  transition: transform var(--actu-dur) var(--actu-ease),
+              box-shadow var(--actu-dur) var(--actu-ease);
+}
+
+.actu-card:hover,
+.actu-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--actu-elev-hover);
+}
+
+.actu-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  border-radius: inherit;
+}
+
+.actu-card__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Le cadre réserve la place de l'image (pas de saut de mise en page)
+   et borne le zoom au survol.                                      */
+.actu-card__frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--actu-radius) var(--actu-radius) 0 0;
+  background: var(--color-surface);
+}
+
+.actu-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1);
+  transition: transform 0.7s var(--actu-ease);
+}
+
+.actu-card:hover .actu-card__img,
+.actu-card:focus-within .actu-card__img { transform: scale(1.045); }
+
+.actu-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--actu-sp-md) var(--actu-sp-md) calc(var(--actu-sp-md) - 0.15rem);
+}
+
+.actu-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--actu-sp-xs);
+}
+
+.actu-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.32rem;
+  font-weight: 600;
+  color: var(--actu-title);
+  line-height: 1.28;
+  text-wrap: balance;
+  margin-bottom: 0.65rem;
+  transition: color var(--actu-dur-q) var(--actu-ease);
+}
+
+.actu-card:hover .actu-card__title,
+.actu-card:focus-within .actu-card__title { color: var(--actu-title-accent); }
+
+.actu-card__excerpt {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--actu-body);
+  line-height: 1.75;
+  margin-bottom: var(--actu-sp-sm);
+}
+
+/* Le lien de fin est poussé en bas : les trois cartes alignent
+   leur « Lire la suite » quelle que soit la longueur du chapô. */
+.actu-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: var(--actu-sp-sm);
+  border-top: 1px solid var(--actu-hairline);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--color-primary);
+  transition: color var(--actu-dur-q) var(--actu-ease);
+}
+
+.actu-card:hover .actu-card__more,
+.actu-card:focus-within .actu-card__more { color: var(--color-primary-dark); }
+
+.actu-card:hover .actu-arrow,
+.actu-card:focus-within .actu-arrow { transform: translateX(4px); }
+
+/* ══ Page « Actualités » ═══════════════════════════════════════ */
+.page-hero--actus { padding: 4.5rem 0 3.5rem; }
+.page-hero--actus .page-hero__inner { max-width: 42rem; }
+.page-hero--actus .page-hero__sub {
+  margin-top: 0.85rem;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  max-width: 40ch;
+}
+
+.actus-page {
+  background: var(--color-bg);
+  padding: var(--actu-sp-xl) 0 var(--actu-sp-2xl);
+}
+
+.actu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--actu-sp-md);
+  scroll-margin-top: calc(var(--nav-h) + var(--actu-sp-md));
+}
+
+.actu__figure { margin: 0; }
+
+.actu__frame {
+  overflow: hidden;
+  border-radius: var(--actu-radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--actu-elev-rest);
+}
+
+.actu__img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.actu__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: var(--actu-sp-sm);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-primary-dark);
+}
+
+/* Petit trait doré qui précède « À la une » */
+.actu__flag::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: var(--actu-ornament);
+}
+
+.actu__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--actu-sp-xs);
+}
+
+.actu__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--actu-title);
+  line-height: 1.18;
+  text-wrap: balance;
+  margin-bottom: var(--actu-sp-sm);
+}
+
+.actu__text {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1.85;
+  max-width: 68ch;
+  margin-bottom: var(--actu-sp-sm);
+}
+
+.actu__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--actu-sp-xs);
+  padding-bottom: 0.3rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--actu-hairline);
+  transition: color var(--actu-dur-q) var(--actu-ease),
+              border-color var(--actu-dur-q) var(--actu-ease);
+}
+
+.actu__cta:hover,
+.actu__cta:focus-visible {
+  color: var(--color-primary-dark);
+  border-bottom-color: var(--actu-ornament);
+}
+
+.actu__cta:hover .actu-arrow,
+.actu__cta:focus-visible .actu-arrow { transform: translateX(4px); }
+
+/* Titres : l'article de tête domine nettement les suivants. */
+.actu--lead .actu__title  { font-size: clamp(1.9rem, 4.4vw, 2.9rem); }
+.actu--sm   .actu__title  { font-size: clamp(1.4rem, 2.6vw, 1.85rem); }
+
+.actu--sm .actu__text {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--actu-body);
+}
+
+/* Lettrine de l'article de tête — signature éditoriale. */
+.actu__text--lead::first-letter {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 3.4em;
+  line-height: 0.82;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding: 0.06em 0.12em 0 0;
+}
+
+/* ── Séparateur : filet + losange doré ──────────────────────── */
+.actu-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--actu-sp-sm);
+  margin: var(--actu-sp-xl) auto;
+  max-width: 30rem;
+}
+
+.actu-divider__rule {
+  flex: 1;
+  height: 1px;
+  background: var(--actu-hairline);
+}
+
+.actu-divider__mark {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  transform: rotate(45deg);
+  background: var(--actu-ornament);
+}
+
+/* ── Apparition au défilement ────────────────────────────────
+   La classe est posée par main.js : sans JS, rien n'est masqué.  */
+.js-reveal.is-revealable {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.js-reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.55s var(--actu-ease),
+              transform 0.55s var(--actu-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal.is-revealable { opacity: 1; transform: none; }
+  .actu-card:hover,
+  .actu-card:focus-within { transform: none; }
+  .actu-card:hover .actu-card__img,
+  .actu-card:focus-within .actu-card__img { transform: none; }
+  .actu-arrow { transition: none; }
+}
+
+/* ── Tablette ────────────────────────────────────────────────── */
+@media (min-width: 620px) {
+  .actus__head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--actu-sp-md);
+  }
+  .actus__all { align-self: flex-end; margin-bottom: 0.4rem; }
+}
+
+@media (min-width: 769px) {
+  .actus__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  /* Article de tête : image large à gauche, texte à droite. */
+  .actu--lead {
+    grid-template-columns: 1.15fr 1fr;
+    gap: var(--actu-sp-lg);
+    align-items: center;
+  }
+  .actu--lead .actu__img { aspect-ratio: 1 / 1; }
+
+  /* Suivants : image plus petite, côtés alternés. */
+  .actu--sm {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--actu-sp-lg);
+    align-items: center;
+  }
+  .actu--sm .actu__img { aspect-ratio: 4 / 3; }
+
+  /* Côtés alternés : on inverse aussi les pistes, sinon l'image
+     changerait de largeur d'un article à l'autre. */
+  .actu--sm:nth-of-type(even) { grid-template-columns: 7fr 5fr; }
+  .actu--sm:nth-of-type(even) .actu__figure { grid-column: 2; grid-row: 1; }
+  .actu--sm:nth-of-type(even) .actu__body   { grid-column: 1; grid-row: 1; }
+}
+
+/* ── Desktop : le décalage vertical qui donne le rythme ─────── */
+@media (min-width: 1024px) {
+  .actus__grid { gap: var(--actu-sp-lg); }
+
+  .actu--lead { gap: var(--actu-sp-xl); }
+  .actu--sm   { gap: var(--actu-sp-xl); }
+}
+
+/* ── Magasins home grid (5 cards) ────────────────────────── */
+.magasins-home {
+  background: linear-gradient(
+    to bottom,
+    var(--color-surface) 0%,
+    var(--color-primary-light) 22%,
+    var(--color-primary-light) 100%
+  );
+}
+
+.magasins-home__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+.magasin-card {
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-left: 3px solid var(--color-primary);
+}
+
+.magasin-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.magasin-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.magasin-card__img--placeholder {
+  background: #c9a96e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.magasin-card__town {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin-bottom: 0;
+  padding: 0.9rem 1.1rem;
+}
+
+@media (min-width: 620px) {
+  .magasins-home__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Les 5 magasins sur une seule ligne */
+@media (min-width: 1000px) {
+  .magasins-home__grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .magasin-card__town {
+    font-size: 0.95rem;
+    padding: 0.8rem 0.9rem;
+  }
+}
+
+/* ── Magasins detail page ────────────────────────────────── */
+.magasins-page {
+  padding: 5rem 0;
+}
+
+.magasin-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 3rem 0;
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+
+.magasin__slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 280px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.magasin__slideshow--placeholder {
+  background: #e8e0d6;
+}
+
+/* Diaporama à l'intérieur d'un bloc « histoire » : pas de largeur
+   plafonnée, et hauteur calée sur celle de la colonne de texte
+   (voir .histoire__grid--reverse, align-items: stretch). */
+.magasin__slideshow--histoire {
+  max-width: none;
+  height: auto;
+  min-height: 320px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* En desktop la cellule est étirée par la grille : la hauteur vient
+   de la colonne de texte, pas d'un ratio fixe. */
+@media (min-width: 768px) {
+  .magasin__slideshow--histoire {
+    aspect-ratio: auto;
+    min-height: 380px;
+  }
+}
+
+.magasin__slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.magasin__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.magasin__slide.active {
+  opacity: 1;
+}
+
+/* Les puces mesurent 24 px dont 8 px visibles : le gap de 6 px
+   d'origine est déjà fourni par leur rembourrage. */
+.magasin__dots {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0;
+}
+
+.magasin__dot {
+  /* La pastille garde ses 8 px : background-clip borne la peinture
+     à la boîte de contenu, le bouton offre 24 px au doigt. */
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  /* background-color, et non le raccourci « background » : celui-ci
+     remettrait background-clip à border-box et la pastille avalerait
+     toute la zone tactile. */
+  background-color: rgba(255, 255, 255, 0.5);
+  background-clip: content-box;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: background-color 0.3s;
+}
+
+.magasin__dot.active {
+  background-color: white;
+}
+
+.magasin__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;   /* 44 px : zone tactile */
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-dark);
+  transition: background 0.2s;
+}
+
+.magasin__arrow:hover {
+  background: white;
+}
+
+.magasin__arrow--prev { left: 10px; }
+.magasin__arrow--next { right: 10px; }
+
+.magasin-detail__badge {
+  display: inline-block;
+  background: var(--color-accent-gold);
+  color: #6B0B3E;   /* prune foncée : 5.6:1 sur l'or, contre 4.4 pour --color-primary-dark */
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 0.75rem;
+}
+
+.magasin-detail__title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.35rem;
+}
+
+.magasin-detail__address {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.magasin-detail__hours-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.magasin-detail__phone {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.magasin-detail__phone a,
+.magasin__contact-value a {
+  /* Appeler ou écrire est le geste principal sur mobile : 44 px. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.magasin-divider {
+  border: none;
+  border-top: 1px solid rgba(93, 64, 55, 0.1);
+}
+
+/* ── Tables d'horaires ────────────────────────────────────── */
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hours-table td {
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.hours-table tr {
+  border-bottom: 1px solid rgba(93, 64, 55, 0.12);
+}
+
+.hours-table tr:last-child {
+  border-bottom: none;
+}
+
+.hours-table td:last-child {
+  text-align: right;
+}
+
+/* hours-table light variant (on white/surface bg) */
+.hours-table--light td {
+  color: var(--color-text);
+}
+
+.hours-table--light td:first-child {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.hours-table--light tr {
+  border-bottom: 1px solid rgba(93, 64, 55, 0.12);
+}
+
+/* map placeholder light variant */
+
+@media (min-width: 768px) {
+  .magasin-detail {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* ── Nos métiers (page histoire) ─────────────────────────── */
+.metiers {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.metier {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+  padding: 1.6rem 0;
+  border-top: 1px solid rgba(93, 64, 55, 0.14);
+}
+
+.metier:last-child {
+  border-bottom: 1px solid rgba(93, 64, 55, 0.14);
+}
+
+.metier__name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.metier__desc {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.metier__link {
+  /* inline-flex plutôt qu'inline-block : donne les 24 px de zone tactile. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin-top: 0.35rem;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.metier__link:hover {
+  color: var(--color-primary-dark);
+}
+
+@media (min-width: 768px) {
+  .metier {
+    grid-template-columns: 250px 1fr;
+    gap: 2.5rem;
+    padding: 1.9rem 0;
+  }
+
+  .metier__link {
+    display: block;
+  }
+}
+
+/* Évite qu'un contenu trop large ne fasse défiler toute la page */
+.catalogue__grid,
+.carte-grid,
+.valeurs__grid,
+.specialites__grid {
+  overflow-x: hidden;
+}
+
+/* ── Valeurs grid (histoire page) ────────────────────────── */
+.valeurs__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.valeur-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.valeur-card:hover,
+.valeur-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.valeur-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.25rem;
+  border: 1px solid rgba(212, 172, 13, 0.45);
+  border-radius: 50%;
+  /* L'icône est purement décorative (aria-hidden) et doublée par le titre
+     de la carte : elle garde l'or de marque, hors exigence de contraste. */
+  color: var(--color-accent-gold);
+  transition: transform var(--transition), background-color var(--transition),
+              border-color var(--transition);
+}
+
+/* Le cercle doré s'allume au survol de la carte entière. */
+.valeur-card:hover .valeur-card__icon,
+.valeur-card:focus-within .valeur-card__icon {
+  transform: scale(1.08);
+  background-color: rgba(212, 172, 13, 0.12);
+  border-color: var(--color-accent-gold);
+}
+
+.valeur-card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .valeur-card:hover,
+  .valeur-card:focus-within,
+  .valeur-card:hover .valeur-card__icon,
+  .valeur-card:focus-within .valeur-card__icon { transform: none; }
+}
+
+.valeur-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.valeur-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .valeurs__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Contact page ─────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.contact-info .magasin__contact-label {
+  color: var(--color-text-muted);
+}
+
+.contact-info .magasin__contact-value {
+  color: var(--color-text);
+}
+
+.contact-info .magasin__contact-value a {
+  color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1.5fr;
+    align-items: start;
+  }
+
+  /* Le formulaire n'a pas de titre au-dessus : on le décale de la
+     hauteur du filet doré (2px + 16px) plus celle du titre
+     « Confiserie Roelli » (48px + 24px), soit 90px, pour qu'il
+     démarre à la même ligne que « Adresse » à gauche.
+     Uniquement en deux colonnes : empilé, le décalage n'a pas lieu d'être. */
+  .contact-form-wrap {
+    padding-top: 5.625rem;
+  }
+}
+
+/* ── Histoire intro link ──────────────────────────────────── */
+
+/* ── Tea-room Les Tilleuls ────────────────────────────────── */
+.tr-hero {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-primary-dark);
+}
+
+/* Le voile ne couvre que la gauche : la photo du local reste visible. */
+.tr-hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(136, 14, 79, 0.80) 0%,
+    rgba(136, 14, 79, 0.60) 24%,
+    rgba(136, 14, 79, 0.18) 52%,
+    rgba(136, 14, 79, 0) 74%
+  );
+}
+
+.tr-hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.tr-hero__content {
+  max-width: 620px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.tr-hero__badge {
+  display: inline-block;
+  background: var(--color-accent-gold);
+  color: #6B0B3E;   /* prune foncée : 5.6:1 sur l'or, contre 4.4 pour --color-primary-dark */
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 12px;
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+}
+
+.tr-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+  font-weight: 500;
+  color: white;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+.tr-hero__title span { display: block; }
+
+.tr-hero__title em {
+  display: block;
+  font-style: italic;
+  color: inherit;
+}
+
+.tr-hero__rule {
+  width: 96px;
+  height: 2px;
+  background: var(--color-accent-gold);
+  margin: 1.6rem 0 1.4rem;
+}
+
+.tr-hero__lead {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 26rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+.tr-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+/* Trois raisons */
+.tr-facts {
+  background: var(--color-bg);
+  border-bottom: 1px solid rgba(93, 64, 55, 0.10);
+  padding: 3.75rem 0;
+}
+
+.tr-facts__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.25rem;
+}
+
+.tr-fact__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.tr-fact__num {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  color: var(--color-accent-gold-text);
+  line-height: 1;
+}
+
+.tr-fact__title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.tr-fact__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+/* Menu de la semaine */
+.tr-menu { background: var(--color-surface); }
+
+.tr-menu__head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
+}
+
+.tr-menu__week {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-accent-gold-text);
+  margin-bottom: 0.85rem;
+}
+
+.tr-menu__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.tr-menu__amount {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--color-primary-dark);
+  line-height: 1;
+}
+
+.tr-menu__detail {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 0.35rem;
+}
+
+.daybar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.75rem 0 2rem;
+}
+
+.daybar__day {
+  position: relative;
+  flex: 1 1 8rem;
+  padding: 1rem 0.6rem;
+  border-radius: 10px;
+  text-align: center;
+  background: white;
+  border: 1px solid rgba(93, 64, 55, 0.16);
+  transition: background var(--transition), border-color var(--transition),
+              transform var(--transition), box-shadow var(--transition);
+}
+
+.daybar__day:hover { border-color: var(--color-primary); }
+
+.daybar__day.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.daybar__name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.daybar__date {
+  display: block;
+  font-size: 0.72rem;
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+}
+
+/* Jour courant : pastille « Aujourd'hui » au-dessus du bouton.
+   Le libellé est un vrai élément (et non un ::before) pour qu'il
+   passe par la traduction comme le reste de la page. */
+.daybar__day--today {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px rgba(194, 24, 91, 0.12);
+}
+
+.daybar__today {
+  display: none;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.daybar__day--today .daybar__today { display: block; }
+
+.menu-weekend-msg {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.menu-weekend-msg[hidden] { display: none; }
+
+.daybar__day.is-active .daybar__name { color: white; }
+.daybar__day.is-active .daybar__date { color: rgba(255, 255, 255, 0.78); }
+
+.tr-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.tr-panel[hidden] { display: none; }
+.tr-panel.is-active { animation: fadeInUp 0.42s ease both; }
+
+.tr-panel__cell {
+  padding: 2rem 2.25rem;
+  border-bottom: 1px solid rgba(93, 64, 55, 0.10);
+}
+
+.tr-panel__cell:last-child { border-bottom: none; }
+.tr-panel__cell--mid { background: #FFFCF8; }
+
+.tr-panel__label {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-accent-gold-text);
+  margin-bottom: 0.7rem;
+}
+
+.tr-panel__dish {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.tr-menu__note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: 1.6rem;
+}
+
+/* À emporter */
+.tr-emporter { background: var(--color-primary-light); }
+
+.tr-emporter__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.tr-emporter__body {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+.tr-phone {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.6rem;
+  box-shadow: var(--shadow-sm);
+  color: var(--color-primary);
+}
+
+.tr-phone__label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.tr-phone__number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-primary-dark);
+  line-height: 1.2;
+}
+
+/* Infos pratiques */
+.tr-infos { background: var(--color-surface); }
+
+/* Trois colonnes égales, alignées depuis le même point en haut. */
+.tilleuls-trouver {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.trouver__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Même taille et même interligne dans les trois colonnes : sans cela
+   la première ligne de chacune ne démarre pas à la même hauteur. */
+.trouver__value,
+.trouver__note,
+.trouver__hours td {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.trouver__value { font-style: normal; }
+
+.trouver__note { color: var(--color-text-muted); }
+
+.trouver__phone {
+  display: inline-block;
+  margin-top: 0.65rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-primary);
+}
+
+.trouver__phone:hover { color: var(--color-primary-dark); }
+
+/* La tabulation verticale du tableau décalait sa première ligne. */
+.trouver__hours tr:first-child td { padding-top: 0; }
+
+@media (min-width: 769px) {
+  .tr-hero { min-height: 620px; }
+  .tr-facts__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3.5rem; }
+  .tr-menu__head { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+  .tr-menu__price { text-align: right; }
+  .tr-panel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tr-panel__cell {
+    border-bottom: none;
+    border-right: 1px solid rgba(93, 64, 55, 0.10);
+    padding: 2.75rem 2.5rem;
+  }
+  .tr-panel__cell:last-child { border-right: none; }
+  .tr-emporter__grid { grid-template-columns: 1.15fr 1fr; gap: 4rem; }
+}
+
+@media (min-width: 768px) {
+  .tilleuls-trouver {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+/* ── Pâtisserie : gâteaux d'anniversaire ──────────────────── */
+.pat-anniv { background: var(--color-primary-light); }
+
+.pat-anniv__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.pat-anniv__figure { margin: 0; }
+
+.pat-anniv__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+.pat-anniv__caption {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+.pat-anniv__body {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.pat-anniv__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.pat-anniv__item {
+  position: relative;
+  padding: 0.6rem 0 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  border-bottom: 1px solid rgba(93, 64, 55, 0.12);
+}
+
+.pat-anniv__item:last-child { border-bottom: none; }
+
+.pat-anniv__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.15em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-gold);
+}
+
+@media (min-width: 769px) {
+  .pat-anniv__grid {
+    grid-template-columns: 1fr 1.05fr;
+    gap: 4rem;
+  }
+
+  /* Photo à gauche sur large écran ; en dessous, le titre vient
+     d'abord et la photo suit, comme dans les blocs « histoire ». */
+  .pat-anniv__grid > .pat-anniv__text   { order: 2; }
+  .pat-anniv__grid > .pat-anniv__figure { order: 1; }
+}
+
+/* ── Confiserie : au fil des saisons ──────────────────────── */
+.cf-saisons { background: var(--color-surface); }
+
+.cf-saisons__inner {
+  max-width: 44rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cf-saisons__body {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.85;
+}
+
+/* Bloc d'ouverture : texte large, photo du pavé plus petite à côté. */
+.cf-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.cf-pave {
+  margin: 0;
+  max-width: 340px;
+  justify-self: center;
+}
+
+.cf-pave__img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+.cf-pave__caption {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  .cf-intro__grid {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Toute l'année */
+.cf-annee { background: var(--color-bg); }
+
+.cf-annee__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.cf-annee__lead {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+.cf-annee__figure {
+  margin: 1.75rem 0 0;
+}
+
+.cf-annee__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: block;
+}
+
+.cf-annee__caption {
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.basics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 3rem;
+}
+
+.basic {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(93, 64, 55, 0.12);
+}
+
+.basic__name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+}
+
+.basic__desc {
+  font-size: 0.83rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+/* Sur commande */
+.cf-commande {
+  background: var(--color-primary-light);
+  padding: 3.75rem 0;
+}
+
+.cf-commande__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+}
+
+.cf-commande__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.cf-commande__body {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 36rem;
+}
+
+@media (min-width: 769px) {
+  .season { grid-template-columns: 1.1fr 1fr; gap: 3.5rem; padding: 3rem 3.25rem; }
+  .cf-annee__grid { grid-template-columns: 340px 1fr; gap: 4.5rem; }
+  .basics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cf-commande__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: 3rem; }
+}
+
+/* ---------- Champion cantonal (histoire) ---------- */
+
+.champion-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.champion-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold-text);
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.champion-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--color-primary-dark);
+  line-height: 1.2;
+  margin: 0 0 0.25rem;
+}
+
+.champion-sub {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin: 0 0 1.25rem;
+}
+
+.champion-desc {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.champion-img img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 769px) {
+  .champion-grid { grid-template-columns: 1.15fr 0.85fr; gap: 4rem; }
+}
+
+
+/* ---------- Page 404 ---------- */
+
+.error-page {
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Occupe la hauteur restante sous la barre + le nav, pour que le pied de
+     page reste en bas de l'écran même sur un grand moniteur. */
+  min-height: calc(100vh - var(--top-bar-h) - var(--nav-h));
+  padding: 4rem 0;
+}
+
+.error-page__inner {
+  text-align: center;
+  max-width: 34rem;
+}
+
+.error-page__logo {
+  width: 72px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+
+.error-page__code {
+  font-family: var(--font-serif);
+  font-size: clamp(5rem, 18vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primary);
+  margin: 0 0 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.error-page__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.75rem;
+}
+
+.error-page__sub {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0 auto 2rem;
+  max-width: 26rem;
+}
+
+.error-page__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+@media (min-width: 480px) {
+  .error-page__actions {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* ============================================================
+   MOUVEMENT RÉDUIT
+   Dernier bloc de la feuille : il doit l'emporter sur tout ce
+   qui précède. Les règles ciblées plus haut (cartes actualités,
+   valeurs, produits) restent utiles — elles neutralisent les
+   « transform » persistants ; celle-ci coupe la durée de tout
+   le reste. Les animations gardent leur « forwards » : le
+   contenu atterrit sur son état final, sans le trajet.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}

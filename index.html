@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Favicons — pastille de marque, monogramme réservé en clair -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#C2185B">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Confiserie Roelli — Artisans boulangers-pâtissiers depuis 1958 à Porrentruy, Jura.">
+  <title>Confiserie Roelli — Porrentruy, Jura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Lien d'évitement : premier élément focalisable de la page -->
+  <a class="skip-link" href="#contenu" data-i18n="a11y.skip">Aller au contenu principal</a>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar__left">
+      <a href="tel:+41324661677" class="top-bar__contact" aria-label="Téléphone">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="top-bar__contact-text">032 466 16 77</span>
+      </a>
+      <a href="mailto:info@confiserie-roelli.ch" class="top-bar__contact" aria-label="Email">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="top-bar__contact-text">info@confiserie-roelli.ch</span>
+      </a>
+    </div>
+    <div class="top-bar__right">
+      <button class="lang-btn active" data-lang="fr" aria-pressed="true">FR</button>
+      <button class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      <button class="lang-btn" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <ul class="nav__list nav__list--left">
+        <li class="nav__item">
+          <a href="histoire.html" class="nav__link" data-i18n="nav.histoire">Notre histoire</a>
+        </li>
+        <li class="nav__item has-dropdown">
+          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
+          <ul class="dropdown">
+            <li><a href="patisserie.html" class="dropdown__link" data-i18n="nav.patisserie">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" class="dropdown__link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" class="dropdown__link" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </li>
+        <li class="nav__item">
+          <a href="actualites.html" class="nav__link" data-i18n="nav.actualites">Actualités</a>
+        </li>
+      </ul>
+
+      <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil" aria-current="page">
+        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <div class="nav__logo-divider" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
+          <span class="nav__logo-sub" data-i18n="brand.tagline">Porrentruy · depuis 1958</span>
+        </div>
+      </a>
+
+      <ul class="nav__list nav__list--right">
+        <li class="nav__item has-dropdown">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins">Magasins</a>
+          <ul class="dropdown">
+            <li><a href="magasins.html#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
+            <li><a href="magasins.html#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
+            <li><a href="magasins.html#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
+            <li><a href="magasins.html#chevenez" class="dropdown__link" data-i18n="nav.mag4">Chevenez</a></li>
+            <li><a href="magasins.html#glovelier" class="dropdown__link" data-i18n="nav.mag5">Glovelier</a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a href="tilleuls.html" class="nav__link">Les Tilleuls</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+
+      <button class="nav__hamburger" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-overlay">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </nav>
+
+    <div class="nav__mobile-overlay" id="mobile-overlay" aria-hidden="true">
+      <button class="nav__overlay-close" id="overlay-close" aria-label="Fermer le menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav__mobile-list">
+        <li><a href="histoire.html" class="nav__mobile-link" data-i18n="nav.histoire">Notre histoire</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="patisserie.html" class="nav__mobile-link" data-i18n="nav.patisserie">Pâtisserie</a></li>
+        <li><a href="boulangerie.html" class="nav__mobile-link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+        <li><a href="confiserie.html" class="nav__mobile-link" data-i18n="nav.confiserie">Confiserie</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="actualites.html" class="nav__mobile-link" data-i18n="nav.actualites">Actualités</a></li>
+        <li><a href="magasins.html" class="nav__mobile-link" data-i18n="nav.magasins">Magasins</a></li>
+        <li><a href="tilleuls.html" class="nav__mobile-link">Les Tilleuls</a></li>
+        <li><a href="contact.html" class="nav__mobile-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+
+    <!-- HERO — 3 fotos reales en carrusel CSS -->
+    <section class="hero hero--gallery" id="accueil" aria-label="Accueil">
+      <div class="hero__slides">
+        <div class="hero__slide active" style="background-image:url('assets/images/Fotos/web/hero.jpg');background-image:image-set(url('assets/images/Fotos/web/hero.webp') type('image/webp'),url('assets/images/Fotos/web/hero.jpg') type('image/jpeg'))"></div>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__pills-wrap" aria-label="Catégories">
+        <a href="patisserie.html" class="pill" data-i18n="hero.pill1">Pâtisserie</a>
+        <span class="pill-dot" aria-hidden="true">·</span>
+        <a href="boulangerie.html" class="pill" data-i18n="hero.pill2">Boulangerie</a>
+        <span class="pill-dot" aria-hidden="true">·</span>
+        <a href="confiserie.html" class="pill" data-i18n="hero.pill3">Confiserie</a>
+      </div>
+
+      <div class="hero__content">
+        <h1 class="hero__title" data-i18n="hero.title">Confiserie Roelli</h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">Artisans boulangers-pâtissiers depuis 1958 · Porrentruy, Jura</p>
+        <div class="hero__ctas">
+          <a href="#nos-produits" class="btn btn--primary" data-i18n="hero.cta1">Voir nos produits</a>
+          <a href="magasins.html" class="btn btn--outline-white" data-i18n="hero.cta2">Nos magasins</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- NOTRE HISTOIRE — résumé + lien -->
+    <section class="histoire section" id="histoire" aria-labelledby="histoire-home-title">
+      <div class="container histoire__grid">
+        <div class="histoire__text">
+          <div class="section__gold-line" aria-hidden="true"></div>
+          <h2 class="section__title" id="histoire-home-title" data-i18n="histoire.title">Notre histoire</h2>
+          <p class="histoire__body" data-i18n="histoire.home_body">
+            Fondée en 1958 par la famille Roelli au cœur de Porrentruy, notre confiserie
+            perpétue depuis plus de soixante ans un savoir-faire artisanal transmis de
+            génération en génération.
+          </p>
+          <a href="histoire.html" class="btn btn--primary" style="margin-top:1.5rem" data-i18n="histoire.cta">
+            Découvrir notre histoire
+          </a>
+        </div>
+        <figure class="histoire__figure">
+          <picture>
+            <source srcset="assets/images/Fotos/web/proprietaires.webp" type="image/webp">
+            <img src="assets/images/Fotos/web/proprietaires.jpg"
+                 alt="Jean-Pierre Roelli et son fils dans le magasin de Porrentruy"
+                 class="histoire__img" loading="lazy" width="1216" height="879">
+          </picture>
+          <figcaption class="histoire__caption" data-i18n="histoire.caption">La famille Roelli, aux commandes de la maison.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3 CATÉGORIES — cards linking to product pages -->
+    <section class="specialites section" id="nos-produits" aria-labelledby="categories-title">
+      <div class="container">
+        <div class="section__gold-line section__gold-line--center" aria-hidden="true"></div>
+        <h2 class="section__title text-center" id="categories-title" data-i18n="specialites.title">Nos spécialités</h2>
+        <div class="specialites__grid">
+
+          <a href="patisserie.html" class="spec-card spec-card--link">
+            <picture>
+              <source srcset="assets/images/Fotos/web/home-patisserie.webp" type="image/webp">
+              <img src="assets/images/Fotos/web/home-patisserie.jpg"
+                   alt="Vitrine de pâtisserie — Confiserie Roelli"
+                   class="spec-card__img" loading="lazy">
+            </picture>
+            <div class="spec-card__body">
+              <h3 class="spec-card__name" data-i18n="specialites.card1.name">Pâtisserie</h3>
+              <p class="spec-card__desc" data-i18n="specialites.card1.desc">Gâteaux fins et tartes élaborées, préparés chaque matin avec soin.</p>
+            </div>
+          </a>
+
+          <a href="boulangerie.html" class="spec-card spec-card--link">
+            <picture>
+              <source srcset="assets/images/Fotos/web/home-boulangerie.webp" type="image/webp">
+              <img src="assets/images/Fotos/web/home-boulangerie.jpg"
+                   alt="Boulangerie artisanale — Confiserie Roelli"
+                   class="spec-card__img" loading="lazy">
+            </picture>
+            <div class="spec-card__body">
+              <h3 class="spec-card__name" data-i18n="specialites.card2.name">Boulangerie</h3>
+              <p class="spec-card__desc" data-i18n="specialites.card2.desc">Pains blancs et pains spéciaux, pétris et cuits chaque matin au four traditionnel.</p>
+            </div>
+          </a>
+
+          <a href="confiserie.html" class="spec-card spec-card--link">
+            <picture>
+              <source srcset="assets/images/confiserie/web/florentins.webp" type="image/webp">
+              <img src="assets/images/confiserie/web/florentins.jpg"
+                   alt="Florentins — Confiserie Roelli"
+                   class="spec-card__img" loading="lazy">
+            </picture>
+            <div class="spec-card__body">
+              <h3 class="spec-card__name" data-i18n="specialites.card3.name">Confiserie</h3>
+              <p class="spec-card__desc" data-i18n="specialites.card3.desc">Chocolats, pralines et confiseries faits à la main selon des recettes d'exception.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTUALITÉS -->
+    <section class="section actus" id="actualites" aria-labelledby="actus-title">
+      <div class="container">
+        <header class="actus__head">
+          <div class="actus__head-main">
+            <div class="section__gold-line" aria-hidden="true"></div>
+            <h2 class="section__title actus__title" id="actus-title" data-i18n="actus.title">Actualités</h2>
+            <p class="actus__sub" data-i18n="actus.sub">Les nouveautés de la maison, au fil des saisons.</p>
+          </div>
+          <a href="actualites.html" class="actus__all">
+            <span data-i18n="actus.all">Toutes les actualités</span>
+            <svg class="actu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="18" y2="12"/><polyline points="12,6 18,12 12,18"/></svg>
+          </a>
+        </header>
+
+        <div class="actus__grid">
+
+          <article class="actu-card js-reveal">
+            <a class="actu-card__link" href="actualites.html#a1">
+              <div class="actu-card__frame">
+                <picture>
+                  <source srcset="assets/images/pain/web/tresse-au-beurre.webp" type="image/webp">
+                  <img src="assets/images/pain/web/tresse-au-beurre.jpg" alt="Tresse au beurre tout juste sortie du four" class="actu-card__img" loading="lazy">
+                </picture>
+              </div>
+              <div class="actu-card__body">
+                <p class="actu-card__meta">
+                  <span class="actu-card__cat" data-i18n="actu1.cat">Boulangerie</span>
+                  <span class="actu-card__sep" aria-hidden="true"></span>
+                  <span class="actu-card__date" data-i18n="actu1.date">5 septembre 2026</span>
+                </p>
+                <h3 class="actu-card__title" data-i18n="actu1.title">Deux nouveaux pains à la carte</h3>
+                <p class="actu-card__excerpt" data-i18n="actu1.excerpt">La tresse au beurre AOP et le pain de seigle complet rejoignent nos pains spéciaux, en vitrine dans les cinq magasins.</p>
+                <span class="actu-card__more">
+                  <span data-i18n="actu.more">Lire la suite</span>
+                  <svg class="actu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="18" y2="12"/><polyline points="12,6 18,12 12,18"/></svg>
+                </span>
+              </div>
+            </a>
+          </article>
+
+          <article class="actu-card js-reveal">
+            <a class="actu-card__link" href="actualites.html#a2">
+              <div class="actu-card__frame">
+                <picture>
+                  <source srcset="assets/images/bar-croissant/web/croissants-rouges.webp" type="image/webp">
+                  <img src="assets/images/bar-croissant/web/croissants-rouges.jpg" alt="Croissants du Bar à Croissants" class="actu-card__img" loading="lazy">
+                </picture>
+              </div>
+              <div class="actu-card__body">
+                <p class="actu-card__meta">
+                  <span class="actu-card__cat" data-i18n="actu2.cat">Bar à Croissants</span>
+                  <span class="actu-card__sep" aria-hidden="true"></span>
+                  <span class="actu-card__date" data-i18n="actu2.date">28 août 2026</span>
+                </p>
+                <h3 class="actu-card__title" data-i18n="actu2.title">Un nouveau fourrage pour l'automne</h3>
+                <p class="actu-card__excerpt" data-i18n="actu2.excerpt">Pomme caramélisée à la cannelle : le fourrage de saison arrive au Bar à Croissants, aux côtés de la pistache et de la framboise.</p>
+                <span class="actu-card__more">
+                  <span data-i18n="actu.more">Lire la suite</span>
+                  <svg class="actu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="18" y2="12"/><polyline points="12,6 18,12 12,18"/></svg>
+                </span>
+              </div>
+            </a>
+          </article>
+
+          <article class="actu-card js-reveal">
+            <a class="actu-card__link" href="actualites.html#a3">
+              <div class="actu-card__frame">
+                <picture>
+                  <source srcset="assets/images/magasins/web/tilleuls2.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/tilleuls2.jpg" alt="La salle du Tea-room Les Tilleuls" class="actu-card__img" loading="lazy">
+                </picture>
+              </div>
+              <div class="actu-card__body">
+                <p class="actu-card__meta">
+                  <span class="actu-card__cat" data-i18n="actu3.cat">Les Tilleuls</span>
+                  <span class="actu-card__sep" aria-hidden="true"></span>
+                  <span class="actu-card__date" data-i18n="actu3.date">12 août 2026</span>
+                </p>
+                <h3 class="actu-card__title" data-i18n="actu3.title">Le menu du jour, désormais à emporter</h3>
+                <p class="actu-card__excerpt" data-i18n="actu3.excerpt">Appelez avant 10h30 et votre menu complet — entrée, plat et dessert — vous attend à midi, emballé et prêt à partir.</p>
+                <span class="actu-card__more">
+                  <span data-i18n="actu.more">Lire la suite</span>
+                  <svg class="actu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="18" y2="12"/><polyline points="12,6 18,12 12,18"/></svg>
+                </span>
+              </div>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BAR À CROISSANTS -->
+    <section class="bar-croissants section" id="bar-croissants" aria-labelledby="bar-title">
+      <div class="container">
+        <div class="bar-croissants__top">
+          <picture>
+            <source srcset="assets/images/bar-croissant/web/bar-fourrages.webp" type="image/webp">
+            <img src="assets/images/bar-croissant/web/bar-fourrages.jpg"
+                 alt="Les fourrages du Bar à Croissants" class="bar-croissants__img" loading="lazy">
+          </picture>
+
+          <div class="bar-croissants__text-col">
+            <span class="bar-croissants__badge" data-i18n="bar.badge">Unique dans la région</span>
+            <div class="section__gold-line" aria-hidden="true"></div>
+            <h2 class="bar-croissants__title" id="bar-title" data-i18n="bar.title">Bar à Croissants</h2>
+            <p class="bar-croissants__lead" data-i18n="bar.lead">
+              Le seul bar à croissants du Jura. Tu choisis ta viennoiserie, tu choisis ton
+              fourrage — et on te le garnit sous tes yeux, à la minute.
+            </p>
+
+            <ol class="bar-steps">
+              <li class="bar-step">
+                <span class="bar-step__num" aria-hidden="true">1</span>
+                <div class="bar-step__body">
+                  <h3 class="bar-step__name" data-i18n="bar.step1.name">Choisis ta viennoiserie</h3>
+                  <p class="bar-step__desc" data-i18n="bar.step1.desc">Croissant vert, croissant rouge, brioche à tête ou petit pain à l'eau.</p>
+                </div>
+              </li>
+              <li class="bar-step">
+                <span class="bar-step__num" aria-hidden="true">2</span>
+                <div class="bar-step__body">
+                  <h3 class="bar-step__name" data-i18n="bar.step2.name">Choisis ton fourrage</h3>
+                  <p class="bar-step__desc" data-i18n="bar.step2.desc">Pommes caramélisées à l'ancienne, pistache ou framboise.</p>
+                </div>
+              </li>
+              <li class="bar-step">
+                <span class="bar-step__num" aria-hidden="true">3</span>
+                <div class="bar-step__body">
+                  <h3 class="bar-step__name" data-i18n="bar.step3.name">On te le garnit</h3>
+                  <p class="bar-step__desc" data-i18n="bar.step3.desc">Devant toi, jamais à l'avance. Chaud, croustillant, encore fourré.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="bar-croissants__gallery">
+          <picture>
+            <source srcset="assets/images/bar-croissant/web/croissants-rouges.webp" type="image/webp">
+            <img src="assets/images/bar-croissant/web/croissants-rouges.jpg" alt="Croissants rouges du Bar à Croissants" loading="lazy">
+          </picture>
+          <picture>
+            <source srcset="assets/images/bar-croissant/web/bar-menu.webp" type="image/webp">
+            <img src="assets/images/bar-croissant/web/bar-menu.jpg" alt="Le choix du Bar à Croissants" loading="lazy">
+          </picture>
+          <div class="bar-video__wrap">
+            <video class="bar-video" muted loop playsinline preload="metadata"
+                   poster="assets/images/bar-croissant/web/miniatura.webp">
+              <source src="assets/images/bar-croissant/web/bar-croissants.mp4" type="video/mp4">
+            </video>
+            <div class="bar-video__controls">
+              <button class="bar-video__btn" id="bar-video-toggle" aria-label="Lecture">
+                <svg class="bar-video__icon bar-video__icon--pause" viewBox="0 0 24 24" width="20" height="20" fill="white" aria-hidden="true" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                <svg class="bar-video__icon bar-video__icon--play" viewBox="0 0 24 24" width="20" height="20" fill="white" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+              </button>
+              <div class="bar-video__progress">
+                <div class="bar-video__bar" id="bar-video-bar"></div>
+              </div>
+              <span class="bar-video__time" id="bar-video-time">0:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOS MAGASINS — résumé 5 sucursales -->
+    <section class="magasins-home section" aria-labelledby="magasins-home-title">
+      <div class="container">
+        <div class="section__gold-line section__gold-line--center" aria-hidden="true"></div>
+        <h2 class="section__title text-center" id="magasins-home-title" data-i18n="nav.magasins">Magasins</h2>
+        <div class="magasins-home__grid">
+
+          <a href="magasins.html#porrentruy-centre" class="magasin-card">
+            <picture>
+              <source srcset="assets/images/magasins/web/porrentruy-vue.webp" type="image/webp">
+              <img src="assets/images/magasins/web/porrentruy-vue.jpg" class="magasin-card__img"
+                   alt="Magasin Roelli Porrentruy Centre" loading="lazy">
+            </picture>
+            <h3 class="magasin-card__town" data-i18n="nav.mag1">Porrentruy Centre</h3>
+          </a>
+
+          <a href="magasins.html#porrentruy-tilleuls" class="magasin-card">
+            <picture>
+              <source srcset="assets/images/magasins/web/tilleuls1.webp" type="image/webp">
+              <img src="assets/images/magasins/web/tilleuls1.jpg" class="magasin-card__img"
+                   alt="Tea-room Les Tilleuls, Porrentruy" loading="lazy">
+            </picture>
+            <h3 class="magasin-card__town" data-i18n="nav.mag_tilleuls">Porrentruy Les Tilleuls</h3>
+          </a>
+
+          <a href="magasins.html#boncourt" class="magasin-card">
+            <div class="magasin-card__img magasin-card__img--placeholder" role="img" aria-label="Photo Boncourt à venir">
+              <span class="img-placeholder__label" data-i18n="photo.soon">Photo à venir</span>
+            </div>
+            <h3 class="magasin-card__town" data-i18n="nav.mag3">Boncourt</h3>
+          </a>
+
+          <a href="magasins.html#chevenez" class="magasin-card">
+            <picture>
+              <source srcset="assets/images/magasins/web/chevenez.webp" type="image/webp">
+              <img src="assets/images/magasins/web/chevenez.jpg" class="magasin-card__img"
+                   alt="Magasin Roelli Chevenez" loading="lazy">
+            </picture>
+            <h3 class="magasin-card__town" data-i18n="nav.mag4">Chevenez</h3>
+          </a>
+
+          <a href="magasins.html#glovelier" class="magasin-card">
+            <picture>
+              <source srcset="assets/images/magasins/web/glovelier-terrasse.webp" type="image/webp">
+              <img src="assets/images/magasins/web/glovelier-terrasse.jpg" class="magasin-card__img"
+                   alt="Magasin Roelli Glovelier" loading="lazy">
+            </picture>
+            <h3 class="magasin-card__town" data-i18n="nav.mag5">Glovelier</h3>
+          </a>
+
+        </div>
+        <div class="text-center" style="margin-top:2rem">
+          <a href="magasins.html" class="btn btn--primary" data-i18n="magasins.cta">Voir tous nos magasins</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__logo">
+        <img src="assets/logo.png" alt="Confiserie Roelli" class="footer__logo-img" width="64" height="64">
+      </div>
+      <nav class="footer__cols" aria-label="Liens du pied de page">
+        <div class="footer__col">
+          <h3 data-i18n="footer.entreprise">Entreprise</h3>
+          <ul>
+            <li><a href="histoire.html" data-i18n="footer.histoire">Histoire</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.produits">Produits</h3>
+          <ul>
+            <li><a href="patisserie.html" data-i18n="nav.patisserie">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.informations">Informations</h3>
+          <ul>
+            <li><a href="magasins.html" data-i18n="nav.magasins">Magasins</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="#" aria-label="Bientôt disponible" data-i18n="footer.mentions">Mentions légales</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__bottom">
+        <p class="footer__copyright" data-i18n="footer.copyright">© 2025 Confiserie Roelli · Porrentruy, Jura</p>
+        <div class="footer__payments">
+          <span class="payment-badge">TWINT</span>
+          <span class="payment-badge">VISA</span>
+          <span class="payment-badge">MC</span>
+          <span class="payment-badge">Apple Pay</span>
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/share/14exTheQZCy/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/confiserie_roelli" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

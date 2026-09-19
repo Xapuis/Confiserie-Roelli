@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------
+# Confiserie Roelli — .gitignore
+# ---------------------------------------------------------------
+
+# Vídeos originales sin usar
+assets/Video_Pistahce.mov
+assets/Video_Pistahce.mp4.mov
+
+# Imágenes y vídeos originales (demasiado pesados para GitHub)
+assets/images/*.HEIC
+assets/images/*.MOV
+
+assets/images/bar-croissant/*.MOV
+assets/images/bar-croissant/*.mp4
+assets/images/bar-croissant/*.jpeg
+assets/images/bar-croissant/Miniatura.jpeg
+
+assets/images/magasins/*.jpeg
+
+# Originales del Tea-room Les Tilleuls
+assets/images/magasins/Tea-room Les Tilleuls/
+
+assets/images/patisserie/*.HEIC
+assets/images/patisserie/*.jpeg
+assets/images/patisserie/*.jpg
+
+assets/images/pain/*.HEIC
+assets/images/pain/*.jpeg
+assets/images/pain/*.jpg
+
+assets/images/confiserie/*.jpeg
+
+# La carpeta se llama "Fotos" (con mayúscula); git distingue mayúsculas
+assets/images/Fotos/*.jpeg
+assets/images/Fotos/*.jpg
+assets/images/fotos/*.jpeg
+assets/images/fotos/*.jpg
+
+# Solo conservar las versiones web optimizadas
+!assets/images/**/web/
+!assets/images/**/web/**
+
+# Dependencias y herramientas locales
+node_modules/
+
+# Skills de desarrollo — herramientas locales, no forman parte de la web
+.claude/
+screenshots/
+screenshots/*.png
+
+# Ficheros de sistema
+.DS_Store
+*.log
+
+# Páginas de diseño/maqueta
+confiserie-roelli-directions.html
+design-canvas/
+design-tilleuls/
+
+# Servidor de pruebas
+capture-screenshots.mjs
+package.json
+package-lock.json

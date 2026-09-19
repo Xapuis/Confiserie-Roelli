@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Favicons — pastille de marque, monogramme réservé en clair -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#C2185B">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nos magasins — Confiserie Roelli à Porrentruy, Boncourt, Chevenez et Glovelier.">
+  <title>Nos magasins — Confiserie Roelli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Lien d'évitement : premier élément focalisable de la page -->
+  <a class="skip-link" href="#contenu" data-i18n="a11y.skip">Aller au contenu principal</a>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar__left">
+      <a href="tel:+41324661677" class="top-bar__contact" aria-label="Téléphone">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="top-bar__contact-text">032 466 16 77</span>
+      </a>
+      <a href="mailto:info@confiserie-roelli.ch" class="top-bar__contact" aria-label="Email">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="top-bar__contact-text">info@confiserie-roelli.ch</span>
+      </a>
+    </div>
+    <div class="top-bar__right">
+      <button class="lang-btn active" data-lang="fr" aria-pressed="true">FR</button>
+      <button class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      <button class="lang-btn" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <ul class="nav__list nav__list--left">
+        <li class="nav__item">
+          <a href="histoire.html" class="nav__link" data-i18n="nav.histoire">Notre histoire</a>
+        </li>
+        <li class="nav__item has-dropdown">
+          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
+          <ul class="dropdown">
+            <li><a href="patisserie.html" class="dropdown__link" data-i18n="nav.patisserie">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" class="dropdown__link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" class="dropdown__link" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </li>
+        <li class="nav__item">
+          <a href="actualites.html" class="nav__link" data-i18n="nav.actualites">Actualités</a>
+        </li>
+      </ul>
+
+      <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil">
+        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <div class="nav__logo-divider" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
+          <span class="nav__logo-sub" data-i18n="brand.tagline">Porrentruy · depuis 1958</span>
+        </div>
+      </a>
+      <ul class="nav__list nav__list--right">
+        <li class="nav__item has-dropdown nav__item--active">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins" aria-current="page">Magasins</a>
+          <ul class="dropdown">
+            <li><a href="#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
+            <li><a href="#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
+            <li><a href="#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
+            <li><a href="#chevenez" class="dropdown__link" data-i18n="nav.mag4">Chevenez</a></li>
+            <li><a href="#glovelier" class="dropdown__link" data-i18n="nav.mag5">Glovelier</a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a href="tilleuls.html" class="nav__link">Les Tilleuls</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-overlay">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </nav>
+    <div class="nav__mobile-overlay" id="mobile-overlay" aria-hidden="true">
+      <button class="nav__overlay-close" id="overlay-close" aria-label="Fermer le menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav__mobile-list">
+        <li><a href="histoire.html" class="nav__mobile-link" data-i18n="nav.histoire">Notre histoire</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="patisserie.html" class="nav__mobile-link" data-i18n="nav.patisserie">Pâtisserie</a></li>
+        <li><a href="boulangerie.html" class="nav__mobile-link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+        <li><a href="confiserie.html" class="nav__mobile-link" data-i18n="nav.confiserie">Confiserie</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="actualites.html" class="nav__mobile-link" data-i18n="nav.actualites">Actualités</a></li>
+        <li><a href="magasins.html" class="nav__mobile-link" data-i18n="nav.magasins" aria-current="page">Magasins</a></li>
+        <li><a href="tilleuls.html" class="nav__mobile-link">Les Tilleuls</a></li>
+        <li><a href="contact.html" class="nav__mobile-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+    <section class="page-hero">
+      <div class="container">
+        <div class="section__gold-line" aria-hidden="true"></div>
+        <h1 class="page-hero__title" data-i18n="magasin.title">Nos magasins</h1>
+        <p class="page-hero__sub" data-i18n="magasins.sub">5 points de vente dans le Jura</p>
+      </div>
+    </section>
+
+    <!-- 5 MAGASINS — each with its own ID anchor -->
+    <div class="magasins-page section">
+      <div class="container">
+
+        <!-- 1. Porrentruy Centre -->
+        <article class="magasin-detail" id="porrentruy-centre">
+          <div class="magasin-detail__info">
+            <span class="magasin-detail__badge" data-i18n="magasin1.label">Principal</span>
+            <h2 class="magasin-detail__title" data-i18n="nav.mag1">Porrentruy Centre</h2>
+            <p class="magasin-detail__address">Rue du 23-Juin 11, 2900 Porrentruy</p>
+
+            <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
+            <table class="hours-table hours-table--light">
+              <tbody>
+                <tr><td data-i18n="magasin.day1">Lun–Ven</td><td>06:00–18:30</td></tr>
+                <tr><td data-i18n="magasin.day2">Samedi</td><td>06:00–17:00</td></tr>
+                <tr><td data-i18n="magasin.day3">Dim &amp; jours fériés</td><td>06:30–12:30</td></tr>
+              </tbody>
+            </table>
+            <p class="magasin-detail__phone"><a href="tel:+41324661677">032 466 16 77</a></p>
+          </div>
+          <div class="magasin-detail__map">
+            <div class="magasin__slideshow">
+              <div class="magasin__slides">
+                <picture>
+                  <source srcset="assets/images/magasins/web/porrentruy-magasin.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/porrentruy-magasin.jpg" class="magasin__slide active" alt="Magasin Confiserie Roelli Porrentruy Centre" loading="lazy">
+                </picture>
+                <picture>
+                  <source srcset="assets/images/magasins/web/porrentruy-terrasse.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/porrentruy-terrasse.jpg" class="magasin__slide" alt="Terrasse du magasin Porrentruy Centre" loading="lazy">
+                </picture>
+                <picture>
+                  <source srcset="assets/images/magasins/web/porrentruy-vue.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/porrentruy-vue.jpg" class="magasin__slide" alt="Vue du magasin Porrentruy" loading="lazy">
+                </picture>
+              </div>
+              <div class="magasin__dots">
+                <button class="magasin__dot active" aria-label="Photo 1"></button>
+                <button class="magasin__dot" aria-label="Photo 2"></button>
+                <button class="magasin__dot" aria-label="Photo 3"></button>
+              </div>
+              <button class="magasin__arrow magasin__arrow--prev" aria-label="Photo précédente">&#8249;</button>
+              <button class="magasin__arrow magasin__arrow--next" aria-label="Photo suivante">&#8250;</button>
+            </div>
+          </div>
+        </article>
+
+        <hr class="magasin-divider">
+
+        <!-- 2. Tea-room Les Tilleuls -->
+        <article class="magasin-detail" id="porrentruy-tilleuls">
+          <div class="magasin-detail__info">
+            <h2 class="magasin-detail__title">Tea-room Les Tilleuls</h2>
+            <p class="magasin-detail__address">Rue des Tilleuls 13, 2900 Porrentruy</p>
+
+            <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
+            <table class="hours-table hours-table--light">
+              <tbody>
+                <tr><td data-i18n="magasin.day1">Lun–Ven</td><td>06:00–14:00</td></tr>
+                <tr><td data-i18n="magasin.day7">Samedi &amp; dimanche</td><td data-i18n="magasin.ferme">Fermé</td></tr>
+              </tbody>
+            </table>
+            <p class="magasin-detail__phone"><a href="tel:+41324666059">032 466 60 59</a></p>
+            <a href="tilleuls.html" class="btn btn--primary" style="margin-top:1rem;display:inline-block;" data-i18n="magasins.cta_tilleuls">Découvrir le Tea-room →</a>
+          </div>
+          <div class="magasin-detail__map">
+            <div class="magasin__slideshow">
+              <div class="magasin__slides">
+                <picture>
+                  <source srcset="assets/images/magasins/web/tilleuls1.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/tilleuls1.jpg" class="magasin__slide active" alt="Tea-room Les Tilleuls — façade" loading="lazy">
+                </picture>
+                <picture>
+                  <source srcset="assets/images/magasins/web/tilleuls2.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/tilleuls2.jpg" class="magasin__slide" alt="Salle du Tea-room Les Tilleuls" loading="lazy">
+                </picture>
+                <picture>
+                  <source srcset="assets/images/magasins/web/tilleuls3.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/tilleuls3.jpg" class="magasin__slide" alt="Intérieur du Tea-room Les Tilleuls" loading="lazy">
+                </picture>
+              </div>
+              <div class="magasin__dots">
+                <button class="magasin__dot active" aria-label="Photo 1"></button>
+                <button class="magasin__dot" aria-label="Photo 2"></button>
+                <button class="magasin__dot" aria-label="Photo 3"></button>
+              </div>
+              <button class="magasin__arrow magasin__arrow--prev" aria-label="Photo précédente">&#8249;</button>
+              <button class="magasin__arrow magasin__arrow--next" aria-label="Photo suivante">&#8250;</button>
+            </div>
+          </div>
+        </article>
+
+        <hr class="magasin-divider">
+
+        <!-- 3. Boncourt -->
+        <article class="magasin-detail" id="boncourt">
+          <div class="magasin-detail__info">
+            <h2 class="magasin-detail__title" data-i18n="nav.mag3">Boncourt</h2>
+            <p class="magasin-detail__address">Route de la Nods 1C, 2926 Boncourt</p>
+
+            <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
+            <table class="hours-table hours-table--light">
+              <tbody>
+                <tr><td data-i18n="magasin.day1">Lun–Ven</td><td>06:00–19:00</td></tr>
+                <tr><td data-i18n="magasin.day2">Samedi</td><td>06:00–12:30</td></tr>
+                <tr><td data-i18n="magasin.day3">Dim &amp; jours fériés</td><td>07:00–12:00</td></tr>
+              </tbody>
+            </table>
+            <p class="magasin-detail__phone"><a href="tel:+41324755682">032 475 56 82</a></p>
+          </div>
+          <div class="magasin-detail__map">
+            <div class="magasin__slideshow magasin__slideshow--placeholder" role="img" aria-label="Photo Boncourt à venir"></div>
+          </div>
+        </article>
+
+        <hr class="magasin-divider">
+
+        <!-- 4. Chevenez -->
+        <article class="magasin-detail" id="chevenez">
+          <div class="magasin-detail__info">
+            <h2 class="magasin-detail__title" data-i18n="nav.mag4">Chevenez</h2>
+            <p class="magasin-detail__address">Rue Jean-Pierre Riat 62A, 2906 Chevenez</p>
+
+            <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
+            <table class="hours-table hours-table--light">
+              <tbody>
+                <tr><td data-i18n="magasin.day6">Tous les jours</td><td>06:00–12:30</td></tr>
+              </tbody>
+            </table>
+            <p class="magasin-detail__phone"><a href="tel:+41324767474">032 476 74 74</a></p>
+          </div>
+          <div class="magasin-detail__map">
+            <div class="magasin__slideshow">
+              <div class="magasin__slides">
+                <picture>
+                  <source srcset="assets/images/magasins/web/chevenez.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/chevenez.jpg" class="magasin__slide active" alt="Magasin Confiserie Roelli Chevenez" loading="lazy">
+                </picture>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <hr class="magasin-divider">
+
+        <!-- 5. Glovelier -->
+        <article class="magasin-detail" id="glovelier">
+          <div class="magasin-detail__info">
+            <h2 class="magasin-detail__title" data-i18n="nav.mag5">Glovelier</h2>
+            <p class="magasin-detail__address">Rte de la Transjurane 7, 2855 Glovelier</p>
+
+            <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
+            <table class="hours-table hours-table--light">
+              <tbody>
+                <tr><td data-i18n="magasin.day1">Lun–Ven</td><td>06:00–18:00</td></tr>
+                <tr><td data-i18n="magasin.day2">Samedi</td><td>06:00–12:30</td></tr>
+                <tr><td data-i18n="magasin.day4">Dimanche</td><td>07:00–17:30</td></tr>
+                <tr><td data-i18n="magasin.day5">Jours fériés</td><td>07:00–12:00</td></tr>
+              </tbody>
+            </table>
+            <p class="magasin-detail__phone"><a href="tel:+41324265454">032 426 54 54</a></p>
+          </div>
+          <div class="magasin-detail__map">
+            <div class="magasin__slideshow">
+              <div class="magasin__slides">
+                <picture>
+                  <source srcset="assets/images/magasins/web/nouse.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/nouse.jpg" class="magasin__slide active" alt="Magasin Confiserie Roelli Glovelier" loading="lazy">
+                </picture>
+                <picture>
+                  <source srcset="assets/images/magasins/web/glovelier-terrasse.webp" type="image/webp">
+                  <img src="assets/images/magasins/web/glovelier-terrasse.jpg" class="magasin__slide" alt="Terrasse du magasin Glovelier" loading="lazy">
+                </picture>
+              </div>
+              <div class="magasin__dots">
+                <button class="magasin__dot active" aria-label="Photo 1"></button>
+                <button class="magasin__dot" aria-label="Photo 2"></button>
+              </div>
+              <button class="magasin__arrow magasin__arrow--prev" aria-label="Photo précédente">&#8249;</button>
+              <button class="magasin__arrow magasin__arrow--next" aria-label="Photo suivante">&#8250;</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__logo">
+        <img src="assets/logo.png" alt="Confiserie Roelli" class="footer__logo-img" width="64" height="64">
+      </div>
+      <nav class="footer__cols" aria-label="Liens du pied de page">
+        <div class="footer__col">
+          <h3 data-i18n="footer.entreprise">Entreprise</h3>
+          <ul><li><a href="histoire.html" data-i18n="footer.histoire">Histoire</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.produits">Produits</h3>
+          <ul>
+            <li><a href="patisserie.html" data-i18n="nav.patisserie">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.informations">Informations</h3>
+          <ul>
+            <li><a href="magasins.html" data-i18n="nav.magasins">Magasins</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="#" aria-label="Bientôt disponible" data-i18n="footer.mentions">Mentions légales</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__bottom">
+        <p class="footer__copyright" data-i18n="footer.copyright">© 2025 Confiserie Roelli · Porrentruy, Jura</p>
+        <div class="footer__payments">
+          <span class="payment-badge">TWINT</span><span class="payment-badge">VISA</span>
+          <span class="payment-badge">MC</span><span class="payment-badge">Apple Pay</span>
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/share/14exTheQZCy/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/confiserie_roelli" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

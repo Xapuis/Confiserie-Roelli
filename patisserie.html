@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Favicons — pastille de marque, monogramme réservé en clair -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#C2185B">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pâtisserie — Confiserie Roelli, Porrentruy. Gâteaux, tartes et entremets artisanaux.">
+  <title>Pâtisserie — Confiserie Roelli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Lien d'évitement : premier élément focalisable de la page -->
+  <a class="skip-link" href="#contenu" data-i18n="a11y.skip">Aller au contenu principal</a>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar__left">
+      <a href="tel:+41324661677" class="top-bar__contact" aria-label="Téléphone">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="top-bar__contact-text">032 466 16 77</span>
+      </a>
+      <a href="mailto:info@confiserie-roelli.ch" class="top-bar__contact" aria-label="Email">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="top-bar__contact-text">info@confiserie-roelli.ch</span>
+      </a>
+    </div>
+    <div class="top-bar__right">
+      <button class="lang-btn active" data-lang="fr" aria-pressed="true">FR</button>
+      <button class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      <button class="lang-btn" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <ul class="nav__list nav__list--left">
+        <li class="nav__item">
+          <a href="histoire.html" class="nav__link" data-i18n="nav.histoire">Notre histoire</a>
+        </li>
+        <li class="nav__item has-dropdown nav__item--active">
+          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
+          <ul class="dropdown">
+            <li><a href="patisserie.html" class="dropdown__link dropdown__link--active" data-i18n="nav.patisserie" aria-current="page">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" class="dropdown__link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" class="dropdown__link" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </li>
+        <li class="nav__item">
+          <a href="actualites.html" class="nav__link" data-i18n="nav.actualites">Actualités</a>
+        </li>
+      </ul>
+
+      <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil">
+        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <div class="nav__logo-divider" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
+          <span class="nav__logo-sub" data-i18n="brand.tagline">Porrentruy · depuis 1958</span>
+        </div>
+      </a>
+      <ul class="nav__list nav__list--right">
+        <li class="nav__item has-dropdown">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins">Magasins</a>
+          <ul class="dropdown">
+            <li><a href="magasins.html#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
+            <li><a href="magasins.html#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
+            <li><a href="magasins.html#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
+            <li><a href="magasins.html#chevenez" class="dropdown__link" data-i18n="nav.mag4">Chevenez</a></li>
+            <li><a href="magasins.html#glovelier" class="dropdown__link" data-i18n="nav.mag5">Glovelier</a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a href="tilleuls.html" class="nav__link">Les Tilleuls</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-overlay">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </nav>
+    <div class="nav__mobile-overlay" id="mobile-overlay" aria-hidden="true">
+      <button class="nav__overlay-close" id="overlay-close" aria-label="Fermer le menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav__mobile-list">
+        <li><a href="histoire.html" class="nav__mobile-link" data-i18n="nav.histoire">Notre histoire</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="patisserie.html" class="nav__mobile-link" data-i18n="nav.patisserie" aria-current="page">Pâtisserie</a></li>
+        <li><a href="boulangerie.html" class="nav__mobile-link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+        <li><a href="confiserie.html" class="nav__mobile-link" data-i18n="nav.confiserie">Confiserie</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="actualites.html" class="nav__mobile-link" data-i18n="nav.actualites">Actualités</a></li>
+        <li><a href="magasins.html" class="nav__mobile-link" data-i18n="nav.magasins">Magasins</a></li>
+        <li><a href="tilleuls.html" class="nav__mobile-link">Les Tilleuls</a></li>
+        <li><a href="contact.html" class="nav__mobile-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+    <section class="page-hero">
+      <div class="container">
+        <div class="section__gold-line" aria-hidden="true"></div>
+        <h1 class="page-hero__title" data-i18n="specialites.card1.name">Pâtisserie</h1>
+        <p class="page-hero__sub" data-i18n="specialites.card1.desc">Gâteaux fins et tartes élaborées, préparés chaque matin avec soin.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="catalogue__grid">
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-fraise.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-fraise.jpg" alt="Tarte aux fraises — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat1.name">Tarte aux fraises</h2>
+              <p class="product-card__desc" data-i18n="pat1.desc">Fraises fraîches sur crème vanille, pâte maison croustillante.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-fraise-vanille.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-fraise-vanille.jpg" alt="Tourte fraise-vanille — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat2.name">Tourte fraise-vanille</h2>
+              <p class="product-card__desc" data-i18n="pat2.desc">Mousse à la vanille bourbon, couronne de fraises fraîches et fruits rouges.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/st-honore.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/st-honore.jpg" alt="Saint-Honoré — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat13.name">Saint-Honoré</h2>
+              <p class="product-card__desc" data-i18n="pat13.desc">Feuilletage, choux garnis de crème fouettée et fruits frais de saison.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-citron.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-citron.jpg" alt="Tarte au citron meringuée — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat3.name">Tarte au citron</h2>
+              <p class="product-card__desc" data-i18n="pat3.desc">Lemon curd maison dans un fond de tarte sablé, meringue légère.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-framboise.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-framboise.jpg" alt="Tourte aux framboises — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat4.name">Tourte aux framboises</h2>
+              <p class="product-card__desc" data-i18n="pat4.desc">Framboises fraîches serrées sur crème légère, éclats de pistache et sucre glace.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-framboise-passion.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-framboise-passion.jpg" alt="Tourte framboise-passion — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat5.name">Tourte framboise-passion</h2>
+              <p class="product-card__desc" data-i18n="pat5.desc">Dômes de mousse passion sur fond sablé, framboises fraîches et pistache.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/mousse-framboise-passion.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/mousse-framboise-passion.jpg" alt="Mousse framboise-passion — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat6.name">Mousse framboise-passion</h2>
+              <p class="product-card__desc" data-i18n="pat6.desc">Mousse aérienne framboise et fruit de la passion, perles de chocolat blanc.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/mousse-trois-chocolats.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/mousse-trois-chocolats.jpg" alt="Mousse trois chocolats — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat7.name">Mousse trois chocolats</h2>
+              <p class="product-card__desc" data-i18n="pat7.desc">Trois mousses superposées — noir, lait et blanc — sur biscuit chocolat.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-ecureuil-praline.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-ecureuil-praline.jpg" alt="Tourte Écureuil praliné — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat8.name">Tourte Écureuil praliné</h2>
+              <p class="product-card__desc" data-i18n="pat8.desc">Biscuit noisette et praliné maison, cœur de framboises fraîches.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="badge-saison" data-i18n="badge.saison">Spécialité de saison</span>
+            <picture>
+              <source srcset="assets/images/patisserie/web/delice-ete.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/delice-ete.jpg" alt="Délice d'été — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat9.name">Délice d'été</h2>
+              <p class="product-card__desc" data-i18n="pat9.desc">Biscuit et fruits rouges sous un glaçage rosé, la pâtisserie des beaux jours.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/vaucluse.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/vaucluse.jpg" alt="Vaucluse — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat10.name">Vaucluse</h2>
+              <p class="product-card__desc" data-i18n="pat10.desc">Copeaux de chocolat blanc et crème fouettée, décor de fruits frais.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/buche.webp" type="image/webp">
+              <img src="assets/images/patisserie/web/buche.jpg" alt="Bûche aux fruits frais — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat11.name">Bûche aux fruits frais</h2>
+              <p class="product-card__desc" data-i18n="pat11.desc">Biscuit et crème entre deux plaques de chocolat blanc, fruits frais de saison.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GÂTEAUX D'ANNIVERSAIRE -->
+    <section class="section pat-anniv" aria-labelledby="anniv-title">
+      <div class="container pat-anniv__grid">
+
+
+        <div class="pat-anniv__text">
+          <div class="section__gold-line" aria-hidden="true"></div>
+          <h2 class="section__title" id="anniv-title" data-i18n="pat.anniv_title">Gâteaux d'anniversaire</h2>
+          <p class="pat-anniv__body" data-i18n="pat.anniv_body">Chaque gâteau d'anniversaire est monté sur commande, à votre goût. Vous choisissez le parfum, la taille et le décor ; nous écrivons votre message et nous le préparons pour le jour dit.</p>
+          <ul class="pat-anniv__list">
+            <li class="pat-anniv__item" data-i18n="pat.anniv_item1">Le parfum et la taille de votre choix</li>
+            <li class="pat-anniv__item" data-i18n="pat.anniv_item2">Votre message écrit à la main</li>
+            <li class="pat-anniv__item" data-i18n="pat.anniv_item3">À commander quelques jours à l'avance</li>
+          </ul>
+          <a href="contact.html" class="btn btn--primary" data-i18n="pat.anniv_cta">Commander votre gâteau</a>
+        </div>
+
+        <figure class="pat-anniv__figure">
+          <picture>
+            <source srcset="assets/images/patisserie/web/anniversaire.webp" type="image/webp">
+            <img src="assets/images/patisserie/web/anniversaire.jpg"
+                 alt="Gâteau d'anniversaire aux fruits frais — Confiserie Roelli"
+                 class="pat-anniv__img" loading="lazy">
+          </picture>
+          <figcaption class="pat-anniv__caption" data-i18n="pat.anniv_caption">Un exemple parmi d'autres — le vôtre sera le vôtre.</figcaption>
+        </figure>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__logo">
+        <img src="assets/logo.png" alt="Confiserie Roelli" class="footer__logo-img" width="64" height="64">
+      </div>
+      <nav class="footer__cols" aria-label="Liens du pied de page">
+        <div class="footer__col">
+          <h3 data-i18n="footer.entreprise">Entreprise</h3>
+          <ul><li><a href="histoire.html" data-i18n="footer.histoire">Histoire</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.produits">Produits</h3>
+          <ul>
+            <li><a href="patisserie.html" data-i18n="nav.patisserie">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.informations">Informations</h3>
+          <ul>
+            <li><a href="magasins.html" data-i18n="nav.magasins">Magasins</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="#" aria-label="Bientôt disponible" data-i18n="footer.mentions">Mentions légales</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__bottom">
+        <p class="footer__copyright" data-i18n="footer.copyright">© 2025 Confiserie Roelli · Porrentruy, Jura</p>
+        <div class="footer__payments">
+          <span class="payment-badge">TWINT</span><span class="payment-badge">VISA</span>
+          <span class="payment-badge">MC</span><span class="payment-badge">Apple Pay</span>
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/share/14exTheQZCy/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/confiserie_roelli" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

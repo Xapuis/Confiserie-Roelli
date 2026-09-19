@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Favicons — pastille de marque, monogramme réservé en clair -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#C2185B">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Notre histoire — Confiserie Roelli depuis 1958 à Porrentruy.">
+  <title>Notre histoire — Confiserie Roelli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Lien d'évitement : premier élément focalisable de la page -->
+  <a class="skip-link" href="#contenu" data-i18n="a11y.skip">Aller au contenu principal</a>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar__left">
+      <a href="tel:+41324661677" class="top-bar__contact" aria-label="Téléphone">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="top-bar__contact-text">032 466 16 77</span>
+      </a>
+      <a href="mailto:info@confiserie-roelli.ch" class="top-bar__contact" aria-label="Email">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="top-bar__contact-text">info@confiserie-roelli.ch</span>
+      </a>
+    </div>
+    <div class="top-bar__right">
+      <button class="lang-btn active" data-lang="fr" aria-pressed="true">FR</button>
+      <button class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      <button class="lang-btn" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <ul class="nav__list nav__list--left">
+        <li class="nav__item nav__item--active">
+          <a href="histoire.html" class="nav__link" data-i18n="nav.histoire" aria-current="page">Notre histoire</a>
+        </li>
+        <li class="nav__item has-dropdown">
+          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
+          <ul class="dropdown">
+            <li><a href="patisserie.html" class="dropdown__link" data-i18n="nav.patisserie">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" class="dropdown__link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" class="dropdown__link" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </li>
+        <li class="nav__item">
+          <a href="actualites.html" class="nav__link" data-i18n="nav.actualites">Actualités</a>
+        </li>
+      </ul>
+
+      <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil">
+        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <div class="nav__logo-divider" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
+          <span class="nav__logo-sub" data-i18n="brand.tagline">Porrentruy · depuis 1958</span>
+        </div>
+      </a>
+      <ul class="nav__list nav__list--right">
+        <li class="nav__item has-dropdown">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins">Magasins</a>
+          <ul class="dropdown">
+            <li><a href="magasins.html#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
+            <li><a href="magasins.html#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
+            <li><a href="magasins.html#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
+            <li><a href="magasins.html#chevenez" class="dropdown__link" data-i18n="nav.mag4">Chevenez</a></li>
+            <li><a href="magasins.html#glovelier" class="dropdown__link" data-i18n="nav.mag5">Glovelier</a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a href="tilleuls.html" class="nav__link">Les Tilleuls</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-overlay">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </nav>
+    <div class="nav__mobile-overlay" id="mobile-overlay" aria-hidden="true">
+      <button class="nav__overlay-close" id="overlay-close" aria-label="Fermer le menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <ul class="nav__mobile-list">
+        <li><a href="histoire.html" class="nav__mobile-link" data-i18n="nav.histoire" aria-current="page">Notre histoire</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="patisserie.html" class="nav__mobile-link" data-i18n="nav.patisserie">Pâtisserie</a></li>
+        <li><a href="boulangerie.html" class="nav__mobile-link" data-i18n="nav.boulangerie">Boulangerie</a></li>
+        <li><a href="confiserie.html" class="nav__mobile-link" data-i18n="nav.confiserie">Confiserie</a></li>
+        <li class="nav__mobile-divider" aria-hidden="true"></li>
+        <li><a href="actualites.html" class="nav__mobile-link" data-i18n="nav.actualites">Actualités</a></li>
+        <li><a href="magasins.html" class="nav__mobile-link" data-i18n="nav.magasins">Magasins</a></li>
+        <li><a href="tilleuls.html" class="nav__mobile-link">Les Tilleuls</a></li>
+        <li><a href="contact.html" class="nav__mobile-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="section__gold-line" aria-hidden="true"></div>
+        <h1 class="page-hero__title" data-i18n="histoire.title">Notre histoire</h1>
+        <p class="page-hero__sub" data-i18n="brand.tagline">Porrentruy · depuis 1958</p>
+      </div>
+    </section>
+
+    <!-- HISTOIRE CONTENT -->
+    <section class="section">
+      <div class="container histoire__grid">
+        <div class="histoire__text">
+          <p class="histoire__body" data-i18n="histoire.body1">
+            Fondée en 1958 par la famille Roelli au cœur de Porrentruy, notre confiserie
+            perpétue depuis plus de soixante ans un savoir-faire artisanal transmis de
+            génération en génération. Chaque jour, nos maîtres boulangers et pâtissiers
+            façonnent à la main des créations gourmandes qui témoignent de notre attachement
+            aux recettes traditionnelles et aux ingrédients de qualité.
+          </p>
+          <p class="histoire__body" data-i18n="histoire.body2">
+            De la viennoiserie dorée du matin aux gâteaux d'exception pour vos célébrations,
+            chaque pièce qui sort de nos ateliers porte l'empreinte d'un métier exercé avec
+            passion et rigueur. Bienvenue dans l'univers Roelli.
+          </p>
+          <p class="histoire__body" data-i18n="histoire.body3">
+            Aujourd'hui, la Confiserie Roelli compte cinq points de vente dans le Jura —
+            Porrentruy, Boncourt, Chevenez et Glovelier — et reste fidèle à sa vocation
+            première : offrir chaque matin des produits frais, faits maison, avec le sourire.
+          </p>
+        </div>
+        <figure class="histoire__figure">
+          <picture>
+            <source srcset="assets/images/Fotos/web/proprietaires.webp" type="image/webp">
+            <img src="assets/images/Fotos/web/proprietaires.jpg"
+                 alt="Jean-Pierre Roelli et son fils dans le magasin de Porrentruy"
+                 class="histoire__img" loading="lazy" width="1216" height="879">
+          </picture>
+          <figcaption class="histoire__caption" data-i18n="histoire.caption">La famille Roelli, aux commandes de la maison.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CHAMPION CANTONAL -->
+    <section class="section champion-section" style="background:var(--color-surface)" aria-labelledby="champion-title">
+      <div class="container">
+        <div class="champion-grid">
+          <div class="champion-text">
+            <div class="section__gold-line" aria-hidden="true"></div>
+            <p class="champion-label" data-i18n="champion.label">Distinction officielle</p>
+            <h2 class="champion-title" id="champion-title" data-i18n="champion.title">Champion cantonal du Jura</h2>
+            <p class="champion-sub">Swiss Bakery Trophy 2025/27</p>
+            <p class="champion-desc" data-i18n="champion.desc">En 2025, la Confiserie Roelli a été sacrée Champion cantonal du Jura lors du Swiss Bakery Trophy, le concours officiel des artisans boulangers-confiseurs suisses. Une reconnaissance qui couronne l’ensemble de nos équipes et confirme notre engagement envers l’excellence artisanale, dans chacun de nos magasins du Jura.</p>
+          </div>
+          <div class="champion-img">
+            <picture>
+              <source srcset="assets/images/Fotos/web/champion-cantonal.webp" type="image/webp">
+              <img src="assets/images/Fotos/web/champion-cantonal.jpg"
+                   alt="Diplôme de Champion cantonal du Jura — Swiss Bakery Trophy 2025/27 — Confiserie Roelli"
+                   loading="lazy" width="896" height="1195">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LE LABORATOIRE -->
+    <section class="section" id="laboratoire" aria-labelledby="labo-title">
+      <div class="container histoire__grid histoire__grid--reverse">
+        <div class="histoire__text">
+          <div class="section__gold-line" aria-hidden="true"></div>
+          <h2 class="section__title" id="labo-title" data-i18n="labo.title">Notre laboratoire</h2>
+          <p class="histoire__body" data-i18n="labo.body1">
+            C'est ici, aux Roches-de-Mars à la sortie de Porrentruy, que tout est fabriqué.
+            Pains, pâtisseries et confiseries sortent chaque jour de notre laboratoire avant
+            de rejoindre nos cinq magasins.
+          </p>
+          <p class="histoire__body" data-i18n="labo.body2">
+            Un seul lieu de production, à quelques minutes de nos boutiques : c'est ce qui
+            nous permet de vous servir chaque matin des produits faits le jour même.
+          </p>
+          <div class="magasin__contact-block" style="margin-top:1.5rem">
+            <p class="magasin__contact-label" data-i18n="magasin.address">Adresse</p>
+            <address class="magasin__contact-value" style="font-style:normal;">
+              Route d'Alle / Roches-de-Mars 1<br>2900 Porrentruy
+            </address>
+          </div>
+        </div>
+        <div class="magasin__slideshow magasin__slideshow--histoire">
+          <div class="magasin__slides">
+            <picture>
+              <source srcset="assets/images/Fotos/web/laboratoire.webp" type="image/webp">
+              <img src="assets/images/Fotos/web/laboratoire.jpg" class="magasin__slide active"
+                   alt="Le laboratoire Roelli aux Roches-de-Mars, Porrentruy" loading="lazy">
+            </picture>
+            <picture>
+              <source srcset="assets/images/Fotos/web/laboratoire2.webp" type="image/webp">
+              <img src="assets/images/Fotos/web/laboratoire2.jpg" class="magasin__slide"
+                   alt="Le laboratoire Roelli vu depuis la route d'Alle" loading="lazy">
+            </picture>
+          </div>
+          <div class="magasin__dots">
+            <button class="magasin__dot active" aria-label="Photo 1"></button>
+            <button class="magasin__dot" aria-label="Photo 2"></button>
+          </div>
+          <button class="magasin__arrow magasin__arrow--prev" aria-label="Photo précédente">&#8249;</button>
+          <button class="magasin__arrow magasin__arrow--next" aria-label="Photo suivante">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALEURS -->
+    <section class="section" style="background:var(--color-surface)">
+      <div class="container">
+        <div class="section__gold-line section__gold-line--center" aria-hidden="true"></div>
+        <h2 class="section__title text-center" data-i18n="histoire.valeurs_title">Nos valeurs</h2>
+        <div class="valeurs__grid">
+          <div class="valeur-card">
+            <span class="valeur-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V10"/>
+                <path d="M12 10c0-2.2 1.3-4 3-4 0 2.2-1.3 4-3 4z"/>
+                <path d="M12 10c0-2.2-1.3-4-3-4 0 2.2 1.3 4 3 4z"/>
+                <path d="M12 14c0-2.2 1.3-4 3-4 0 2.2-1.3 4-3 4z"/>
+                <path d="M12 14c0-2.2-1.3-4-3-4 0 2.2 1.3 4 3 4z"/>
+                <path d="M12 18c0-2.2 1.3-4 3-4 0 2.2-1.3 4-3 4z"/>
+                <path d="M12 18c0-2.2-1.3-4-3-4 0 2.2 1.3 4 3 4z"/>
+              </svg>
+            </span>
+            <h3 class="valeur-card__name" data-i18n="valeur1.name">Artisanat</h3>
+            <p class="valeur-card__desc" data-i18n="valeur1.desc">Chaque produit est façonné à la main, dans le respect des techniques traditionnelles.</p>
+          </div>
+          <div class="valeur-card">
+            <span class="valeur-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20c0-8 5.5-13.5 16-14 .5 8.5-5 14-16 14z"/>
+                <path d="M4 20c3-4.5 6.5-7.5 11-9.5"/>
+              </svg>
+            </span>
+            <h3 class="valeur-card__name" data-i18n="valeur2.name">Fraîcheur</h3>
+            <p class="valeur-card__desc" data-i18n="valeur2.desc">Nos pains et pâtisseries sont préparés chaque jour avec des ingrédients frais et locaux.</p>
+          </div>
+          <div class="valeur-card">
+            <span class="valeur-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21.5s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/>
+                <circle cx="12" cy="10.5" r="2.5"/>
+              </svg>
+            </span>
+            <h3 class="valeur-card__name" data-i18n="valeur3.name">Proximité</h3>
+            <p class="valeur-card__desc" data-i18n="valeur3.desc">Cinq magasins dans le Jura pour être toujours proches de vous et de votre quotidien.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOS PRODUITS -->
+    <section class="section" id="nos-metiers" aria-labelledby="metiers-title">
+      <div class="container">
+        <div class="section__gold-line section__gold-line--center" aria-hidden="true"></div>
+        <h2 class="section__title text-center" id="metiers-title" data-i18n="metiers.title">Nos produits</h2>
+        <p class="catalogue__intro" data-i18n="metiers.intro">De la vitrine à la table, cinq métiers réunis sous le même toit.</p>
+
+        <dl class="metiers">
+
+          <div class="metier">
+            <dt class="metier__name" data-i18n="metier1.name">Pâtisserie</dt>
+            <dd class="metier__desc">
+              <span data-i18n="metier1.desc">Tourtes, mousses et entremets montés et décorés à la main chaque matin, et vos gâteaux d'anniversaire sur commande.</span>
+              <a href="patisserie.html" class="metier__link" data-i18n="metier1.link">Voir nos pâtisseries →</a>
+            </dd>
+          </div>
+
+          <div class="metier">
+            <dt class="metier__name" data-i18n="metier2.name">Boulangerie</dt>
+            <dd class="metier__desc">
+              <span data-i18n="metier2.desc">Pains blancs et pains spéciaux, pétris et cuits chaque jour dans notre laboratoire avant de rejoindre nos magasins.</span>
+              <a href="boulangerie.html" class="metier__link" data-i18n="metier2.link">Voir nos pains →</a>
+            </dd>
+          </div>
+
+          <div class="metier">
+            <dt class="metier__name" data-i18n="metier3.name">Confiserie et chocolat</dt>
+            <dd class="metier__desc">
+              <span data-i18n="metier3.desc">Pralinés, truffes et spécialités chocolatées, travaillés à la main selon les recettes de la maison.</span>
+              <a href="confiserie.html" class="metier__link" data-i18n="metier3.link">Voir notre confiserie →</a>
+            </dd>
+          </div>
+
+          <div class="metier">
+            <dt class="metier__name" data-i18n="metier4.name">Traiteur</dt>
+            <dd class="metier__desc">
+              <span data-i18n="metier4.desc">Pièces salées, canapés et buffets sur commande, pour vos réceptions et vos fêtes de famille.</span>
+            </dd>
+          </div>
+
+          <div class="metier">
+            <dt class="metier__name" data-i18n="metier5.name">Restaurant</dt>
+            <dd class="metier__desc">
+              <span data-i18n="metier5.desc">Au Tea-room Les Tilleuls, un menu qui change chaque semaine : une entrée, un plat et un dessert.</span>
+              <a href="tilleuls.html" class="metier__link" data-i18n="metier5.link">Découvrir Les Tilleuls →</a>
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__logo">
+        <img src="assets/logo.png" alt="Confiserie Roelli" class="footer__logo-img" width="64" height="64">
+      </div>
+      <nav class="footer__cols" aria-label="Liens du pied de page">
+        <div class="footer__col">
+          <h3 data-i18n="footer.entreprise">Entreprise</h3>
+          <ul><li><a href="histoire.html" data-i18n="footer.histoire">Histoire</a></li></ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.produits">Produits</h3>
+          <ul>
+            <li><a href="patisserie.html" data-i18n="nav.patisserie">Pâtisserie</a></li>
+            <li><a href="boulangerie.html" data-i18n="nav.boulangerie">Boulangerie</a></li>
+            <li><a href="confiserie.html" data-i18n="nav.confiserie">Confiserie</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 data-i18n="footer.informations">Informations</h3>
+          <ul>
+            <li><a href="magasins.html" data-i18n="nav.magasins">Magasins</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="#" aria-label="Bientôt disponible" data-i18n="footer.mentions">Mentions légales</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__bottom">
+        <p class="footer__copyright" data-i18n="footer.copyright">© 2025 Confiserie Roelli · Porrentruy, Jura</p>
+        <div class="footer__payments">
+          <span class="payment-badge">TWINT</span><span class="payment-badge">VISA</span>
+          <span class="payment-badge">MC</span><span class="payment-badge">Apple Pay</span>
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/share/14exTheQZCy/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/confiserie_roelli" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
