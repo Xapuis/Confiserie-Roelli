@@ -5,8 +5,7 @@ Complete redesign and development of the official website for Confiserie Roelli,
 ## Tech stack
 - HTML5, CSS3, JavaScript (vanilla)
 - Multilingual: FR / DE / EN / IT
-- WebP image optimization
-- Apache security configuration
+- Performance optimization (WebP image conversion, lazy loading)
 
 ## Live site
 Coming soon — confiserie-roelli.ch
