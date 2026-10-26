@@ -12,10 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Venez goûter nos pains blancs et spéciaux pétris chaque matin, la tresse au beurre et nos viennoiseries. Boulangerie artisanale Roelli à Porrentruy, Jura.">
   <title>Boulangerie artisanale — Pains et viennoiseries | Roelli</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -50,8 +48,8 @@
           <a href="histoire.html" class="nav__link" data-i18n="nav.histoire">Notre histoire</a>
         </li>
         <li class="nav__item has-dropdown nav__item--active">
-          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
-          <ul class="dropdown">
+          <button type="button" class="nav__link" data-i18n="nav.produits" aria-expanded="false" aria-controls="menu-produits">Produits</button>
+          <ul class="dropdown" id="menu-produits">
             <li><a href="patisserie.html" class="dropdown__link" data-i18n="nav.patisserie">Pâtisserie</a></li>
             <li><a href="boulangerie.html" class="dropdown__link dropdown__link--active" data-i18n="nav.boulangerie" aria-current="page">Boulangerie</a></li>
             <li><a href="confiserie.html" class="dropdown__link" data-i18n="nav.confiserie">Confiserie</a></li>
@@ -63,7 +61,7 @@
       </ul>
 
       <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil">
-        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <img src="assets/logo-88.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
         <div class="nav__logo-divider" aria-hidden="true"></div>
         <div class="nav__logo-text">
           <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
@@ -72,8 +70,8 @@
       </a>
       <ul class="nav__list nav__list--right">
         <li class="nav__item has-dropdown">
-          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins">Magasins</a>
-          <ul class="dropdown">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins" aria-expanded="false" aria-controls="menu-magasins">Magasins</a>
+          <ul class="dropdown" id="menu-magasins">
             <li><a href="magasins.html#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
             <li><a href="magasins.html#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
             <li><a href="magasins.html#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
@@ -127,7 +125,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/banette.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/banette-480.webp 480w, assets/images/pain/web/banette.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/banette.jpg" alt="Banette — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -138,7 +136,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/mi-blanc.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/mi-blanc-480.webp 480w, assets/images/pain/web/mi-blanc.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/mi-blanc.jpg" alt="Pain mi-blanc — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -149,7 +147,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/balois.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/balois-480.webp 480w, assets/images/pain/web/balois.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/balois.jpg" alt="Pain bâlois — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -160,7 +158,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/pain-a-lancienne.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/pain-a-lancienne-480.webp 480w, assets/images/pain/web/pain-a-lancienne.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/pain-a-lancienne.jpg" alt="Pain à l'ancienne — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -171,7 +169,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/paysan.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/paysan-480.webp 480w, assets/images/pain/web/paysan.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/paysan.jpg" alt="Pain paysan — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -182,7 +180,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/marguerite.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/marguerite-480.webp 480w, assets/images/pain/web/marguerite.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/marguerite.jpg" alt="Marguerite — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -193,7 +191,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/petite-flute.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/petite-flute-480.webp 480w, assets/images/pain/web/petite-flute.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/petite-flute.jpg" alt="Petite flûte de Glovelier — Confiserie Roelli" class="product-card__img product-card__img--top" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -204,7 +202,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/pain-noir.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/pain-noir-480.webp 480w, assets/images/pain/web/pain-noir.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/pain-noir.jpg" alt="Pain noir — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -215,7 +213,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/tessinois.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/tessinois-480.webp 480w, assets/images/pain/web/tessinois.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/tessinois.jpg" alt="Pain tessinois — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -238,7 +236,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/ble-dor.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/ble-dor-480.webp 480w, assets/images/pain/web/ble-dor.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/ble-dor.jpg" alt="Blé d'Or — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -249,7 +247,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/pain-epeautre.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/pain-epeautre-480.webp 480w, assets/images/pain/web/pain-epeautre.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/pain-epeautre.jpg" alt="Pain d'épeautre — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -260,7 +258,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/pain-au-mais.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/pain-au-mais-480.webp 480w, assets/images/pain/web/pain-au-mais.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/pain-au-mais.jpg" alt="Pain au maïs — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -271,7 +269,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/sant-abbondio.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/sant-abbondio-480.webp 480w, assets/images/pain/web/sant-abbondio.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/sant-abbondio.jpg" alt="Sant'Abbondio — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -282,7 +280,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/tresse-au-beurre.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/tresse-au-beurre-480.webp 480w, assets/images/pain/web/tresse-au-beurre-800.webp 800w, assets/images/pain/web/tresse-au-beurre.webp 1199w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/tresse-au-beurre.jpg" alt="Tresse au beurre — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -293,7 +291,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/pain/web/pain-de-seigle.webp" type="image/webp">
+              <source srcset="assets/images/pain/web/pain-de-seigle-480.webp 480w, assets/images/pain/web/pain-de-seigle.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/pain/web/pain-de-seigle.jpg" alt="Pain de seigle — Confiserie Roelli" class="product-card__img product-card__img--low" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -349,7 +347,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/i18n.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

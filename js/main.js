@@ -12,23 +12,93 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlayClose  = document.getElementById('overlay-close');
 
   if (hamburgerBtn && mobileOverlay) {
+    const ouvert = () => mobileOverlay.classList.contains('active');
+    const focalisables = () => [...mobileOverlay.querySelectorAll('a[href], button:not([disabled])')];
+
     function openMenu() {
       mobileOverlay.classList.add('active');
       mobileOverlay.removeAttribute('aria-hidden');
       document.body.classList.add('nav-open');
       hamburgerBtn.setAttribute('aria-expanded', 'true');
+      focalisables()[0]?.focus();
     }
+    /* Le focus revient au bouton qui a ouvert le menu : sinon il resterait
+       sur un élément masqué et la tabulation repartirait du haut. */
     function closeMenu() {
+      if (!ouvert()) return;
       mobileOverlay.classList.remove('active');
       mobileOverlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('nav-open');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
+      hamburgerBtn.focus();
     }
     hamburgerBtn.addEventListener('click', openMenu);
     if (overlayClose) overlayClose.addEventListener('click', closeMenu);
     mobileOverlay.querySelectorAll('a, .btn').forEach(el => el.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    /* Menu ouvert : la tabulation boucle à l'intérieur, la page derrière
+       n'est plus atteignable au clavier. */
+    document.addEventListener('keydown', e => {
+      if (!ouvert()) return;
+      if (e.key === 'Escape') { closeMenu(); return; }
+      if (e.key !== 'Tab') return;
+      const items = focalisables();
+      const premier = items[0], dernier = items[items.length - 1];
+      if (!mobileOverlay.contains(document.activeElement)) { e.preventDefault(); premier.focus(); }
+      else if (e.shiftKey && document.activeElement === premier) { e.preventDefault(); dernier.focus(); }
+      else if (!e.shiftKey && document.activeElement === dernier) { e.preventDefault(); premier.focus(); }
+    });
   }
+
+  /* ── Menus déroulants au clavier ─────────────────────────
+     Le survol reste géré en CSS. Au clavier : « Produits » est un bouton
+     (Entrée / Espace / flèche bas) ; « Magasins » reste un lien vers la
+     page, et son menu s'ouvre dès qu'il reçoit le focus. Échap referme
+     et rend le focus au déclencheur ; quitter le bloc referme aussi. */
+  document.querySelectorAll('.has-dropdown').forEach(item => {
+    const declencheur = item.querySelector('.nav__link');
+    const premierLien = item.querySelector('.dropdown a');
+    if (!declencheur || !premierLien) return;
+    const estBouton = declencheur.tagName === 'BUTTON';
+    let fermeParEchap = false;
+
+    const basculer = ouvrir => {
+      item.classList.toggle('is-open', ouvrir);
+      declencheur.setAttribute('aria-expanded', ouvrir ? 'true' : 'false');
+    };
+
+    if (estBouton) {
+      declencheur.addEventListener('click', () => basculer(!item.classList.contains('is-open')));
+    }
+
+    item.addEventListener('focusin', e => {
+      if (e.target === declencheur && (estBouton || fermeParEchap)) return;
+      basculer(true);
+    });
+    item.addEventListener('focusout', e => {
+      if (item.contains(e.relatedTarget)) return;
+      fermeParEchap = false;
+      basculer(false);
+    });
+
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && item.classList.contains('is-open')) {
+        basculer(false);
+        fermeParEchap = true;
+        declencheur.focus();
+      } else if (e.key === 'ArrowDown' && e.target === declencheur) {
+        e.preventDefault();
+        basculer(true);
+        premierLien.focus();
+      }
+    });
+
+    /* Le survol ouvre le menu en CSS : on garde aria-expanded à jour. */
+    item.addEventListener('mouseenter', () => declencheur.setAttribute('aria-expanded', 'true'));
+    item.addEventListener('mouseleave', () => {
+      if (!item.classList.contains('is-open')) declencheur.setAttribute('aria-expanded', 'false');
+    });
+  });
 
   /* ── Liens internes : défiler sans écrire le hash dans l'URL ──
      Sinon l'ancre reste dans l'adresse et un rechargement de la page

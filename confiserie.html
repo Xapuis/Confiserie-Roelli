@@ -10,12 +10,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
   <meta name="theme-color" content="#C2185B">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Offrez des pralinés, truffes et chocolats faits main. Coffrets cadeaux disponibles dans nos 5 magasins. Confiserie Roelli, Porrentruy, depuis 1958.">
+  <meta name="description" content="Offrez des pralinés, truffes et chocolats faits à la main. Idées cadeaux pour toutes vos occasions. Confiserie Roelli, Porrentruy, depuis 1958.">
   <title>Confiserie &amp; Chocolats artisanaux — Roelli, Porrentruy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -50,8 +48,8 @@
           <a href="histoire.html" class="nav__link" data-i18n="nav.histoire">Notre histoire</a>
         </li>
         <li class="nav__item has-dropdown nav__item--active">
-          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
-          <ul class="dropdown">
+          <button type="button" class="nav__link" data-i18n="nav.produits" aria-expanded="false" aria-controls="menu-produits">Produits</button>
+          <ul class="dropdown" id="menu-produits">
             <li><a href="patisserie.html" class="dropdown__link" data-i18n="nav.patisserie">Pâtisserie</a></li>
             <li><a href="boulangerie.html" class="dropdown__link" data-i18n="nav.boulangerie">Boulangerie</a></li>
             <li><a href="confiserie.html" class="dropdown__link dropdown__link--active" data-i18n="nav.confiserie" aria-current="page">Confiserie</a></li>
@@ -63,7 +61,7 @@
       </ul>
 
       <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil">
-        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <img src="assets/logo-88.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
         <div class="nav__logo-divider" aria-hidden="true"></div>
         <div class="nav__logo-text">
           <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
@@ -72,8 +70,8 @@
       </a>
       <ul class="nav__list nav__list--right">
         <li class="nav__item has-dropdown">
-          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins">Magasins</a>
-          <ul class="dropdown">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins" aria-expanded="false" aria-controls="menu-magasins">Magasins</a>
+          <ul class="dropdown" id="menu-magasins">
             <li><a href="magasins.html#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
             <li><a href="magasins.html#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
             <li><a href="magasins.html#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
@@ -129,7 +127,7 @@
         </div>
         <figure class="cf-pave">
           <picture>
-            <source srcset="assets/images/confiserie/web/pave-de-porrentruy.webp" type="image/webp">
+            <source srcset="assets/images/confiserie/web/pave-de-porrentruy-480.webp 480w, assets/images/confiserie/web/pave-de-porrentruy.webp 700w" sizes="(max-width: 479px) 71vw, (max-width: 619px) 55vw, (max-width: 767px) 45vw, (max-width: 1023px) 34vw, (max-width: 1439px) 24vw, 340px" type="image/webp">
             <img src="assets/images/confiserie/web/pave-de-porrentruy.jpg"
                  alt="Les Pavés de Porrentruy dans leur boîte — Confiserie Roelli"
                  class="cf-pave__img" loading="lazy">
@@ -157,7 +155,7 @@
           <p class="cf-annee__lead" data-i18n="conf.annee_lead">L'assortiment de base, en vitrine du 2 janvier au 31 décembre. Vendu au poids ou en ballotin.</p>
           <figure class="cf-annee__figure">
             <picture>
-              <source srcset="assets/images/confiserie/web/florentins.webp" type="image/webp">
+              <source srcset="assets/images/confiserie/web/florentins-480.webp 480w, assets/images/confiserie/web/florentins.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 34vw, (max-width: 1439px) 24vw, 340px" type="image/webp">
               <img src="assets/images/confiserie/web/florentins.jpg"
                    alt="Florentins aux amandes et au chocolat — Confiserie Roelli"
                    class="cf-annee__img" loading="lazy">
@@ -265,7 +263,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/i18n.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

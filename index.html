@@ -10,12 +10,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
   <meta name="theme-color" content="#C2185B">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Découvrez nos pains, pâtisseries et confiseries artisanales depuis 1958 à Porrentruy. Bar à Croissants garni sous vos yeux pour 3 CHF. 5 magasins dans le Jura.">
+  <meta name="description" content="Découvrez nos pains, pâtisseries et confiseries artisanales depuis 1958 à Porrentruy. Bar à Croissants garni sous vos yeux le matin. 5 magasins dans le Jura.">
   <title>Confiserie Roelli — Boulangerie Pâtisserie Porrentruy, Jura</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -50,8 +48,8 @@
           <a href="histoire.html" class="nav__link" data-i18n="nav.histoire">Notre histoire</a>
         </li>
         <li class="nav__item has-dropdown">
-          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
-          <ul class="dropdown">
+          <button type="button" class="nav__link" data-i18n="nav.produits" aria-expanded="false" aria-controls="menu-produits">Produits</button>
+          <ul class="dropdown" id="menu-produits">
             <li><a href="patisserie.html" class="dropdown__link" data-i18n="nav.patisserie">Pâtisserie</a></li>
             <li><a href="boulangerie.html" class="dropdown__link" data-i18n="nav.boulangerie">Boulangerie</a></li>
             <li><a href="confiserie.html" class="dropdown__link" data-i18n="nav.confiserie">Confiserie</a></li>
@@ -63,7 +61,7 @@
       </ul>
 
       <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil" aria-current="page">
-        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <img src="assets/logo-88.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
         <div class="nav__logo-divider" aria-hidden="true"></div>
         <div class="nav__logo-text">
           <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
@@ -73,8 +71,8 @@
 
       <ul class="nav__list nav__list--right">
         <li class="nav__item has-dropdown">
-          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins">Magasins</a>
-          <ul class="dropdown">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins" aria-expanded="false" aria-controls="menu-magasins">Magasins</a>
+          <ul class="dropdown" id="menu-magasins">
             <li><a href="magasins.html#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
             <li><a href="magasins.html#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
             <li><a href="magasins.html#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
@@ -157,7 +155,7 @@
         </div>
         <figure class="histoire__figure">
           <picture>
-            <source srcset="assets/images/Fotos/web/proprietaires.webp" type="image/webp">
+            <source srcset="assets/images/Fotos/web/proprietaires-480.webp 480w, assets/images/Fotos/web/proprietaires-800.webp 800w, assets/images/Fotos/web/proprietaires.webp 1200w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 46vw, (max-width: 1439px) 39vw, 552px" type="image/webp">
             <img src="assets/images/Fotos/web/proprietaires.jpg"
                  alt="Jean-Pierre Roelli et son fils dans le magasin de Porrentruy"
                  class="histoire__img" loading="lazy" width="1216" height="879">
@@ -176,7 +174,7 @@
 
           <a href="patisserie.html" class="spec-card spec-card--link">
             <picture>
-              <source srcset="assets/images/Fotos/web/home-patisserie.webp" type="image/webp">
+              <source srcset="assets/images/Fotos/web/home-patisserie-480.webp 480w, assets/images/Fotos/web/home-patisserie-800.webp 800w, assets/images/Fotos/web/home-patisserie.webp 1500w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 30vw, (max-width: 1439px) 26vw, 363px" type="image/webp">
               <img src="assets/images/Fotos/web/home-patisserie.jpg"
                    alt="Vitrine de pâtisserie — Confiserie Roelli"
                    class="spec-card__img" loading="lazy">
@@ -189,7 +187,7 @@
 
           <a href="boulangerie.html" class="spec-card spec-card--link">
             <picture>
-              <source srcset="assets/images/Fotos/web/home-boulangerie.webp" type="image/webp">
+              <source srcset="assets/images/Fotos/web/home-boulangerie-480.webp 480w, assets/images/Fotos/web/home-boulangerie.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 30vw, (max-width: 1439px) 26vw, 363px" type="image/webp">
               <img src="assets/images/Fotos/web/home-boulangerie.jpg"
                    alt="Boulangerie artisanale — Confiserie Roelli"
                    class="spec-card__img" loading="lazy">
@@ -202,7 +200,7 @@
 
           <a href="confiserie.html" class="spec-card spec-card--link">
             <picture>
-              <source srcset="assets/images/confiserie/web/florentins.webp" type="image/webp">
+              <source srcset="assets/images/confiserie/web/florentins-480.webp 480w, assets/images/confiserie/web/florentins.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 30vw, (max-width: 1439px) 26vw, 363px" type="image/webp">
               <img src="assets/images/confiserie/web/florentins.jpg"
                    alt="Florentins — Confiserie Roelli"
                    class="spec-card__img" loading="lazy">
@@ -232,48 +230,29 @@
           </a>
         </header>
 
-        <div class="actus__grid">
+        <div class="actus__grid actus__grid--duo">
 
-          <article class="actu-card js-reveal">
-            <a class="actu-card__link" href="actualites.html#a1">
+          <article class="actu-card actu-card--fete js-reveal">
+            <a class="actu-card__link" href="actualites.html#a4">
               <div class="actu-card__frame">
                 <picture>
-                  <source srcset="assets/images/pain/web/tresse-au-beurre.webp" type="image/webp">
-                  <img src="assets/images/pain/web/tresse-au-beurre.jpg" alt="Tresse au beurre tout juste sortie du four" class="actu-card__img" loading="lazy">
+                  <source srcset="assets/images/Fotos/web/actu-saint-martin-480.webp 480w, assets/images/Fotos/web/actu-saint-martin-800.webp 800w, assets/images/Fotos/web/actu-saint-martin.webp 1440w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 92vw, (max-width: 767px) 94vw, (max-width: 1023px) 54vw, (max-width: 1439px) 45vw, 642px" type="image/webp">
+                  <img src="assets/images/Fotos/web/actu-saint-martin.jpg" alt="Célébration Saint-Martin, fête traditionnelle du terroir jurassien" class="actu-card__img" width="1440" height="1080" loading="lazy">
                 </picture>
+                <span class="fete-badge" data-i18n="actu4.badge">Spécialité de saison</span>
               </div>
               <div class="actu-card__body">
                 <p class="actu-card__meta">
-                  <span class="actu-card__cat" data-i18n="actu1.cat">Boulangerie</span>
+                  <span class="actu-card__cat" data-i18n="actu4.cat">Saint-Martin</span>
                   <span class="actu-card__sep" aria-hidden="true"></span>
-                  <span class="actu-card__date" data-i18n="actu1.date">5 septembre 2026</span>
+                  <span class="actu-card__date" data-i18n="actu4.date">13 – 16 novembre 2026</span>
                 </p>
-                <h3 class="actu-card__title" data-i18n="actu1.title">Deux nouveaux pains à la carte</h3>
-                <p class="actu-card__excerpt" data-i18n="actu1.excerpt">La tresse au beurre AOP et le pain de seigle complet rejoignent nos pains spéciaux, en vitrine dans les cinq magasins.</p>
-                <span class="actu-card__more">
-                  <span data-i18n="actu.more">Lire la suite</span>
-                  <svg class="actu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="18" y2="12"/><polyline points="12,6 18,12 12,18"/></svg>
-                </span>
-              </div>
-            </a>
-          </article>
-
-          <article class="actu-card js-reveal">
-            <a class="actu-card__link" href="actualites.html#a2">
-              <div class="actu-card__frame">
-                <picture>
-                  <source srcset="assets/images/bar-croissant/web/croissants-rouges.webp" type="image/webp">
-                  <img src="assets/images/bar-croissant/web/croissants-rouges.jpg" alt="Croissants du Bar à Croissants" class="actu-card__img" loading="lazy">
-                </picture>
-              </div>
-              <div class="actu-card__body">
-                <p class="actu-card__meta">
-                  <span class="actu-card__cat" data-i18n="actu2.cat">Bar à Croissants</span>
-                  <span class="actu-card__sep" aria-hidden="true"></span>
-                  <span class="actu-card__date" data-i18n="actu2.date">28 août 2026</span>
-                </p>
-                <h3 class="actu-card__title" data-i18n="actu2.title">Un nouveau fourrage pour l'automne</h3>
-                <p class="actu-card__excerpt" data-i18n="actu2.excerpt">Pomme caramélisée à la cannelle : le fourrage de saison arrive au Bar à Croissants, aux côtés de la pistache et de la framboise.</p>
+                <h3 class="actu-card__title" data-i18n="actu4.title">Saint-Martin à Porrentruy — nos créations de saison</h3>
+                <ul class="fete-dates">
+                  <li><span class="fete-dates__name" data-i18n="actu4.cat">Saint-Martin</span> <span data-i18n="actu4.dates_sm">du 13 au 16 novembre</span></li>
+                  <li><span class="fete-dates__name">Revira</span> <span data-i18n="actu4.dates_revira">les 20, 21 et 22 novembre</span></li>
+                </ul>
+                <p class="actu-card__excerpt" data-i18n="actu4.excerpt">La Saint-Martin approche ! Retrouvez nos pâtisseries et spécialités artisanales de saison dans tous nos magasins. Une tradition gourmande célébrée avec soin par nos artisans depuis 1958.</p>
                 <span class="actu-card__more">
                   <span data-i18n="actu.more">Lire la suite</span>
                   <svg class="actu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="18" y2="12"/><polyline points="12,6 18,12 12,18"/></svg>
@@ -286,15 +265,13 @@
             <a class="actu-card__link" href="actualites.html#a3">
               <div class="actu-card__frame">
                 <picture>
-                  <source srcset="assets/images/magasins/web/tilleuls2.webp" type="image/webp">
+                  <source srcset="assets/images/magasins/web/tilleuls2-480.webp 480w, assets/images/magasins/web/tilleuls2-800.webp 800w, assets/images/magasins/web/tilleuls2.webp 1200w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 92vw, (max-width: 767px) 94vw, (max-width: 1023px) 39vw, (max-width: 1439px) 32vw, 458px" type="image/webp">
                   <img src="assets/images/magasins/web/tilleuls2.jpg" alt="La salle du Tea-room Les Tilleuls" class="actu-card__img" loading="lazy">
                 </picture>
               </div>
               <div class="actu-card__body">
                 <p class="actu-card__meta">
                   <span class="actu-card__cat" data-i18n="actu3.cat">Les Tilleuls</span>
-                  <span class="actu-card__sep" aria-hidden="true"></span>
-                  <span class="actu-card__date" data-i18n="actu3.date">12 août 2026</span>
                 </p>
                 <h3 class="actu-card__title" data-i18n="actu3.title">Le menu du jour, désormais à emporter</h3>
                 <p class="actu-card__excerpt" data-i18n="actu3.excerpt">Appelez avant 10h30 et votre menu complet — entrée, plat et dessert — vous attend à midi, emballé et prêt à partir.</p>
@@ -315,7 +292,7 @@
       <div class="container">
         <div class="bar-croissants__top">
           <picture>
-            <source srcset="assets/images/bar-croissant/web/bar-fourrages.webp" type="image/webp">
+            <source srcset="assets/images/bar-croissant/web/bar-fourrages-480.webp 480w, assets/images/bar-croissant/web/bar-fourrages-800.webp 800w, assets/images/bar-croissant/web/bar-fourrages.webp 1200w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 46vw, (max-width: 1439px) 39vw, 552px" type="image/webp">
             <img src="assets/images/bar-croissant/web/bar-fourrages.jpg"
                  alt="Les fourrages du Bar à Croissants" class="bar-croissants__img" loading="lazy">
           </picture>
@@ -357,11 +334,11 @@
 
         <div class="bar-croissants__gallery">
           <picture>
-            <source srcset="assets/images/bar-croissant/web/croissants-rouges.webp" type="image/webp">
+            <source srcset="assets/images/bar-croissant/web/croissants-rouges-480.webp 480w, assets/images/bar-croissant/web/croissants-rouges.webp 900w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 31vw, (max-width: 1439px) 26vw, 373px" type="image/webp">
             <img src="assets/images/bar-croissant/web/croissants-rouges.jpg" alt="Croissants rouges du Bar à Croissants" loading="lazy">
           </picture>
           <picture>
-            <source srcset="assets/images/bar-croissant/web/bar-menu.webp" type="image/webp">
+            <source srcset="assets/images/bar-croissant/web/bar-menu-480.webp 480w, assets/images/bar-croissant/web/bar-menu.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 31vw, (max-width: 1439px) 26vw, 373px" type="image/webp">
             <img src="assets/images/bar-croissant/web/bar-menu.jpg" alt="Le choix du Bar à Croissants" loading="lazy">
           </picture>
           <div class="bar-video__wrap">
@@ -393,7 +370,7 @@
 
           <a href="magasins.html#porrentruy-centre" class="magasin-card">
             <picture>
-              <source srcset="assets/images/magasins/web/porrentruy-vue.webp" type="image/webp">
+              <source srcset="assets/images/magasins/web/porrentruy-vue-480.webp 480w, assets/images/magasins/web/porrentruy-vue-800.webp 800w, assets/images/magasins/web/porrentruy-vue.webp 1200w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 92vw, (max-width: 767px) 46vw, (max-width: 1023px) 18vw, (max-width: 1439px) 15vw, 215px" type="image/webp">
               <img src="assets/images/magasins/web/porrentruy-vue.jpg" class="magasin-card__img"
                    alt="Magasin Roelli Porrentruy Centre" loading="lazy">
             </picture>
@@ -402,7 +379,7 @@
 
           <a href="magasins.html#porrentruy-tilleuls" class="magasin-card">
             <picture>
-              <source srcset="assets/images/magasins/web/tilleuls1.webp" type="image/webp">
+              <source srcset="assets/images/magasins/web/tilleuls1-480.webp 480w, assets/images/magasins/web/tilleuls1-800.webp 800w, assets/images/magasins/web/tilleuls1.webp 1200w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 92vw, (max-width: 767px) 46vw, (max-width: 1023px) 18vw, (max-width: 1439px) 15vw, 215px" type="image/webp">
               <img src="assets/images/magasins/web/tilleuls1.jpg" class="magasin-card__img"
                    alt="Tea-room Les Tilleuls, Porrentruy" loading="lazy">
             </picture>
@@ -418,7 +395,7 @@
 
           <a href="magasins.html#chevenez" class="magasin-card">
             <picture>
-              <source srcset="assets/images/magasins/web/chevenez.webp" type="image/webp">
+              <source srcset="assets/images/magasins/web/chevenez-480.webp 480w, assets/images/magasins/web/chevenez-800.webp 800w, assets/images/magasins/web/chevenez.webp 1200w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 92vw, (max-width: 767px) 46vw, (max-width: 1023px) 18vw, (max-width: 1439px) 15vw, 215px" type="image/webp">
               <img src="assets/images/magasins/web/chevenez.jpg" class="magasin-card__img"
                    alt="Magasin Roelli Chevenez" loading="lazy">
             </picture>
@@ -427,7 +404,7 @@
 
           <a href="magasins.html#glovelier" class="magasin-card">
             <picture>
-              <source srcset="assets/images/magasins/web/glovelier-terrasse.webp" type="image/webp">
+              <source srcset="assets/images/magasins/web/glovelier-terrasse-480.webp 480w, assets/images/magasins/web/glovelier-terrasse-800.webp 800w, assets/images/magasins/web/glovelier-terrasse.webp 1200w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 92vw, (max-width: 767px) 46vw, (max-width: 1023px) 18vw, (max-width: 1439px) 15vw, 215px" type="image/webp">
               <img src="assets/images/magasins/web/glovelier-terrasse.jpg" class="magasin-card__img"
                    alt="Magasin Roelli Glovelier" loading="lazy">
             </picture>
@@ -493,7 +470,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/i18n.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

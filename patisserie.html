@@ -10,12 +10,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
   <meta name="theme-color" content="#C2185B">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Découvrez nos tartes, entremets et gâteaux sur commande. Pâtisserie artisanale préparée chaque matin à Porrentruy, Jura.">
+  <meta name="description" content="Découvrez nos tartes et entremets : Vaucluse, Saint-Honoré, mousse trois chocolats. Gâteaux d'anniversaire sur commande. Pâtisserie artisanale à Porrentruy.">
   <title>Pâtisserie artisanale — Confiserie Roelli, Porrentruy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -50,8 +48,8 @@
           <a href="histoire.html" class="nav__link" data-i18n="nav.histoire">Notre histoire</a>
         </li>
         <li class="nav__item has-dropdown nav__item--active">
-          <a href="#" class="nav__link" data-i18n="nav.produits">Produits</a>
-          <ul class="dropdown">
+          <button type="button" class="nav__link" data-i18n="nav.produits" aria-expanded="false" aria-controls="menu-produits">Produits</button>
+          <ul class="dropdown" id="menu-produits">
             <li><a href="patisserie.html" class="dropdown__link dropdown__link--active" data-i18n="nav.patisserie" aria-current="page">Pâtisserie</a></li>
             <li><a href="boulangerie.html" class="dropdown__link" data-i18n="nav.boulangerie">Boulangerie</a></li>
             <li><a href="confiserie.html" class="dropdown__link" data-i18n="nav.confiserie">Confiserie</a></li>
@@ -63,7 +61,7 @@
       </ul>
 
       <a href="index.html" class="nav__logo" aria-label="Confiserie Roelli — Accueil">
-        <img src="assets/logo.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
+        <img src="assets/logo-88.png" alt="" class="nav__logo-img" width="44" height="44" aria-hidden="true">
         <div class="nav__logo-divider" aria-hidden="true"></div>
         <div class="nav__logo-text">
           <span class="nav__logo-name" data-i18n="brand.name">Confiserie Roelli</span>
@@ -72,8 +70,8 @@
       </a>
       <ul class="nav__list nav__list--right">
         <li class="nav__item has-dropdown">
-          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins">Magasins</a>
-          <ul class="dropdown">
+          <a href="magasins.html" class="nav__link" data-i18n="nav.magasins" aria-expanded="false" aria-controls="menu-magasins">Magasins</a>
+          <ul class="dropdown" id="menu-magasins">
             <li><a href="magasins.html#porrentruy-centre" class="dropdown__link" data-i18n="nav.mag1">Porrentruy Centre</a></li>
             <li><a href="magasins.html#porrentruy-tilleuls" class="dropdown__link">Porrentruy Les Tilleuls</a></li>
             <li><a href="magasins.html#boncourt" class="dropdown__link" data-i18n="nav.mag3">Boncourt</a></li>
@@ -122,118 +120,7 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/patisserie/web/tourte-fraise.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/tourte-fraise.jpg" alt="Tarte aux fraises — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat1.name">Tarte aux fraises</h2>
-              <p class="product-card__desc" data-i18n="pat1.desc">Fraises fraîches sur crème vanille, pâte maison croustillante.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/tourte-fraise-vanille.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/tourte-fraise-vanille.jpg" alt="Tourte fraise-vanille — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat2.name">Tourte fraise-vanille</h2>
-              <p class="product-card__desc" data-i18n="pat2.desc">Mousse à la vanille bourbon, couronne de fraises fraîches et fruits rouges.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/st-honore.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/st-honore.jpg" alt="Saint-Honoré — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat13.name">Saint-Honoré</h2>
-              <p class="product-card__desc" data-i18n="pat13.desc">Feuilletage, choux garnis de crème fouettée et fruits frais de saison.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/tourte-citron.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/tourte-citron.jpg" alt="Tarte au citron meringuée — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat3.name">Tarte au citron</h2>
-              <p class="product-card__desc" data-i18n="pat3.desc">Lemon curd maison dans un fond de tarte sablé, meringue légère.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/tourte-framboise.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/tourte-framboise.jpg" alt="Tourte aux framboises — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat4.name">Tourte aux framboises</h2>
-              <p class="product-card__desc" data-i18n="pat4.desc">Framboises fraîches serrées sur crème légère, éclats de pistache et sucre glace.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/tourte-framboise-passion.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/tourte-framboise-passion.jpg" alt="Tourte framboise-passion — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat5.name">Tourte framboise-passion</h2>
-              <p class="product-card__desc" data-i18n="pat5.desc">Dômes de mousse passion sur fond sablé, framboises fraîches et pistache.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/mousse-framboise-passion.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/mousse-framboise-passion.jpg" alt="Mousse framboise-passion — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat6.name">Mousse framboise-passion</h2>
-              <p class="product-card__desc" data-i18n="pat6.desc">Mousse aérienne framboise et fruit de la passion, perles de chocolat blanc.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/mousse-trois-chocolats.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/mousse-trois-chocolats.jpg" alt="Mousse trois chocolats — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat7.name">Mousse trois chocolats</h2>
-              <p class="product-card__desc" data-i18n="pat7.desc">Trois mousses superposées — noir, lait et blanc — sur biscuit chocolat.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/tourte-ecureuil-praline.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/tourte-ecureuil-praline.jpg" alt="Tourte Écureuil praliné — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat8.name">Tourte Écureuil praliné</h2>
-              <p class="product-card__desc" data-i18n="pat8.desc">Biscuit noisette et praliné maison, cœur de framboises fraîches.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <span class="badge-saison" data-i18n="badge.saison">Spécialité de saison</span>
-            <picture>
-              <source srcset="assets/images/patisserie/web/delice-ete.webp" type="image/webp">
-              <img src="assets/images/patisserie/web/delice-ete.jpg" alt="Délice d'été — Confiserie Roelli" class="product-card__img" loading="lazy">
-            </picture>
-            <div class="product-card__body">
-              <h2 class="product-card__name" data-i18n="pat9.name">Délice d'été</h2>
-              <p class="product-card__desc" data-i18n="pat9.desc">Biscuit et fruits rouges sous un glaçage rosé, la pâtisserie des beaux jours.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <picture>
-              <source srcset="assets/images/patisserie/web/vaucluse.webp" type="image/webp">
+              <source srcset="assets/images/patisserie/web/vaucluse-480.webp 480w, assets/images/patisserie/web/vaucluse.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/patisserie/web/vaucluse.jpg" alt="Vaucluse — Confiserie Roelli" class="product-card__img" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -244,7 +131,117 @@
 
           <article class="product-card">
             <picture>
-              <source srcset="assets/images/patisserie/web/buche.webp" type="image/webp">
+              <source srcset="assets/images/patisserie/web/mousse-trois-chocolats-480.webp 480w, assets/images/patisserie/web/mousse-trois-chocolats.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/mousse-trois-chocolats.jpg" alt="Mousse trois chocolats — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat7.name">Mousse trois chocolats</h2>
+              <p class="product-card__desc" data-i18n="pat7.desc">Trois mousses superposées — noir, lait et blanc — sur biscuit chocolat.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/st-honore-480.webp 480w, assets/images/patisserie/web/st-honore.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/st-honore.jpg" alt="Saint-Honoré — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat13.name">Saint-Honoré</h2>
+              <p class="product-card__desc" data-i18n="pat13.desc">Feuilletage, choux garnis de crème fouettée et fruits frais de saison.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-fraise-480.webp 480w, assets/images/patisserie/web/tourte-fraise.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-fraise.jpg" alt="Tarte aux fraises — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat1.name">Tarte aux fraises</h2>
+              <p class="product-card__desc" data-i18n="pat1.desc">Fraises fraîches sur crème vanille, pâte maison croustillante.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-framboise-480.webp 480w, assets/images/patisserie/web/tourte-framboise.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-framboise.jpg" alt="Tourte aux framboises — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat4.name">Tourte aux framboises</h2>
+              <p class="product-card__desc" data-i18n="pat4.desc">Framboises fraîches serrées sur crème légère, éclats de pistache et sucre glace.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-framboise-passion-480.webp 480w, assets/images/patisserie/web/tourte-framboise-passion.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-framboise-passion.jpg" alt="Tourte framboise-passion — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat5.name">Tourte framboise-passion</h2>
+              <p class="product-card__desc" data-i18n="pat5.desc">Dômes de mousse passion sur fond sablé, framboises fraîches et pistache.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/mousse-framboise-passion-480.webp 480w, assets/images/patisserie/web/mousse-framboise-passion.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/mousse-framboise-passion.jpg" alt="Mousse framboise-passion — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat6.name">Mousse framboise-passion</h2>
+              <p class="product-card__desc" data-i18n="pat6.desc">Mousse aérienne framboise et fruit de la passion, perles de chocolat blanc.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-citron-480.webp 480w, assets/images/patisserie/web/tourte-citron.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-citron.jpg" alt="Tarte au citron meringuée — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat3.name">Tarte au citron</h2>
+              <p class="product-card__desc" data-i18n="pat3.desc">Lemon curd maison dans un fond de tarte sablé, meringue légère.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-fraise-vanille-480.webp 480w, assets/images/patisserie/web/tourte-fraise-vanille.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-fraise-vanille.jpg" alt="Tourte fraise-vanille — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat2.name">Tourte fraise-vanille</h2>
+              <p class="product-card__desc" data-i18n="pat2.desc">Mousse à la vanille bourbon, couronne de fraises fraîches et fruits rouges.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/delice-ete-480.webp 480w, assets/images/patisserie/web/delice-ete.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/delice-ete.jpg" alt="Délice d'été — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat9.name">Délice d'été</h2>
+              <p class="product-card__desc" data-i18n="pat9.desc">Biscuit et fruits rouges sous un glaçage rosé, la pâtisserie des beaux jours.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/tourte-ecureuil-praline-480.webp 480w, assets/images/patisserie/web/tourte-ecureuil-praline.webp 800w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
+              <img src="assets/images/patisserie/web/tourte-ecureuil-praline.jpg" alt="Tourte Écureuil praliné — Confiserie Roelli" class="product-card__img" loading="lazy">
+            </picture>
+            <div class="product-card__body">
+              <h2 class="product-card__name" data-i18n="pat8.name">Tourte Écureuil praliné</h2>
+              <p class="product-card__desc" data-i18n="pat8.desc">Biscuit noisette et praliné maison, cœur de framboises fraîches.</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <picture>
+              <source srcset="assets/images/patisserie/web/buche-480.webp 480w, assets/images/patisserie/web/buche-800.webp 800w, assets/images/patisserie/web/buche.webp 928w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 47vw, (max-width: 1439px) 26vw, 365px" type="image/webp">
               <img src="assets/images/patisserie/web/buche.jpg" alt="Bûche aux fruits frais — Confiserie Roelli" class="product-card__img" loading="lazy">
             </picture>
             <div class="product-card__body">
@@ -276,7 +273,7 @@
 
         <figure class="pat-anniv__figure">
           <picture>
-            <source srcset="assets/images/patisserie/web/anniversaire.webp" type="image/webp">
+            <source srcset="assets/images/patisserie/web/anniversaire-480.webp 480w, assets/images/patisserie/web/anniversaire-800.webp 800w, assets/images/patisserie/web/anniversaire.webp 1100w" sizes="(max-width: 479px) 90vw, (max-width: 619px) 93vw, (max-width: 767px) 94vw, (max-width: 1023px) 44vw, (max-width: 1439px) 37vw, 531px" type="image/webp">
             <img src="assets/images/patisserie/web/anniversaire.jpg"
                  alt="Gâteau d'anniversaire aux fruits frais — Confiserie Roelli"
                  class="pat-anniv__img" loading="lazy">
@@ -334,7 +331,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/i18n.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

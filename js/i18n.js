@@ -15,21 +15,14 @@ const translations = {
     'actus.all':               'Toutes les actualités',
     'actus.lead':              'À la une',
     'actu.more':               'Lire la suite',
-    'actu1.date':              '5 septembre 2026',
-    'actu1.cat':               'Boulangerie',
-    'actu1.title':             'Deux nouveaux pains à la carte',
-    'actu1.excerpt':           'La tresse au beurre AOP et le pain de seigle complet rejoignent nos pains spéciaux, en vitrine dans les cinq magasins.',
-    'actu1.body1':             'La tresse au beurre AOP et le pain de seigle complet rejoignent nos pains spéciaux. La première, tressée à la main et dorée au four, retrouve la table du dimanche matin ; le second, à la mie dense et légèrement acidulée, se conserve plusieurs jours.',
-    'actu1.body2':             'Tous deux sont pétris et cuits chaque matin dans notre laboratoire des Roches-de-Mars, et disponibles dans les cinq magasins.',
-    'actu.link_pains':         'Voir nos pains',
-    'actu2.date':              '28 août 2026',
-    'actu2.cat':               'Bar à Croissants',
-    'actu2.title':             'Un nouveau fourrage pour l\'automne',
-    'actu2.excerpt':           'Pomme caramélisée à la cannelle : le fourrage de saison arrive au Bar à Croissants, aux côtés de la pistache et de la framboise.',
-    'actu2.body1':             'Le Bar à Croissants passe à l\'automne : la pomme caramélisée à la cannelle rejoint la pistache et la framboise. Comme toujours, on choisit sa viennoiserie, on choisit son fourrage, et on le garnit devant vous, à la minute.',
-    'actu2.body2':             'Chaque matin, dès l\'ouverture, jusqu\'à épuisement.',
-    'actu.link_bar':           'Découvrir le Bar à Croissants',
-    'actu3.date':              '12 août 2026',
+    'actu4.date':              '13 – 16 novembre 2026',
+    'actu4.cat':               'Saint-Martin',
+    'actu4.title':             'Saint-Martin à Porrentruy — nos créations de saison',
+    'actu4.excerpt':           'La Saint-Martin approche ! Retrouvez nos pâtisseries et spécialités artisanales de saison dans tous nos magasins. Une tradition gourmande célébrée avec soin par nos artisans depuis 1958.',
+    'actu4.badge':             'Spécialité de saison',
+    'actu4.dates_sm':          'du 13 au 16 novembre',
+    'actu4.dates_revira':      'les 20, 21 et 22 novembre',
+    'actu.link_magasins':      'Trouver un magasin',
     'actu3.cat':               'Les Tilleuls',
     'actu3.title':             'Le menu du jour, désormais à emporter',
     'actu3.excerpt':           'Appelez avant 10h30 et votre menu complet — entrée, plat et dessert — vous attend à midi, emballé et prêt à partir.',
@@ -173,7 +166,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'Nous trouver',
     'tilleuls.menu_title':   'Menu de la semaine',
-    'tilleuls.menu_dates':   'du 8 au 12 septembre 2026',
+    'tilleuls.menu_dates':   'du 26 octobre au 30 octobre 2026',
     'day.lundi':             'Lundi',
     'day.mardi':             'Mardi',
     'day.mercredi':          'Mercredi',
@@ -305,21 +298,14 @@ const translations = {
     'actus.all':               'Alle Neuigkeiten',
     'actus.lead':              'Im Fokus',
     'actu.more':               'Weiterlesen',
-    'actu1.date':              '5. September 2026',
-    'actu1.cat':               'Bäckerei',
-    'actu1.title':             'Zwei neue Brote im Sortiment',
-    'actu1.excerpt':           'Der Butterzopf mit AOP-Butter und das Vollkorn-Roggenbrot ergänzen unsere Spezialbrote, in allen fünf Filialen erhältlich.',
-    'actu1.body1':             'Der Butterzopf mit AOP-Butter und das Vollkorn-Roggenbrot ergänzen unsere Spezialbrote. Der erste, von Hand geflochten und goldbraun gebacken, gehört auf den Sonntagstisch; das zweite, mit dichter und leicht säuerlicher Krume, hält mehrere Tage.',
-    'actu1.body2':             'Beide werden jeden Morgen in unserer Backstube an den Roches-de-Mars geknetet und gebacken und sind in allen fünf Filialen erhältlich.',
-    'actu.link_pains':         'Unsere Brote ansehen',
-    'actu2.date':              '28. August 2026',
-    'actu2.cat':               'Bar à Croissants',
-    'actu2.title':             'Eine neue Füllung für den Herbst',
-    'actu2.excerpt':           'Karamellisierter Apfel mit Zimt: die Saisonfüllung kommt an die Bar à Croissants, neben Pistazie und Himbeere.',
-    'actu2.body1':             'Die Bar à Croissants wechselt in den Herbst: Karamellisierter Apfel mit Zimt gesellt sich zu Pistazie und Himbeere. Wie immer wählen Sie Ihr Gebäck, wählen Ihre Füllung, und wir füllen es vor Ihren Augen, à la minute.',
-    'actu2.body2':             'Jeden Morgen ab Ladenöffnung, solange Vorrat reicht.',
-    'actu.link_bar':           'Die Bar à Croissants entdecken',
-    'actu3.date':              '12. August 2026',
+    'actu4.date':              '13.–16. November 2026',
+    'actu4.cat':               'Sankt Martin',
+    'actu4.title':             'Sankt Martin in Porrentruy — unsere saisonalen Kreationen',
+    'actu4.excerpt':           'Sankt Martin naht! Entdecken Sie unsere handwerklichen Saisonspezialitäten in allen unseren Geschäften. Eine genussvolle Tradition, die unsere Handwerker seit 1958 mit Sorgfalt pflegen.',
+    'actu4.badge':             'Saisonspezialität',
+    'actu4.dates_sm':          '13. bis 16. November',
+    'actu4.dates_revira':      '20., 21. und 22. November',
+    'actu.link_magasins':      'Filiale finden',
     'actu3.cat':               'Les Tilleuls',
     'actu3.title':             'Das Tagesmenü jetzt auch zum Mitnehmen',
     'actu3.excerpt':           'Rufen Sie vor 10.30 Uhr an, und Ihr komplettes Menü – Vorspeise, Hauptgang und Dessert – wartet mittags verpackt auf Sie.',
@@ -463,7 +449,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'So finden Sie uns',
     'tilleuls.menu_title':   'Wochenmenü',
-    'tilleuls.menu_dates':   'vom 8. bis 12. September 2026',
+    'tilleuls.menu_dates':   'vom 26. bis 30. Oktober 2026',
     'day.lundi':             'Montag',
     'day.mardi':             'Dienstag',
     'day.mercredi':          'Mittwoch',
@@ -595,21 +581,14 @@ const translations = {
     'actus.all':               'All the news',
     'actus.lead':              'Featured',
     'actu.more':               'Read more',
-    'actu1.date':              '5 September 2026',
-    'actu1.cat':               'Bakery',
-    'actu1.title':             'Two new breads on the shelf',
-    'actu1.excerpt':           'The AOP butter plait and the wholemeal rye bread join our speciality breads, on sale in all five shops.',
-    'actu1.body1':             'The AOP butter plait and the wholemeal rye bread join our speciality breads. The first, plaited by hand and baked golden, belongs on the Sunday table; the second, dense and slightly tangy, keeps for several days.',
-    'actu1.body2':             'Both are kneaded and baked every morning in our bakehouse at Roches-de-Mars, and available in all five shops.',
-    'actu.link_pains':         'See our breads',
-    'actu2.date':              '28 August 2026',
-    'actu2.cat':               'Bar à Croissants',
-    'actu2.title':             'A new filling for autumn',
-    'actu2.excerpt':           'Caramelised apple with cinnamon: the seasonal filling arrives at the Bar à Croissants, alongside pistachio and raspberry.',
-    'actu2.body1':             'The Bar à Croissants moves into autumn: caramelised apple with cinnamon joins pistachio and raspberry. As always, you choose your pastry, you choose your filling, and we fill it in front of you, to order.',
-    'actu2.body2':             'Every morning from opening, while stocks last.',
-    'actu.link_bar':           'Discover the Bar à Croissants',
-    'actu3.date':              '12 August 2026',
+    'actu4.date':              '13–16 November 2026',
+    'actu4.cat':               'Saint-Martin',
+    'actu4.title':             'Saint-Martin in Porrentruy — our seasonal creations',
+    'actu4.excerpt':           'Saint-Martin is coming! Find our artisan seasonal specialities in all our shops. A gourmet tradition celebrated with care by our artisans since 1958.',
+    'actu4.badge':             'Seasonal speciality',
+    'actu4.dates_sm':          '13 to 16 November',
+    'actu4.dates_revira':      '20, 21 and 22 November',
+    'actu.link_magasins':      'Find a shop',
     'actu3.cat':               'Les Tilleuls',
     'actu3.title':             'Today\'s menu, now to take away',
     'actu3.excerpt':           'Call before 10:30 and your full menu — starter, main course and dessert — will be waiting at noon, packed and ready to go.',
@@ -753,7 +732,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'Find us',
     'tilleuls.menu_title':   'This week\'s menu',
-    'tilleuls.menu_dates':   'from 8 to 12 September 2026',
+    'tilleuls.menu_dates':   'from 26 to 30 October 2026',
     'day.lundi':             'Monday',
     'day.mardi':             'Tuesday',
     'day.mercredi':          'Wednesday',
@@ -885,21 +864,14 @@ const translations = {
     'actus.all':               'Tutte le novità',
     'actus.lead':              'In primo piano',
     'actu.more':               'Continua a leggere',
-    'actu1.date':              '5 settembre 2026',
-    'actu1.cat':               'Panetteria',
-    'actu1.title':             'Due nuovi pani in assortimento',
-    'actu1.excerpt':           'La treccia al burro AOP e il pane di segale integrale entrano nei nostri pani speciali, in vetrina nei cinque negozi.',
-    'actu1.body1':             'La treccia al burro AOP e il pane di segale integrale entrano nei nostri pani speciali. La prima, intrecciata a mano e dorata al forno, ritrova la tavola della domenica; il secondo, con mollica compatta e leggermente acidula, si conserva per giorni.',
-    'actu1.body2':             'Entrambi sono impastati e cotti ogni mattina nel nostro laboratorio delle Roches-de-Mars, e disponibili nei cinque negozi.',
-    'actu.link_pains':         'Scopri i nostri pani',
-    'actu2.date':              '28 agosto 2026',
-    'actu2.cat':               'Bar à Croissants',
-    'actu2.title':             'Un nuovo ripieno per l\'autunno',
-    'actu2.excerpt':           'Mela caramellata alla cannella: il ripieno di stagione arriva al Bar à Croissants, accanto a pistacchio e lampone.',
-    'actu2.body1':             'Il Bar à Croissants passa all\'autunno: la mela caramellata alla cannella si aggiunge a pistacchio e lampone. Come sempre, scegliete la viennoiserie, scegliete il ripieno, e ve lo farciamo davanti agli occhi, al momento.',
-    'actu2.body2':             'Ogni mattina dall\'apertura, fino a esaurimento.',
-    'actu.link_bar':           'Scopri il Bar à Croissants',
-    'actu3.date':              '12 agosto 2026',
+    'actu4.date':              '13–16 novembre 2026',
+    'actu4.cat':               'San Martino',
+    'actu4.title':             'San Martino a Porrentruy — le nostre creazioni stagionali',
+    'actu4.excerpt':           'Si avvicina San Martino! Trovate le nostre specialità artigianali di stagione in tutti i nostri negozi. Una tradizione golosa celebrata con cura dai nostri artigiani dal 1958.',
+    'actu4.badge':             'Specialità di stagione',
+    'actu4.dates_sm':          'dal 13 al 16 novembre',
+    'actu4.dates_revira':      '20, 21 e 22 novembre',
+    'actu.link_magasins':      'Trova un negozio',
     'actu3.cat':               'Les Tilleuls',
     'actu3.title':             'Il menù del giorno, ora anche da asporto',
     'actu3.excerpt':           'Chiamate entro le 10.30 e il vostro menù completo — antipasto, secondo e dolce — vi aspetta a mezzogiorno, già confezionato.',
@@ -1043,7 +1015,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'Dove trovarci',
     'tilleuls.menu_title':   'Menù della settimana',
-    'tilleuls.menu_dates':   'dall\'8 al 12 settembre 2026',
+    'tilleuls.menu_dates':   'dal 26 al 30 ottobre 2026',
     'day.lundi':             'Lunedì',
     'day.mardi':             'Martedì',
     'day.mercredi':          'Mercoledì',
@@ -1178,9 +1150,20 @@ function applyTranslations(lang) {
   document.documentElement.lang = lang;
 }
 
+/* localStorage peut être bloqué (cookies refusés, certains modes privés) :
+   l'accès lève alors une exception. On s'en passe — la langue choisie
+   ne sera simplement pas retenue d'une page à l'autre. */
+function lireLangue() {
+  try { return localStorage.getItem('lang'); } catch (e) { return null; }
+}
+
+function retenirLangue(lang) {
+  try { localStorage.setItem('lang', lang); } catch (e) { /* stockage bloqué */ }
+}
+
 function setLanguage(lang) {
   if (!translations[lang]) return;
-  localStorage.setItem('lang', lang);
+  retenirLangue(lang);
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
@@ -1189,7 +1172,7 @@ function setLanguage(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('lang') || 'fr';
+  const saved = lireLangue() || 'fr';
   setLanguage(saved);
 
   document.querySelectorAll('.lang-btn').forEach(btn => {

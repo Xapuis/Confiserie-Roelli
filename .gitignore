@@ -36,6 +36,9 @@ assets/images/Fotos/*.jpg
 assets/images/fotos/*.jpeg
 assets/images/fotos/*.jpg
 
+# Originales de las fotos de actualités (se publican las versiones de Fotos/web/)
+assets/images/Fotos/Actualité/
+
 # Solo conservar las versiones web optimizadas
 !assets/images/**/web/
 !assets/images/**/web/**
@@ -62,3 +65,6 @@ capture-screenshots.mjs
 package.json
 package-lock.json
 .htaccess
+
+# Carpeta generada por build-deploy.sh (lo que se sube a Infomaniak)
+deploy/
