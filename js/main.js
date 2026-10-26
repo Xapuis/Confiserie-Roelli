@@ -51,6 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ── Adresse email protégée des robots ───────────────────
+     Le HTML ne contient jamais l'adresse complète : l'utilisateur et
+     le domaine sont dans data-user / data-domain, et le texte affiché
+     sans JS est « info [at] … ». On reconstruit le lien ici.         */
+  document.querySelectorAll('.js-email').forEach(link => {
+    const adresse = link.dataset.user + '@' + link.dataset.domain;
+    link.href = 'mailto:' + adresse;
+    (link.querySelector('.js-email-text') || link).textContent = adresse;
+  });
+
   /* ── Vidéos qui s'enchaînent dans le même cadre ──────────
      data-sources liste les fichiers séparés par des virgules ;
      on passe au suivant à la fin de chaque clip, puis on reboucle.
