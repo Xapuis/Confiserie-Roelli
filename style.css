@@ -79,6 +79,7 @@
      texte. Cette déclinaison assombrie tient 5:1 minimum sur #FFF8F0,
      #F5F5F0 et blanc, et sert partout où l'or devient un mot. */
   --color-accent-gold-text: #806507;
+  --color-accent-gold-on-dark: #D7B320;  /* doré à peine éclairci : 4,66:1 sur --color-primary-dark */
   --color-bg:            #FFF8F0;
   --color-surface:       #F5F5F0;
   --color-text:          #5D4037;
@@ -626,7 +627,12 @@ button { cursor: pointer; font-family: inherit; background: none; border: none; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* Centrage par marges automatiques (logo en haut, pied en bas) plutôt
+     que justify-content: center — sur un écran bas, le contenu défile
+     depuis le haut au lieu d'être rogné des deux côtés. */
+  justify-content: flex-start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   gap: 0.25rem;
   transform: translateX(100%);
   /* visibility retire l'overlay fermé de l'ordre de tabulation et de
@@ -679,11 +685,70 @@ button { cursor: pointer; font-family: inherit; background: none; border: none; 
 }
 .nav__mobile-link:hover { color: white; }
 
+/* Monogramme en tête du menu : pastille crème cerclée d'or (le rose du
+   logo ne ressortirait pas sur le fond rose foncé). */
+.nav__mobile-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 72px;
+  height: 72px;
+  margin: auto auto 1.6rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent-gold);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.nav__mobile-logo img { width: 54px; height: 54px; }
+
+/* Pied du menu : signature et téléphone. */
+.nav__mobile-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 2rem auto auto;
+  text-align: center;
+}
+
+.nav__mobile-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold-on-dark);
+}
+
+.nav__mobile-tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color var(--transition);
+}
+
+.nav__mobile-tel:hover { color: white; }
+
+/* Filet ornemental doré (SVG en ligne, décoratif) : deux traits qui
+   s'effilent vers les pointes, un losange au centre, des points aux
+   extrémités — comme sur un faire-part. */
 .nav__mobile-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 0.75rem auto;
-  width: 40px;
+  width: 168px;
+  margin: 1rem auto;
+  line-height: 0;
+  color: var(--color-accent-gold);
+}
+
+.nav__mobile-divider svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ── Hero ─────────────────────────────────────────────────── */
@@ -1418,10 +1483,13 @@ textarea.form-control { resize: vertical; min-height: 100px; }
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* Catalogue 2 columns */
+  /* Catalogue 2 columns — posées sur une grille de 4 pistes (chaque carte
+     en occupe 2) pour pouvoir centrer une carte seule en dernière ligne. */
   .catalogue__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
+  .catalogue__grid > * { grid-column: span 2; }
+  .catalogue__grid > :last-child:nth-child(odd) { grid-column: 2 / span 2; }
 
   /* Form 2-col rows */
   .form-row--2col {
@@ -1476,10 +1544,15 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   /* Hide hamburger */
   .nav__hamburger { display: none; }
 
-  /* Catalogue 3 columns */
+  /* Catalogue 3 columns — grille de 6 pistes, même principe : une dernière
+     ligne incomplète (1 ou 2 cartes) est centrée au lieu de rester à gauche. */
   .catalogue__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
+  .catalogue__grid > :last-child:nth-child(odd) { grid-column: span 2; }
+  .catalogue__grid > :last-child:nth-child(3n+1) { grid-column: 3 / span 2; }
+  .catalogue__grid > :nth-last-child(2):nth-child(3n+1) { grid-column: 2 / span 2; }
+  .catalogue__grid > :last-child:nth-child(3n+2) { grid-column: 4 / span 2; }
 }
 
 /* Entre 1024 et 1199 px la barre manque de place. La grille est
@@ -1738,6 +1811,16 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   display: block;
   background: var(--color-primary-light);
   box-shadow: var(--shadow-md);
+}
+
+/* L'affiche du menu est du texte : elle doit rester entière quelle que
+   soit la forme de la tuile. index.html en sert trois mises en page
+   (horizontale, verticale, presque carrée) ; le fond de la tuile reprend
+   le beige kraft des bords de l'affiche, les marges éventuelles ne se
+   voient donc pas. */
+.bar-croissants__gallery img.bar-croissants__poster {
+  object-fit: contain;
+  background: #E8D5BC;
 }
 
 /* La vidéo est désormais emballée : c'est l'enveloppe qui est la tuile.
