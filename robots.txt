@@ -1,0 +1,17 @@
+# Confiserie Roelli — robots.txt
+# L'adresse du site est insérée par build-deploy.sh (variable BASE_URL).
+
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# Moteurs de recherche des assistants IA qui citent leurs sources.
+# (Un groupe dédié remplace le groupe « * » pour ces robots : on y
+# répète donc l'exclusion de la page 404.)
+User-agent: OAI-SearchBot
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+Allow: /
+Disallow: /404.html
+
+Sitemap: {{BASE_URL}}/sitemap.xml

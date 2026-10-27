@@ -390,4 +390,96 @@ document.addEventListener('DOMContentLoaded', () => {
     reveals.forEach(el => observer.observe(el));
   }
 
+  /* ── Formulaire de contact (contact.html → Formspree) ──────
+     Envoi en arrière-plan, sans quitter la page. Les messages sont
+     pris dans i18n.js et gardent leur data-i18n : ils suivent un
+     changement de langue fait après coup.                         */
+  const form   = document.getElementById('contact-form');
+  const statut = document.getElementById('contact-status');
+
+  if (form && statut) {
+    const bouton = form.querySelector('button[type="submit"]');
+    const texte  = cle => {
+      const dict = translations[document.documentElement.lang] || translations.fr;
+      return dict[cle] ?? translations.fr[cle];
+    };
+
+    const CHAMPS = [
+      { el: form.elements.nom,     ok: v => v.trim() !== '' },
+      { el: form.elements.email,   ok: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) },
+      { el: form.elements.message, ok: v => v.trim() !== '' },
+    ];
+
+    const signaler = (champ, valide) => {
+      champ.el.setAttribute('aria-invalid', valide ? 'false' : 'true');
+      document.getElementById(champ.el.getAttribute('aria-describedby')).hidden = valide;
+    };
+
+    /* Après une première tentative, l'erreur disparaît dès que le champ
+       est corrigé — sans attendre un nouvel envoi. */
+    CHAMPS.forEach(champ => champ.el.addEventListener('input', () => {
+      if (champ.el.hasAttribute('aria-invalid')) signaler(champ, champ.ok(champ.el.value));
+    }));
+
+    /* Message d'état : un <span data-i18n> (traduisible), plus, en cas
+       d'échec, le numéro de téléphone cliquable. */
+    const annoncer = (type, cle, avecTel = false) => {
+      statut.className = 'form-status form-status--' + type;
+      const span = document.createElement('span');
+      span.dataset.i18n = cle;
+      span.textContent = texte(cle);
+      const morceaux = [span];
+      if (avecTel) {
+        const tel = document.createElement('a');
+        tel.href = 'tel:+41324661677';
+        tel.textContent = '032 466 16 77';
+        morceaux.push(' ', tel, '.');
+      }
+      statut.replaceChildren(...morceaux);
+    };
+
+    const etatBouton = enCours => {
+      bouton.disabled = enCours;
+      bouton.dataset.i18n = enCours ? 'form.sending' : 'form.envoyer';
+      bouton.textContent = texte(bouton.dataset.i18n);
+    };
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const fautifs = CHAMPS.filter(champ => !champ.ok(champ.el.value));
+      CHAMPS.forEach(champ => signaler(champ, !fautifs.includes(champ)));
+      if (fautifs.length) {
+        fautifs[0].el.focus();   // le lecteur d'écran lit alors l'erreur liée
+        return;
+      }
+
+      etatBouton(true);
+      annoncer('envoi', 'form.sending');
+
+      const delai = new AbortController();
+      const minuterie = setTimeout(() => delai.abort(), 15000);
+      try {
+        const reponse = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+          signal: delai.signal,
+        });
+        if (!reponse.ok) throw new Error('HTTP ' + reponse.status);
+
+        form.hidden = true;
+        annoncer('ok', 'form.success');
+        statut.tabIndex = -1;
+        statut.focus();          // le bouton a disparu avec le formulaire
+      } catch (erreur) {
+        annoncer('erreur', 'form.error', true);
+        etatBouton(false);
+        bouton.focus();          // désactivé pendant l'envoi, il avait perdu le focus
+      } finally {
+        clearTimeout(minuterie);
+      }
+    });
+  }
+
 });

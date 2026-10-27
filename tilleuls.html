@@ -10,10 +10,28 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
   <meta name="theme-color" content="#C2185B">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Venez déjeuner aux Tilleuls : menu du jour 20 CHF, cuisine maison du terroir jurassien, du lundi au vendredi. Point de vente toute la journée, Porrentruy.">
+  <meta name="description" content="Venez déjeuner aux Tilleuls : menu du jour 20 CHF, cuisine maison du terroir jurassien, du lundi au vendredi. Point de vente Roelli, Porrentruy.">
   <title>Tea-room Les Tilleuls — Restaurant midi Porrentruy | Roelli</title>
+  <link rel="canonical" href="{{BASE_URL}}/tilleuls.html">
+
+  <!-- Partage (Open Graph / Twitter). Adresse du site insérée par build-deploy.sh (BASE_URL). -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Confiserie Roelli">
+  <meta property="og:locale" content="fr_CH">
+  <meta property="og:title" content="Tea-room Les Tilleuls — Restaurant midi Porrentruy | Roelli">
+  <meta property="og:description" content="Venez déjeuner aux Tilleuls : menu du jour 20 CHF, cuisine maison du terroir jurassien, du lundi au vendredi. Point de vente Roelli, Porrentruy.">
+  <meta property="og:url" content="{{BASE_URL}}/tilleuls.html">
+  <meta property="og:image" content="{{BASE_URL}}/assets/images/og/og-tilleuls.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Le Tea-room Les Tilleuls à Porrentruy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tea-room Les Tilleuls — Restaurant midi Porrentruy | Roelli">
+  <meta name="twitter:description" content="Venez déjeuner aux Tilleuls : menu du jour 20 CHF, cuisine maison du terroir jurassien, du lundi au vendredi. Point de vente Roelli, Porrentruy.">
+  <meta name="twitter:image" content="{{BASE_URL}}/assets/images/og/og-tilleuls.jpg">
+  <meta name="twitter:image:alt" content="Le Tea-room Les Tilleuls à Porrentruy">
   <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 
@@ -258,7 +276,7 @@
           </div>
         </div>
 
-        <p class="menu-weekend-msg" data-i18n="tilleuls.weekend" hidden>Le restaurant est fermé le week-end. Revenez lundi !</p>
+        <p class="menu-weekend-msg" data-i18n="tilleuls.weekend" hidden>Pas de menu du jour le week-end — le tea-room vous accueille le matin.</p>
 
         <p class="tr-menu__note" data-i18n="tilleuls.menu_note">Le menu change chaque semaine — consultez-nous pour la semaine suivante</p>
       </div>
@@ -304,8 +322,8 @@
             <span class="trouver__label" data-i18n="magasin.hours">Horaires d'ouverture</span>
             <table class="hours-table hours-table--light trouver__hours">
               <tbody>
-                <tr><td data-i18n="magasin.day1">Lun–Ven</td><td>06:00–18:30</td></tr>
-                <tr><td data-i18n="magasin.day2">Samedi</td><td>06:00–17:00</td></tr>
+                <tr><td data-i18n="magasin.day1">Lun–Ven</td><td>06:00–14:30</td></tr>
+                <tr><td data-i18n="magasin.day2">Samedi</td><td>06:00–12:30</td></tr>
                 <tr><td data-i18n="magasin.day3">Dim &amp; jours fériés</td><td>06:30–12:30</td></tr>
               </tbody>
             </table>
@@ -313,7 +331,7 @@
 
           <div class="trouver__col">
             <span class="trouver__label" data-i18n="tilleuls.info_bon">Bon à savoir</span>
-            <p class="trouver__note" data-i18n="tilleuls.info_bon_body">Cuisine chaude servie le midi, du lundi au vendredi. Le pain et les produits Roelli sont en vente toute la journée.</p>
+            <p class="trouver__note" data-i18n="tilleuls.info_bon_body">Cuisine chaude servie le midi, du lundi au vendredi. Le pain et les produits Roelli sont en vente aux heures d'ouverture.</p>
           </div>
 
         </div>
@@ -346,7 +364,7 @@
           <ul>
             <li><a href="magasins.html" data-i18n="nav.magasins">Magasins</a></li>
             <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-            <li><a href="#" aria-label="Bientôt disponible" data-i18n="footer.mentions">Mentions légales</a></li>
+            <li><a href="mentions-legales.html" data-i18n="footer.mentions">Mentions légales</a></li>
           </ul>
         </div>
       </nav>
@@ -364,7 +382,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=2"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/i18n.js?v=10"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

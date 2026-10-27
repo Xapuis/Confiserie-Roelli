@@ -5,7 +5,7 @@
    Version : les pages chargent « style.css?v=N », « js/i18n.js?v=N » et
    « js/main.js?v=N ». Le .htaccess garde CSS et JS un mois en cache :
    à chaque modification de l'un de ces fichiers, augmenter N dans les
-   10 pages HTML, sinon les visiteurs déjà venus gardent l'ancienne version.
+   11 pages HTML, sinon les visiteurs déjà venus gardent l'ancienne version.
    ============================================================ */
 
 /* ── Polices hébergées sur le site ─────────────────────────
@@ -1101,6 +1101,64 @@ button { cursor: pointer; font-family: inherit; background: none; border: none; 
 .form-control::placeholder { color: rgba(93, 64, 55, 0.35); }
 
 textarea.form-control { resize: vertical; min-height: 100px; }
+
+.form-note {
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Erreurs : bordure plus épaisse + texte, pas la couleur seule. */
+.form-control[aria-invalid="true"] {
+  border-color: var(--color-primary-dark);
+  border-width: 2px;
+}
+
+.form-error {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.form-error::before { content: '⚠ '; }
+
+.order-form button[disabled] { opacity: 0.7; cursor: wait; transform: none; }
+
+/* Piège à robots : hors écran plutôt que display:none, que certains
+   robots savent repérer. */
+.form-gotcha {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Message d'envoi : vide (et invisible) tant qu'il n'y a rien à dire. */
+.form-status:empty { display: none; }
+
+.form-status {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-accent-gold);
+  background: white;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.form-status:focus { outline: none; }
+.form-status--ok     { background: var(--color-primary-light); border-left-color: var(--color-primary); }
+.form-status--erreur { border-left-color: var(--color-primary-dark); }
+
+.form-status a {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 /* ── Nos magasins ─────────────────────────────────────────── */
 .magasin {
@@ -2391,6 +2449,71 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 
   .actu--lead { gap: var(--actu-sp-xl); }
   .actu--sm   { gap: var(--actu-sp-xl); }
+}
+
+/* ══ Page « Mentions légales » ═════════════════════════════════ */
+.legal__inner { max-width: 46rem; }
+
+/* Libellé / valeur : empilés en mobile, sur deux colonnes ensuite. */
+.legal__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.2rem 2rem;
+  margin: 1.5rem 0 0;
+}
+
+.legal__list dt {
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary-dark);
+}
+
+.legal__list dd {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.legal__list a,
+.legal__text a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Adresse : <address> est en italique par défaut. */
+.legal__address { font-style: normal; }
+
+.legal__h3 {
+  margin: 2rem 0 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.legal__text {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.legal__maj {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 620px) {
+  .legal__list { grid-template-columns: 15rem 1fr; }
+  .legal__list dt { margin-top: 0; padding-top: 0.2rem; }
+  .legal__list dd { padding-bottom: 0.8rem; }
 }
 
 /* ── Magasins home grid (5 cards) ────────────────────────── */
