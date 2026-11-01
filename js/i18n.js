@@ -178,7 +178,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'Nous trouver',
     'tilleuls.menu_title':   'Menu de la semaine',
-    'tilleuls.menu_dates':   'du 26 octobre au 30 octobre 2026',
+    'tilleuls.menu_dates':   'du 2 au 6 novembre 2026',
     'day.lundi':             'Lundi',
     'day.mardi':             'Mardi',
     'day.mercredi':          'Mercredi',
@@ -507,7 +507,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'So finden Sie uns',
     'tilleuls.menu_title':   'Wochenmenü',
-    'tilleuls.menu_dates':   'vom 26. bis 30. Oktober 2026',
+    'tilleuls.menu_dates':   'vom 2. bis 6. November 2026',
     'day.lundi':             'Montag',
     'day.mardi':             'Dienstag',
     'day.mercredi':          'Mittwoch',
@@ -836,7 +836,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'Find us',
     'tilleuls.menu_title':   'This week\'s menu',
-    'tilleuls.menu_dates':   'from 26 to 30 October 2026',
+    'tilleuls.menu_dates':   'from 2 to 6 November 2026',
     'day.lundi':             'Monday',
     'day.mardi':             'Tuesday',
     'day.mercredi':          'Wednesday',
@@ -1165,7 +1165,7 @@ const translations = {
     /* ── Contenu ajouté : cartes, laboratoire, métiers, Tea-room ── */
     'tilleuls.trouver':      'Dove trovarci',
     'tilleuls.menu_title':   'Menù della settimana',
-    'tilleuls.menu_dates':   'dal 26 al 30 ottobre 2026',
+    'tilleuls.menu_dates':   'dal 2 al 6 novembre 2026',
     'day.lundi':             'Lunedì',
     'day.mardi':             'Martedì',
     'day.mercredi':          'Mercoledì',
