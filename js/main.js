@@ -316,64 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     startTimer();
   });
 
-  /* ── Fondu des pralinés (confiserie.html) ───────────────
-     Les photos se relaient en fondu lent toutes les 5,5 s. Pause au
-     survol, au focus clavier, via le bouton, et quand l'onglet est
-     masqué. En mode « mouvement réduit » rien ne bouge seul : les
-     puces restent le seul moyen de changer d'image.              */
-  document.querySelectorAll('.cf-fondu').forEach(show => {
-    const slides = show.querySelectorAll('.cf-fondu__slide');
-    const dots   = show.querySelectorAll('.cf-fondu__dot');
-    const pause  = show.querySelector('.cf-fondu__pause');
-    if (slides.length < 2) return;
-
-    let current = 0;
-    let timer = null;
-    let pausedByUser = false;
-    let hovered = false;
-    let focused = false;
-
-    function goTo(n) {
-      slides[current].classList.remove('active');
-      dots[current]?.classList.remove('active');
-      dots[current]?.removeAttribute('aria-current');
-      current = n;
-      slides[current].classList.add('active');
-      dots[current]?.classList.add('active');
-      dots[current]?.setAttribute('aria-current', 'true');
-    }
-
-    function stop() { clearInterval(timer); timer = null; }
-    function sync() {
-      stop();
-      if (calme || pausedByUser || hovered || focused || document.hidden) return;
-      timer = setInterval(() => goTo((current + 1) % slides.length), 5500);
-    }
-
-    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); sync(); }));
-
-    if (pause && !calme) {
-      pause.hidden = false;
-      pause.addEventListener('click', () => {
-        pausedByUser = !pausedByUser;
-        show.classList.toggle('is-paused', pausedByUser);
-        pause.setAttribute('aria-label',
-          pausedByUser ? pause.dataset.labelPlay : pause.dataset.labelPause);
-        sync();
-      });
-    }
-
-    show.addEventListener('mouseenter', () => { hovered = true;  sync(); });
-    show.addEventListener('mouseleave', () => { hovered = false; sync(); });
-    show.addEventListener('focusin',  () => { focused = true;  sync(); });
-    show.addEventListener('focusout', e => {
-      if (!show.contains(e.relatedTarget)) { focused = false; sync(); }
-    });
-    document.addEventListener('visibilitychange', sync);
-
-    sync();
-  });
-
   /* ── Diaporama du hero (accueil et Tea-room) ─────────── */
   const slides = document.querySelectorAll('.hero__slide');
   const dots   = document.querySelectorAll('.hero__dot');
