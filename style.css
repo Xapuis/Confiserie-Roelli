@@ -3669,15 +3669,105 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   margin: 1.75rem 0 0;
 }
 
-.cf-annee__img {
-  width: 100%;
+/* Fondu enchaîné des photos de pralinés : deux images superposées,
+   l'une s'efface pendant que l'autre apparaît, lentement. Sans JS,
+   la première photo reste affichée seule. */
+.cf-fondu {
+  position: relative;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: center;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  display: block;
+  overflow: hidden;
+  background: #1a1414;   /* marbre noir des photos, pendant le chargement */
 }
+
+.cf-fondu__slides { position: absolute; inset: 0; }
+
+.cf-fondu__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0;
+  transition: opacity 1.6s cubic-bezier(0.45, 0, 0.25, 1);
+}
+
+.cf-fondu__slide.active { opacity: 1; }
+
+/* Léger recul de la photo pendant qu'elle est affichée — seulement
+   si le système ne demande pas moins d'animations. */
+@media (prefers-reduced-motion: no-preference) {
+  .cf-fondu__slide {
+    transform: scale(1.035);
+    transition: opacity 1.6s cubic-bezier(0.45, 0, 0.25, 1), transform 7s ease-out;
+  }
+  .cf-fondu__slide.active { transform: scale(1); }
+}
+
+.cf-fondu__controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* dégradé discret : les puces restent lisibles sur toute photo */
+  background: linear-gradient(to top, rgba(20, 12, 10, 0.35), transparent);
+  padding-top: 1.25rem;
+}
+
+/* Même puce que les diaporamas des magasins : 8 px visibles,
+   24 px de zone tactile. */
+.cf-fondu__dot {
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-clip: content-box;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.cf-fondu__dot.active { background-color: #fff; }
+
+.cf-fondu__pause {
+  position: absolute;
+  right: 6px;
+  bottom: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.cf-fondu__pause[hidden] { display: none; }
+
+.cf-fondu__pause:hover { color: #fff; }
+
+.cf-fondu__dot:focus-visible,
+.cf-fondu__pause:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+.cf-fondu__icon { width: 12px; height: 12px; fill: currentColor; }
+.cf-fondu__icon--play { display: none; }
+.cf-fondu.is-paused .cf-fondu__icon--pause { display: none; }
+.cf-fondu.is-paused .cf-fondu__icon--play { display: block; }
 
 .cf-annee__caption {
   margin-top: 0.7rem;
@@ -3709,6 +3799,36 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   font-size: 0.83rem;
   color: var(--color-text-muted);
   line-height: 1.55;
+}
+
+/* Pralinés et truffes : même liste, coiffée d'un intitulé doré. */
+.cf-gamme { margin-top: 2.75rem; }
+
+.cf-gamme__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-accent-gold-text);
+  margin-bottom: 0.25rem;
+}
+
+.cf-gamme__title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(212, 172, 13, 0.45);
+}
+
+.cf-gamme__note {
+  margin-top: 1.75rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--color-text-muted);
 }
 
 /* Sur commande */
