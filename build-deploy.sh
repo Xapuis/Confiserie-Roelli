@@ -20,8 +20,9 @@
 #  de fichiers Infomaniak), en remplaçant l'existant.
 #
 #  S'arrête avec une erreur si une page référence un fichier introuvable,
-#  ou si les horaires des données structurées (index.html, magasins.html,
-#  tilleuls.html) ou de llms.txt ne concordent pas.
+#  ou si les données des magasins (horaires, coordonnées, carte, téléphone,
+#  adresse) ne concordent pas entre index.html, magasins.html, tilleuls.html
+#  et llms.txt (horaires).
 # ----------------------------------------------------------------------------
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -43,7 +44,8 @@ WITH_BASE_URL = (".html", ".txt", ".xml")
 OUT = "deploy"
 
 # ── Horaires : les copies doivent concorder ─────────────────────────────────
-# Les horaires des magasins sont écrits à la main dans le JSON-LD de
+# Les horaires (et coordonnées, lien de carte, téléphone, adresse) des
+# magasins sont écrits à la main dans le JSON-LD de
 # index.html et magasins.html (5 magasins) et de tilleuls.html (Les Tilleuls),
 # et dans llms.txt. On s'arrête si une copie a été oubliée.
 import json
@@ -74,6 +76,10 @@ for page in ("index.html", "tilleuls.html"):
             errors.append(f"{page} : « {node['name']} » absent de magasins.html")
         elif hours(node) != hours(ref[node_id]):
             errors.append(f"{page} : horaires de « {node['name']} » différents de magasins.html")
+        else:
+            for key in ("geo", "hasMap", "telephone", "address"):
+                if node.get(key) != ref[node_id].get(key):
+                    errors.append(f"{page} : « {key} » de « {node['name']} » différent de magasins.html")
 if not any(i.endswith("#porrentruy-tilleuls") for i in jsonld_nodes("tilleuls.html")):
     errors.append("tilleuls.html : données structurées des Tilleuls introuvables")
 
@@ -91,7 +97,7 @@ for node in ref.values():
             errors.append(f"llms.txt : « {street} » n'affiche pas {o['opens']}–{o['closes']}")
 
 if errors:
-    print("ERREUR — horaires incohérents :", *errors, sep="\n  ")
+    print("ERREUR — données des magasins incohérentes :", *errors, sep="\n  ")
     sys.exit(1)
 
 # ── Sitemap : date de dernière modification réelle de chaque page ───────────

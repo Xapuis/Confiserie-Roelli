@@ -2834,6 +2834,14 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   margin-bottom: 1.5rem;
 }
 
+/* Une phrase propre à chaque magasin, juste sous l'adresse. */
+.magasin-detail__desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: -0.75rem 0 1.5rem;
+}
+
 .magasin-detail__hours-label {
   font-size: 0.72rem;
   font-weight: 700;
@@ -2849,7 +2857,10 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   color: var(--color-text);
 }
 
+.magasin-detail__maplink { font-size: 0.9rem; }
+
 .magasin-detail__phone a,
+.magasin-detail__maplink a,
 .magasin__contact-value a {
   /* Appeler ou écrire est le geste principal sur mobile : 44 px. */
   display: inline-flex;

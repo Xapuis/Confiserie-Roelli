@@ -31,7 +31,7 @@
   <meta name="twitter:image" content="{{BASE_URL}}/assets/images/og/og-magasins.jpg">
   <meta name="twitter:image:alt" content="Le magasin de la Confiserie Roelli à Porrentruy">
   <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=32">
+  <link rel="stylesheet" href="style.css?v=33">
   <!-- Données structurées (schema.org) : entreprise et 5 magasins.
        Horaires recopiés des tableaux de magasins.html — à modifier ensemble,
        ici, dans magasins.html et dans tilleuls.html (Les Tilleuls).
@@ -82,6 +82,12 @@
           "addressRegion": "JU",
           "addressCountry": "CH"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.416560,
+          "longitude": 7.074477
+        },
+        "hasMap": "https://maps.app.goo.gl/fsvHg8wk1NjbhF9N8",
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
@@ -136,6 +142,12 @@
           "addressRegion": "JU",
           "addressCountry": "CH"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.413518,
+          "longitude": 7.071653
+        },
+        "hasMap": "https://maps.app.goo.gl/R2BHb4vxcDQD8cLt5",
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
@@ -186,6 +198,12 @@
           "addressRegion": "JU",
           "addressCountry": "CH"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.495097,
+          "longitude": 7.014810
+        },
+        "hasMap": "https://maps.app.goo.gl/vUpyi1zcJNNqNHtH6",
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
@@ -278,6 +296,12 @@
           "addressRegion": "JU",
           "addressCountry": "CH"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.335444,
+          "longitude": 7.205127
+        },
+        "hasMap": "https://maps.app.goo.gl/qTzNVV226hDNFLxx8",
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
@@ -438,6 +462,7 @@
             <span class="magasin-detail__badge" data-i18n="magasin1.label">Principal</span>
             <h2 class="magasin-detail__title" data-i18n="nav.mag1">Porrentruy Centre</h2>
             <p class="magasin-detail__address">Rue du 23-Juin 11, 2900 Porrentruy</p>
+            <p class="magasin-detail__desc" data-i18n="magasin.desc_centre">C'est ici que se trouve le Bar à Croissants : votre viennoiserie garnie sous vos yeux. Avec terrasse.</p>
 
             <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
             <table class="hours-table hours-table--light">
@@ -448,6 +473,7 @@
               </tbody>
             </table>
             <p class="magasin-detail__phone"><a href="tel:+41324661677">032 466 16 77</a></p>
+            <p class="magasin-detail__maplink"><a href="https://maps.app.goo.gl/fsvHg8wk1NjbhF9N8" target="_blank" rel="noopener noreferrer" data-i18n="magasin.map_link">Voir sur la carte</a></p>
           </div>
           <div class="magasin-detail__map">
             <div class="magasin__slideshow">
@@ -483,6 +509,7 @@
           <div class="magasin-detail__info">
             <h2 class="magasin-detail__title">Tea-room Les Tilleuls</h2>
             <p class="magasin-detail__address">Rue des Tilleuls 13, 2900 Porrentruy</p>
+            <p class="magasin-detail__desc" data-i18n="magasin.desc_tilleuls">Tea-room avec menu du jour, à midi sur place ou à l'emporter. Avec terrasse.</p>
 
             <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
             <table class="hours-table hours-table--light">
@@ -493,6 +520,7 @@
               </tbody>
             </table>
             <p class="magasin-detail__phone"><a href="tel:+41324666059">032 466 60 59</a></p>
+            <p class="magasin-detail__maplink"><a href="https://maps.app.goo.gl/R2BHb4vxcDQD8cLt5" target="_blank" rel="noopener noreferrer" data-i18n="magasin.map_link">Voir sur la carte</a></p>
             <a href="tilleuls.html" class="btn btn--primary" style="margin-top:1rem;display:inline-block;" data-i18n="magasins.cta_tilleuls">Découvrir le Tea-room →</a>
           </div>
           <div class="magasin-detail__map">
@@ -529,6 +557,7 @@
           <div class="magasin-detail__info">
             <h2 class="magasin-detail__title" data-i18n="nav.mag3">Boncourt</h2>
             <p class="magasin-detail__address">Route de la Nods 1C, 2926 Boncourt</p>
+            <p class="magasin-detail__desc" data-i18n="magasin.desc_boncourt">Boulangerie, pâtisserie et confiserie à Boncourt, avec terrasse.</p>
 
             <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
             <table class="hours-table hours-table--light">
@@ -539,6 +568,7 @@
               </tbody>
             </table>
             <p class="magasin-detail__phone"><a href="tel:+41324755682">032 475 56 82</a></p>
+            <p class="magasin-detail__maplink"><a href="https://maps.app.goo.gl/vUpyi1zcJNNqNHtH6" target="_blank" rel="noopener noreferrer" data-i18n="magasin.map_link">Voir sur la carte</a></p>
           </div>
           <div class="magasin-detail__map">
             <div class="magasin__slideshow magasin__slideshow--placeholder" role="img" aria-label="Photo Boncourt à venir"></div>
@@ -552,6 +582,7 @@
           <div class="magasin-detail__info">
             <h2 class="magasin-detail__title" data-i18n="nav.mag4">Chevenez</h2>
             <p class="magasin-detail__address">Rue Jean-Pierre Riat 62A, 2906 Chevenez</p>
+            <p class="magasin-detail__desc" data-i18n="magasin.desc_chevenez">Boulangerie, pâtisserie et confiserie à Chevenez, avec terrasse.</p>
 
             <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
             <table class="hours-table hours-table--light">
@@ -581,6 +612,7 @@
           <div class="magasin-detail__info">
             <h2 class="magasin-detail__title" data-i18n="nav.mag5">Glovelier</h2>
             <p class="magasin-detail__address">Rte de la Transjurane 7, 2855 Glovelier</p>
+            <p class="magasin-detail__desc" data-i18n="magasin.desc_glovelier">Boulangerie, pâtisserie et confiserie à Glovelier, avec terrasse.</p>
 
             <p class="magasin-detail__hours-label" data-i18n="magasin.hours">Horaires d'ouverture</p>
             <table class="hours-table hours-table--light">
@@ -592,6 +624,7 @@
               </tbody>
             </table>
             <p class="magasin-detail__phone"><a href="tel:+41324265454">032 426 54 54</a></p>
+            <p class="magasin-detail__maplink"><a href="https://maps.app.goo.gl/qTzNVV226hDNFLxx8" target="_blank" rel="noopener noreferrer" data-i18n="magasin.map_link">Voir sur la carte</a></p>
           </div>
           <div class="magasin-detail__map">
             <div class="magasin__slideshow">
@@ -661,7 +694,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=32"></script>
-  <script src="js/main.js?v=32"></script>
+  <script src="js/i18n.js?v=33"></script>
+  <script src="js/main.js?v=33"></script>
 </body>
 </html>
