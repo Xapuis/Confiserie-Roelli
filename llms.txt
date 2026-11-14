@@ -1,0 +1,43 @@
+# Confiserie Roelli
+
+> Artisans boulangers-pâtissiers depuis 1958 à Porrentruy, dans le Jura (Suisse). Entreprise familiale : boulangerie, pâtisserie, confiserie et chocolats faits main, 5 points de vente dans le Jura, dont le Tea-room Les Tilleuls. Champion cantonal du Jura — Swiss Bakery Trophy 2025/27.
+
+Tout est fabriqué dans notre laboratoire aux Roches-de-Mars, à la sortie de Porrentruy, puis livré chaque jour dans nos magasins. Raison sociale : Confiserie Roelli Sàrl. Site en français, allemand, anglais et italien.
+
+## Pages principales
+
+- [Accueil]({{BASE_URL}}/) : présentation, Bar à Croissants, actualités, magasins
+- [Pâtisserie]({{BASE_URL}}/patisserie.html) : tartes, tourtes, mousses et entremets ; gâteaux d'anniversaire sur commande
+- [Boulangerie]({{BASE_URL}}/boulangerie.html) : pains blancs et pains spéciaux, tresse au beurre, viennoiseries
+- [Confiserie]({{BASE_URL}}/confiserie.html) : pralinés, truffes et chocolats faits main ; vitrines de Saint-Valentin, Pâques, Fête des Mères et Noël
+- [Nos magasins]({{BASE_URL}}/magasins.html) : adresses, téléphones et horaires
+- [Tea-room Les Tilleuls]({{BASE_URL}}/tilleuls.html) : menu de la semaine, à midi sur place ou à l'emporter
+- [Actualités]({{BASE_URL}}/actualites.html) : spécialités de saison
+- [Notre histoire]({{BASE_URL}}/histoire.html) : l'entreprise familiale depuis 1958
+- [Contact]({{BASE_URL}}/contact.html) : formulaire de contact et commandes
+
+## Magasins et horaires
+
+- Porrentruy Centre — Rue du 23-Juin 11, 2900 Porrentruy — 032 466 16 77
+  Lun–Ven 06:00–18:30 · Samedi 06:00–17:00 · Dim & jours fériés 06:30–12:30
+- Tea-room Les Tilleuls — Rue des Tilleuls 13, 2900 Porrentruy — 032 466 60 59
+  Lun–Ven 07:00–14:30 · Samedi 07:00–12:30 · Dim & jours fériés 07:00–12:30
+- Boncourt — Route de la Nods 1C, 2926 Boncourt — 032 475 56 82
+  Lun–Ven 06:00–19:30 · Samedi 06:00–12:30 · Dim & jours fériés 07:00–11:30
+- Chevenez — Rue Jean-Pierre Riat 62A, 2906 Chevenez — 032 476 74 74
+  Lun–Ven 06:00–12:30 · Sam, dim & jours fériés 06:00–12:00
+- Glovelier — Route de la Transjurane 7, 2855 Glovelier — 032 426 54 54
+  Lun–Ven 06:00–18:00 · Samedi 06:00–12:30 · Dimanche 07:00–17:30 · Jours fériés 07:00–12:00
+
+## Tea-room Les Tilleuls
+
+- Le seul restaurant de la maison : cuisine maison et service à table.
+- Menu du jour à 20 CHF (entrée, plat et dessert), cuisine chaude servie le midi du lundi au vendredi.
+- À l'emporter : appeler avant 10h30, le menu complet est prêt à midi.
+
+## Spécialités
+
+- Bar à Croissants : le seul bar à croissants du Jura. On choisit sa viennoiserie (croissant vert, croissant rouge, brioche à tête ou petit pain à l'eau) et son fourrage (pommes caramélisées à l'ancienne, pistache ou framboise), garnie sous vos yeux.
+- Gâteau à la crème, le « Totché » : spécialité traditionnelle d'Ajoie, préparée pour la Saint-Martin en trois versions (classique à la crème, aux lardons, à la Tête de Moine).
+- Gâteaux d'anniversaire sur commande : parfum, taille, décor et message au choix.
+- Pièces salées, canapés et buffets sur commande pour réceptions et fêtes de famille.
