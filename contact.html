@@ -31,7 +31,7 @@
   <meta name="twitter:image" content="{{BASE_URL}}/assets/images/og/og-default.jpg">
   <meta name="twitter:image:alt" content="Intérieur de la Confiserie Roelli à Porrentruy">
   <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=34">
+  <link rel="stylesheet" href="style.css?v=36">
 </head>
 <body>
 
@@ -210,6 +210,40 @@
                 <p class="form-error" id="contact-email-err" data-i18n="form.err_email" hidden>Indiquez une adresse email valide, par exemple nom@exemple.ch.</p>
               </div>
             </div>
+            <!-- Champs facultatifs pour les commandes. Les valeurs (value) restent
+                 en français, quelle que soit la langue du site : c'est ce que
+                 le magasin lit dans l'email. contact.html?type=gateau|chocolats|
+                 traiteur|autre présélectionne le type (voir main.js). -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-type" data-i18n="form.type">Type de demande (facultatif)</label>
+                <select id="contact-type" name="type" class="form-control">
+                  <option value="" data-i18n="form.choisir">— Choisir —</option>
+                  <option value="Gâteau / pâtisserie" data-type="gateau" data-i18n="form.type_gateau">Gâteau / pâtisserie</option>
+                  <option value="Chocolats / ballotin" data-type="chocolats" data-i18n="form.type_chocolats">Chocolats / ballotin</option>
+                  <option value="Traiteur (sandwichs, pain surprise)" data-type="traiteur" data-i18n="form.type_traiteur">Traiteur (sandwichs, pain surprise)</option>
+                  <option value="Autre" data-type="autre" data-i18n="form.type_autre">Autre</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row form-row--2col">
+              <div class="form-group">
+                <label for="contact-date" data-i18n="form.date">Date souhaitée (facultatif)</label>
+                <input type="date" id="contact-date" name="date" class="form-control" aria-describedby="contact-date-err">
+                <p class="form-error" id="contact-date-err" data-i18n="form.err_date" hidden>Choisissez une date à partir d'aujourd'hui.</p>
+              </div>
+              <div class="form-group">
+                <label for="contact-magasin" data-i18n="form.magasin">Magasin de retrait (facultatif)</label>
+                <select id="contact-magasin" name="magasin" class="form-control">
+                  <option value="" data-i18n="form.choisir">— Choisir —</option>
+                  <option value="Porrentruy Centre">Porrentruy Centre</option>
+                  <option value="Tea-room Les Tilleuls">Tea-room Les Tilleuls</option>
+                  <option value="Boncourt">Boncourt</option>
+                  <option value="Chevenez">Chevenez</option>
+                  <option value="Glovelier">Glovelier</option>
+                </select>
+              </div>
+            </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="contact-message" data-i18n="form.message">Message</label>
@@ -257,7 +291,7 @@
         </div>
       </nav>
       <div class="footer__bottom">
-        <p class="footer__copyright" data-i18n="footer.copyright">© 2025 Confiserie Roelli · Porrentruy, Jura</p>
+        <p class="footer__copyright" data-i18n="footer.copyright">© 2026 Confiserie Roelli · Porrentruy, Jura</p>
         <div class="footer__payments">
           <span class="payment-badge">TWINT</span><span class="payment-badge">VISA</span>
           <span class="payment-badge">MC</span><span class="payment-badge">Apple Pay</span>
@@ -270,7 +304,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=34"></script>
-  <script src="js/main.js?v=34"></script>
+  <script src="js/i18n.js?v=36"></script>
+  <script src="js/main.js?v=36"></script>
 </body>
 </html>

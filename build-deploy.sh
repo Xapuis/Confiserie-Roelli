@@ -100,6 +100,24 @@ if errors:
     print("ERREUR — données des magasins incohérentes :", *errors, sep="\n  ")
     sys.exit(1)
 
+# ── Menu des Tilleuls : data-menu-fin = date du dernier jour affiché ────────
+# main.js cache le menu après data-menu-fin ; si on change les dates du menu
+# sans changer cet attribut, le nouveau menu serait caché (ou l'ancien montré).
+MOIS = {"janv": 1, "févr": 2, "mars": 3, "avr": 4, "mai": 5, "juin": 6,
+        "juil": 7, "août": 8, "sept": 9, "oct": 10, "nov": 11, "déc": 12}
+with open("tilleuls.html", encoding="utf-8") as f:
+    tilleuls = f.read()
+fin = re.search(r'data-menu-fin="(\d{4})-(\d{2})-(\d{2})"', tilleuls)
+jours = re.findall(r'<span class="daybar__date">(\d{1,2}) ([a-zéû]+)\.?</span>', tilleuls)
+if not fin or not jours:
+    print("ERREUR — tilleuls.html : data-menu-fin ou dates de la barre des jours introuvables")
+    sys.exit(1)
+dernier_jour, dernier_mois = int(jours[-1][0]), MOIS.get(jours[-1][1])
+if (dernier_jour, dernier_mois) != (int(fin.group(3)), int(fin.group(2))):
+    print(f"ERREUR — tilleuls.html : data-menu-fin={fin.group(0).split('=')[1]} ne correspond "
+          f"pas au dernier jour du menu ({jours[-1][0]} {jours[-1][1]}.)")
+    sys.exit(1)
+
 # ── Sitemap : date de dernière modification réelle de chaque page ───────────
 # Date du dernier commit qui a touché la page ; date du jour si la page a des
 # modifications pas encore enregistrées dans git (ou si git est absent).

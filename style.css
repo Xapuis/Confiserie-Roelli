@@ -913,6 +913,55 @@ button { cursor: pointer; font-family: inherit; background: none; border: none; 
 }
 .histoire__body:last-child { margin-bottom: 0; }
 
+/* Distinction (Champion cantonal) : un sceau, pas un bouton — ni fond,
+   ni bordure ; petites capitales dorées entre deux filets fins.
+   --color-accent-gold-text sur --color-bg : 5,27:1 (AA). */
+.histoire__award {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+  color: var(--color-accent-gold-text);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.histoire__award-line {
+  flex: 1 1 1.5rem;
+  min-width: 1.5rem;
+  height: 1px;
+  background: var(--color-accent-gold);
+}
+
+.histoire__award-text {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
+.histoire__award:hover .histoire__award-text {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Mobile : « Champion cantonal du Jura » / « Swiss Bakery Trophy 2025/27 »
+   sur deux lignes, sans point de séparation orphelin. */
+@media (max-width: 480px) {
+  .histoire__award-sep { display: none; }
+  .histoire__award-part { display: block; }
+}
+
+/* Très petits écrans (≤ 360 px) : espacement resserré pour rester
+   sur deux lignes. */
+@media (max-width: 360px) {
+  .histoire__award { gap: 0.6rem; letter-spacing: 0.08em; }
+  .histoire__award-line { flex-basis: 1rem; min-width: 1rem; }
+}
+
 .img-placeholder--histoire {
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-md);
@@ -3357,14 +3406,19 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 
 .daybar__day--today .daybar__today { display: block; }
 
-.menu-weekend-msg {
+.menu-weekend-msg,
+.menu-expired-msg {
   text-align: center;
   color: var(--color-text-muted);
   font-style: italic;
   margin-top: 1rem;
 }
 
-.menu-weekend-msg[hidden] { display: none; }
+.menu-weekend-msg[hidden],
+.menu-expired-msg[hidden] { display: none; }
+
+/* Menu périmé : le lien du téléphone garde la couleur des liens. */
+.menu-expired-msg a { color: var(--color-primary); font-weight: 700; font-style: normal; }
 
 .daybar__day.is-active .daybar__name { color: white; }
 .daybar__day.is-active .daybar__date { color: var(--color-primary-light); }  /* 4,9:1 sur le rose */

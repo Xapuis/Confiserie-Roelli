@@ -203,6 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* Date du jour « AAAA-MM-JJ » en heure locale (toISOString seul
+     donnerait la date UTC, fausse entre minuit et 1–2 h en Suisse). */
+  function dateDuJour() {
+    const d = new Date();
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  }
+
   /* ── Onglets : jours du menu, saisons de la confiserie ────
      Tous les panneaux sont dans le HTML (traduits, indexables) ;
      on n'affiche que l'actif. Le passage de [hidden] à visible
@@ -241,7 +248,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const jourCourant = JOURS[new Date().getDay()];
   const boutonsJour = document.querySelectorAll('.daybar__day[data-weekday]');
 
-  if (boutonsJour.length) {
+  /* ── Menu périmé : jamais de menu d'une semaine passée ──────
+     Si aujourd'hui est après data-menu-fin (tilleuls.html), on cache
+     les jours, les plats et le prix, et on affiche le message avec le
+     téléphone. Le nouveau menu (avec sa nouvelle date) s'affiche seul. */
+  const sectionMenu = document.querySelector('[data-menu-fin]');
+  const menuPerime  = !!sectionMenu && dateDuJour() > sectionMenu.dataset.menuFin;
+  if (menuPerime) {
+    sectionMenu.querySelectorAll('.tr-menu__week, .tr-menu__price, .daybar, .tr-panels, .menu-weekend-msg, .tr-menu__note')
+      .forEach(el => { el.style.display = 'none'; });
+    sectionMenu.querySelector('.menu-expired-msg').hidden = false;
+  }
+
+  if (boutonsJour.length && !menuPerime) {
     if (jourCourant) {
       boutonsJour.forEach(btn => {
         if (btn.dataset.weekday === jourCourant) {
@@ -404,9 +423,23 @@ document.addEventListener('DOMContentLoaded', () => {
       return dict[cle] ?? translations.fr[cle];
     };
 
+    /* Date souhaitée : pas de date passée. « min » guide le calendrier ;
+       la vérification ci-dessous couvre une date tapée à la main
+       (le formulaire est en novalidate). */
+    const aujourdhui = dateDuJour();
+    form.elements.date.min = aujourdhui;
+
+    /* contact.html?type=gateau (chocolats, traiteur, autre) : les boutons
+       de commande des pages produits arrivent avec le bon type choisi. */
+    const typeDemande = new URLSearchParams(location.search).get('type');
+    const optionType  = typeDemande && [...form.elements.type.options]
+      .find(o => o.dataset.type === typeDemande);
+    if (optionType) form.elements.type.value = optionType.value;
+
     const CHAMPS = [
       { el: form.elements.nom,     ok: v => v.trim() !== '' },
       { el: form.elements.email,   ok: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) },
+      { el: form.elements.date,    ok: v => v === '' || v >= aujourdhui },   // facultatif
       { el: form.elements.message, ok: v => v.trim() !== '' },
     ];
 
